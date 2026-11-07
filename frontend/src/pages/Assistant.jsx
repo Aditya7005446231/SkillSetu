@@ -1,0 +1,8 @@
+import { Bot, Send, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+function Assistant() {
+  const [message, setMessage] = useState('')
+  const [sent, setSent] = useState(false)
+  return <div className="assistant-page"><section className="assistant-intro"><div className="assistant-avatar"><Sparkles size={25} /></div><div><h2>Your career copilot</h2><p>Get personalized advice, practice interviews, and make your next move with confidence.</p></div></section><section className="chat-panel panel"><div className="chat-message assistant-message"><span className="chat-icon"><Bot size={17} /></span><div><strong>SkillSetu Assistant</strong><p>Hi Alex! I’m here to help you with your career journey. What would you like to work on today?</p></div></div>{sent && <div className="chat-message user-message"><span className="avatar">AS</span><div><strong>You</strong><p>{sent}</p></div></div>}<div className="prompt-grid"><button onClick={() => setMessage('How can I prepare for a senior frontend role?')}>How do I prepare for a senior frontend role?</button><button onClick={() => setMessage('Review my portfolio')}>Can you review my portfolio?</button><button onClick={() => setMessage('Give me a mock interview')}>Give me a mock interview</button></div><form className="chat-input" onSubmit={(event) => { event.preventDefault(); if (message.trim()) { setSent(message); setMessage('') } }}><input value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Ask your assistant anything..." /><button aria-label="Send message" type="submit"><Send size={18} /></button></form></section></div>
+}
+export default Assistant
