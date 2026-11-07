@@ -8,6 +8,7 @@ venv/
 # Local environment and runtime data
 *.db
 backend/.env
+frontend/.env
 
 # Tooling
 .pytest_cache/
