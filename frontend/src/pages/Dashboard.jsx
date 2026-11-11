@@ -1,30 +1,12 @@
-import { ArrowRight, BookOpen, BriefcaseBusiness, CheckCircle2, Clock3, Target } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import JobCard from '../components/JobCard'
-import SkillCard from '../components/SkillCard'
+import { ArrowRight, CheckCircle2, Flame, Sparkles, TrendingUp } from 'lucide-react'
+import ExtractedSkills from '../components/ExtractedSkills'
+import ProfileCard from '../components/ProfileCard'
+import ProjectList from '../components/ProjectList'
 
-const skills = [
-  { name: 'React', level: 'Advanced', progress: 82, color: 'purple', icon: 'R' },
-  { name: 'Product design', level: 'Intermediate', progress: 64, color: 'orange', icon: '✦' },
-  { name: 'TypeScript', level: 'Intermediate', progress: 58, color: 'blue', icon: 'TS' },
-]
-const jobs = [
-  { title: 'Frontend Engineer', company: 'Orbit Labs', location: 'Remote', type: 'Full-time', salary: '$105k – $135k' },
-  { title: 'Product Designer', company: 'Northstar', location: 'New York, NY', type: 'Hybrid', salary: '$90k – $120k' },
-]
-
-function Dashboard() {
-  return <div className="dashboard-page">
-    <section className="welcome-banner"><div><span className="eyebrow">YOUR CAREER SNAPSHOT</span><h2>You are making great progress, Alex.</h2><p>Stay consistent and you will reach your next milestone in no time.</p><Link to="/roadmap" className="button primary">View your roadmap <ArrowRight size={16} /></Link></div><div className="banner-score"><strong>72</strong><span>Career score</span><div className="score-ring" /></div></section>
-    <section className="stat-grid">
-      <div className="stat-card"><span className="stat-icon purple-bg"><Target size={19} /></span><div><p>Career score</p><h3>72 <small>/ 100</small></h3></div><span className="trend">+8%</span></div>
-      <div className="stat-card"><span className="stat-icon orange-bg"><BookOpen size={19} /></span><div><p>Skills mastered</p><h3>12 <small>skills</small></h3></div><span className="trend">+2</span></div>
-      <div className="stat-card"><span className="stat-icon blue-bg"><BriefcaseBusiness size={19} /></span><div><p>Role matches</p><h3>24 <small>new roles</small></h3></div><span className="trend">+14%</span></div>
-      <div className="stat-card"><span className="stat-icon green-bg"><Clock3 size={19} /></span><div><p>Learning streak</p><h3>7 <small>days</small></h3></div><span className="trend">Best yet</span></div>
-    </section>
-    <div className="content-grid"><section className="panel"><div className="section-heading"><div><h2>Skill progress</h2><p>Your strongest skills right now</p></div><Link to="/skill-gap" className="text-button">See all <ArrowRight size={15} /></Link></div>{skills.map(skill => <SkillCard key={skill.name} skill={skill} />)}</section>
-      <section className="panel"><div className="section-heading"><div><h2>Next on your roadmap</h2><p>Keep your momentum going</p></div><Link to="/roadmap" className="text-button">View roadmap <ArrowRight size={15} /></Link></div><div className="timeline"><div className="timeline-item done"><span><CheckCircle2 size={17} /></span><div><strong>Complete portfolio refresh</strong><p>Completed yesterday</p></div></div><div className="timeline-item current"><span>2</span><div><strong>Build a TypeScript project</strong><p>In progress · 65% complete</p><div className="progress-track"><i style={{ width: '65%' }} /></div></div></div><div className="timeline-item"><span>3</span><div><strong>Apply to 5 frontend roles</strong><p>Up next · Due in 8 days</p></div></div></div></section></div>
-    <section className="panel jobs-panel"><div className="section-heading"><div><h2>Recommended opportunities</h2><p>Based on your profile and goals</p></div><Link to="/opportunities" className="text-button">Explore all <ArrowRight size={15} /></Link></div><div className="jobs-grid">{jobs.map(job => <JobCard key={job.title} job={job} />)}</div></section>
-  </div>
+function Dashboard({ profile, onUpload }) {
+  const skillCount = profile?.skills?.length || 0
+  const projectCount = profile?.projects?.length || 0
+  return <div className="page-wrap dashboard-page"><section className="dashboard-hero"><div><span className="hero-chip dark"><Sparkles size={13} /> YOUR CAREER, REFRAMED</span><h2>Small steps.<br /><em>Big momentum.</em></h2><p>Your career story is more than a list of roles. Let's make it work for you.</p><button className="hero-cta" onClick={onUpload}>{profile ? 'Update your profile' : 'Build my profile'} <ArrowRight size={16} /></button></div><div className="hero-grid"><span /><span /><span /><span /></div></section><div className="metric-row"><div className="metric"><span className="metric-icon purple-metric"><TrendingUp size={17} /></span><div><small>PROFILE SIGNAL</small><strong>{profile ? 'Strong start' : 'Not started'}</strong></div></div><div className="metric"><span className="metric-icon orange-metric"><Flame size={17} /></span><div><small>SKILLS FOUND</small><strong>{skillCount || '—'} <small>{skillCount ? 'mapped' : 'upload to see'}</small></strong></div></div><div className="metric"><span className="metric-icon green-metric"><CheckCircle2 size={17} /></span><div><small>PROJECTS</small><strong>{projectCount || '—'} <small>{projectCount ? 'extracted' : 'upload to see'}</small></strong></div></div></div><div className="dashboard-grid"><div className="dashboard-main"><ProfileCard profile={profile} />{profile && <ExtractedSkills skills={profile.skills} />}</div><div className="dashboard-aside"><div className="next-card"><p className="eyebrow purple">NEXT BEST MOVE</p><h3>{profile ? 'Turn your proof into opportunity.' : 'Give your profile a signal.'}</h3><p>{profile ? 'Your projects are a great starting point. Add links and measurable outcomes to make them pop.' : 'Your resume is the fastest way to unlock a personalized career view.'}</p><button onClick={onUpload}>{profile ? 'Improve profile' : 'Upload resume'} <ArrowRight size={14} /></button></div>{profile && <ProjectList projects={profile.projects} />}</div></div></div>
 }
+
 export default Dashboard

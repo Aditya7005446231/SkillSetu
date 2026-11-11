@@ -16,3 +16,10 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     )
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+def get_authenticated_client(access_token: str) -> Client:
+    """Create a Supabase client whose requests run as the authenticated user."""
+    client = create_client(SUPABASE_URL, SUPABASE_KEY)
+    client.postgrest.auth(access_token)
+    return client
