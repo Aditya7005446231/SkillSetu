@@ -4,6 +4,8 @@ import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import Depends, FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi import Query
+from fastapi.middleware.cors import CORSMiddleware
 
 from .database import get_authenticated_client, get_service_client, supabase
 from .services.resume_parser import extract_resume_text
@@ -13,8 +15,19 @@ from .services.opportunity_sync import sync_opportunities
 from .agents.skill_profiling import analyze_resume
 from .services.opportunity_sync import sources_from_environment
 from .schemas.opportunity import OpportunitySyncRequest
+from .services.opportunity_matching import recommend_opportunities
 
 app = FastAPI(title="CareerBridge AI")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 bearer_scheme = HTTPBearer(auto_error=False)
 scheduler = AsyncIOScheduler()
 logger = logging.getLogger(__name__)
@@ -173,4 +186,89 @@ async def sync_opportunity_sources_locally(request: Request):
         raise HTTPException(
             status_code=502,
             detail=f"Local opportunity synchronization failed: {error}",
+        ) from error
+
+
+@app.get("/api/opportunities/recommended")
+async def get_recommended_opportunities(
+    location: str | None = Query(default=None),
+    job_type: str | None = Query(default=None),
+    remote: bool = Query(default=False),
+    minimum_score: float = Query(default=0, ge=0, le=100),
+    limit: int = Query(default=20, ge=1, le=100),
+    auth=Depends(get_current_user),
+):
+    user, authenticated_client = auth
+    try:
+        recommendations = recommend_opportunities(
+            authenticated_client,
+            str(user.id),
+            location=location,
+            job_type=job_type,
+            remote=remote,
+            minimum_score=minimum_score,
+            limit=limit,
+        )
+        return {
+            "success": True,
+            "count": len(recommendations),
+            "recommendations": [
+                recommendation.model_dump()
+                for recommendation in recommendations
+            ],
+        }
+    except Exception as error:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Opportunity matching failed: {error}",
+        ) from error
+
+
+@app.get("/api/opportunities/recommended-local")
+async def get_local_recommended_opportunities(
+    request: Request,
+    location: str | None = Query(default=None),
+    job_type: str | None = Query(default=None),
+    remote: bool = Query(default=False),
+    minimum_score: float = Query(default=0, ge=0, le=100),
+    limit: int = Query(default=20, ge=1, le=100),
+):
+    """Test matching locally with a configured student profile."""
+    if os.getenv("OPPORTUNITY_SYNC_DEV_MODE", "false").lower() != "true":
+        raise HTTPException(status_code=404, detail="Local matching is disabled.")
+
+    client_host = request.client.host if request.client else None
+    if client_host not in {"127.0.0.1", "::1", "localhost"}:
+        raise HTTPException(status_code=403, detail="Local matching is only available on this machine.")
+
+    student_id = os.getenv("MATCHING_TEST_STUDENT_ID", "").strip()
+    if not student_id:
+        raise HTTPException(
+            status_code=400,
+            detail="Set MATCHING_TEST_STUDENT_ID in backend/.env before testing.",
+        )
+
+    try:
+        recommendations = recommend_opportunities(
+            get_service_client(),
+            student_id,
+            location=location,
+            job_type=job_type,
+            remote=remote,
+            minimum_score=minimum_score,
+            limit=limit,
+        )
+        return {
+            "success": True,
+            "student_id": student_id,
+            "count": len(recommendations),
+            "recommendations": [
+                recommendation.model_dump()
+                for recommendation in recommendations
+            ],
+        }
+    except Exception as error:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Local opportunity matching failed: {error}",
         ) from error

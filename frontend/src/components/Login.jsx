@@ -7,22 +7,48 @@ function Login() {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   async function handleSubmit(event) {
     event.preventDefault()
     setError('')
     setMessage('')
 
-    const action = isSignUp ? signUp : signIn
-    const { data, error } = await action(email, password)
+    const normalizedEmail = email.trim().toLowerCase()
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-    if (error) {
-      setError(error.message)
+    if (!emailPattern.test(normalizedEmail)) {
+      setError('Enter a valid email address, such as name@example.com.')
+      return
+    }
+    if (password.length < 6) {
+      setError('Password must contain at least 6 characters.')
       return
     }
 
-    if (isSignUp && !data.session) {
-      setMessage('Account created. Check your email to confirm your account, then sign in.')
+    setIsSubmitting(true)
+    try {
+      const action = isSignUp ? signUp : signIn
+      const { data, error } = await action(normalizedEmail, password)
+
+      if (error) {
+        const knownErrors = {
+          'Email address is invalid': 'Enter a valid email address accepted by Supabase.',
+          'Email address or password is invalid': 'Email or password is incorrect.',
+          'Password should be at least 6 characters': 'Password must contain at least 6 characters.',
+          'User already registered': 'An account with this email already exists. Try signing in.',
+        }
+        setError(knownErrors[error.message] || error.message)
+        return
+      }
+
+      if (isSignUp && !data.session) {
+        setMessage('Account created. Check your email to confirm your account, then sign in.')
+      }
+    } catch (submitError) {
+      setError(submitError.message || 'Unable to connect to the authentication service.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -47,8 +73,8 @@ function Login() {
         required
       />
 
-      <button type="submit">
-        {isSignUp ? 'Create account' : 'Sign in'}
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? 'Please wait...' : isSignUp ? 'Create account' : 'Sign in'}
       </button>
 
       {error && <p>{error}</p>}

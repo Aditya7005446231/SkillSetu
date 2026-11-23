@@ -44,7 +44,9 @@ def _normalize_job_type(source_type: str, title: str, description: str) -> str:
         return "internship"
     if any(term in searchable_text for term in ("part-time", "part time")):
         return "part-time"
-    if "contract" in searchable_text or "freelance" in searchable_text:
+    if "freelance" in searchable_text:
+        return "freelance"
+    if "contract" in searchable_text:
         return "contract"
     if any(term in searchable_text for term in ("temporary", "temp ")):
         return "temporary"

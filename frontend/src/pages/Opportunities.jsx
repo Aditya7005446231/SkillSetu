@@ -1,12 +1,70 @@
+import { useEffect, useState } from 'react'
 import { Filter, Search } from 'lucide-react'
 import JobCard from '../components/JobCard'
-const jobs = [
-  { title: 'Frontend Engineer', company: 'Orbit Labs', location: 'Remote', type: 'Full-time', salary: '$105k – $135k' },
-  { title: 'Product Designer', company: 'Northstar', location: 'New York, NY', type: 'Hybrid', salary: '$90k – $120k' },
-  { title: 'React Developer', company: 'Brightside', location: 'Austin, TX', type: 'Full-time', salary: '$100k – $130k' },
-  { title: 'UI Engineer', company: 'Vercel', location: 'Remote', type: 'Full-time', salary: '$115k – $150k' },
-]
+import { getRecommendedOpportunities } from '../services/opportunities'
+
 function Opportunities() {
-  return <div><div className="toolbar"><div className="search-field"><Search size={17} /><input placeholder="Search roles, companies, or skills" /></div><button className="button outline"><Filter size={16} /> Filters</button></div><div className="opportunity-note"><strong>24 roles match your profile</strong><span>Updated just now · Sorted by relevance</span></div><div className="jobs-grid opportunities-grid">{jobs.map(job => <JobCard key={job.title} job={job} />)}</div></div>
+  const [jobs, setJobs] = useState([])
+  const [query, setQuery] = useState('')
+  const [location, setLocation] = useState('')
+  const [jobType, setJobType] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    async function loadJobs() {
+      setLoading(true)
+      setError('')
+      try {
+        const filters = {}
+        if (location) filters.location = location
+        if (jobType) filters.job_type = jobType
+        const data = await getRecommendedOpportunities(filters)
+        setJobs(data.recommendations || [])
+      } catch (loadError) {
+        setError(loadError.response?.data?.detail || loadError.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadJobs()
+  }, [location, jobType])
+
+  const visibleJobs = jobs.filter((job) => {
+    const search = query.toLowerCase()
+    return !search || `${job.title} ${job.company} ${job.location}`.toLowerCase().includes(search)
+  })
+
+  return <div>
+    <div className="toolbar">
+      <div className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search roles, companies, or skills" /></div>
+      <select value={location} onChange={(event) => setLocation(event.target.value)} aria-label="Location">
+        <option value="">All locations</option>
+        <option value="India">India</option>
+        <option value="Bengaluru">Bengaluru</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Pune">Pune</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Remote">Remote</option>
+      </select>
+      <select value={jobType} onChange={(event) => setJobType(event.target.value)} aria-label="Job type">
+        <option value="">All job types</option>
+        <option value="internship">Internship</option>
+        <option value="full-time">Full time</option>
+        <option value="part-time">Part-time</option>
+        <option value="contract">Contract</option>
+        <option value="freelance">Freelance</option>
+        <option value="temporary">Temporary</option>
+      </select>
+      <button className="button outline"><Filter size={16} /> Filters</button>
+    </div>
+    {loading && <div className="opportunity-note">Loading personalized opportunities...</div>}
+    {error && <div className="opportunity-note"><strong>Unable to load opportunities</strong><span>{error}</span></div>}
+    {!loading && !error && <div className="opportunity-note"><strong>{visibleJobs.length} roles match your profile</strong><span>Sorted by relevance</span></div>}
+    <div className="jobs-grid opportunities-grid">
+      {visibleJobs.map(job => <JobCard key={job.job_id} job={job} />)}
+    </div>
+  </div>
 }
 export default Opportunities

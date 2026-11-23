@@ -51,6 +51,20 @@ class OpportunitySyncRequest(BaseModel):
     sources: list[OpportunitySourceConfig] = Field(min_length=1)
 
 
+class RecommendedOpportunity(BaseModel):
+    job_id: str
+    title: str
+    company: str
+    location: str = ""
+    job_type: str = "other"
+    apply_url: str
+    match_score: float = Field(ge=0, le=100)
+    matched_skills: list[str] = Field(default_factory=list)
+    missing_skills: list[str] = Field(default_factory=list)
+    reason: str
+    formula_version: str
+
+
 class SyncResult(BaseModel):
     fetched: int
     saved: int
