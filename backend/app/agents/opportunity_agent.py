@@ -6,19 +6,28 @@ from dotenv import load_dotenv
 from groq import Groq
 
 from ..schemas.opportunity import ExtractedOpportunity, RawOpportunity
-
-load_dotenv(Path(__file__).resolve().parents[2] / ".env")
-
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+from ..services.llm_validator import call_llm_with_validation
+from ..services.skill_framework_rag import build_framework_context
 
 
 def extract_opportunity_requirements(
     opportunity: RawOpportunity,
 ) -> ExtractedOpportunity:
-    """Extract skills and eligibility into validated structured data."""
+    """Extract skills and eligibility into validated structured data with retry."""
+    framework_context = build_framework_context(
+        f"{opportunity.title} {opportunity.description}",
+        limit=6,
+    )
     prompt = f"""
 Analyze this job or internship listing. Extract only requirements explicitly
 supported by the listing. Do not invent skills, education, dates, or eligibility.
+
+Use the retrieved skill-framework context only to interpret and canonicalize
+skill names. Do not add a framework skill unless it is supported by the listing.
+Prefer canonical skill names from the framework context.
+
+Retrieved skill-framework context:
+{framework_context}
 
 Return JSON with this exact shape:
 {{
@@ -39,14 +48,10 @@ Location: {opportunity.location}
 Description:
 {opportunity.description}
 """
-    response = client.chat.completions.create(
-        model=os.getenv("GROQ_MODEL"),
-        messages=[
-            {"role": "system", "content": "Return only valid JSON."},
-            {"role": "user", "content": prompt},
-        ],
-        response_format={"type": "json_object"},
-        temperature=0,
+    return call_llm_with_validation(
+        schema=ExtractedOpportunity,
+        prompt=prompt,
+        system_prompt="Return only valid JSON matching the requested schema.",
+        temperature=0.0,
+        max_retries=1,
     )
-    result = json.loads(response.choices[0].message.content)
-    return ExtractedOpportunity.model_validate(result)

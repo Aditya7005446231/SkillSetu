@@ -61,6 +61,7 @@ class RecommendedOpportunity(BaseModel):
     match_score: float = Field(ge=0, le=100)
     matched_skills: list[str] = Field(default_factory=list)
     missing_skills: list[str] = Field(default_factory=list)
+    related_gap_skills: dict[str, list[str]] = Field(default_factory=dict)
     reason: str
     formula_version: str
 

@@ -1,0 +1,5526 @@
+{
+  "framework_version": "skillsetu-skill-framework-v2-comprehensive",
+  "source": "SkillSetu curated industry role and skill taxonomy",
+  "total_documents": 232,
+  "total_roles": 8,
+  "total_skills": 224,
+  "documents": [
+    {
+      "id": "role-software-engineer",
+      "type": "role",
+      "title": "Software Engineer",
+      "aliases": [
+        "software developer",
+        "backend developer",
+        "programmer",
+        "swe"
+      ],
+      "skills": [
+        "Python",
+        "Java",
+        "C++",
+        "Git",
+        "SQL",
+        "PostgreSQL",
+        "Docker",
+        "Linux",
+        "REST API",
+        "Data Structures",
+        "Algorithms",
+        "System Design",
+        "Unit Testing"
+      ],
+      "description": "Designs, builds, and maintains reliable software systems, enterprise backends, APIs, and scalable infrastructure using computer science fundamentals.",
+      "learning_order": [
+        "Data Structures",
+        "Algorithms",
+        "Git",
+        "SQL",
+        "REST API",
+        "Docker",
+        "System Design",
+        "Unit Testing"
+      ]
+    },
+    {
+      "id": "role-full-stack-developer",
+      "type": "role",
+      "title": "Full-Stack Developer",
+      "aliases": [
+        "fullstack developer",
+        "web developer",
+        "mern developer",
+        "frontend backend developer"
+      ],
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "SQL",
+        "Git",
+        "Docker",
+        "REST API",
+        "Tailwind CSS"
+      ],
+      "description": "Builds complete web applications end-to-end, from responsive UI interfaces to backend microservices, databases, authentication, and deployments.",
+      "learning_order": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "Express.js",
+        "REST API",
+        "PostgreSQL",
+        "Docker"
+      ]
+    },
+    {
+      "id": "role-ai-engineer",
+      "type": "role",
+      "title": "AI/ML Engineer",
+      "aliases": [
+        "machine learning engineer",
+        "ai developer",
+        "ml engineer",
+        "genai engineer"
+      ],
+      "skills": [
+        "Python",
+        "SQL",
+        "Pandas",
+        "NumPy",
+        "Scikit-Learn",
+        "PyTorch",
+        "TensorFlow",
+        "Large Language Models",
+        "RAG",
+        "Vector Embeddings",
+        "LangChain",
+        "Groq",
+        "Docker",
+        "Model Evaluation",
+        "Feature Engineering",
+        "FastAPI"
+      ],
+      "description": "Builds, evaluates, and deploys machine learning and generative AI systems using Python, deep learning, retrieval pipelines (RAG), and model serving.",
+      "learning_order": [
+        "Python",
+        "NumPy",
+        "Pandas",
+        "Scikit-Learn",
+        "Model Evaluation",
+        "PyTorch",
+        "Large Language Models",
+        "RAG",
+        "Vector Embeddings",
+        "FastAPI",
+        "Docker"
+      ]
+    },
+    {
+      "id": "role-frontend-developer",
+      "type": "role",
+      "title": "Frontend Developer",
+      "aliases": [
+        "ui developer",
+        "react developer",
+        "frontend engineer",
+        "client-side developer"
+      ],
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Redux",
+        "Vite",
+        "Git",
+        "Jest",
+        "Web Accessibility",
+        "Responsive Design"
+      ],
+      "description": "Specializes in building modern, responsive, high-performance web user interfaces with state management, accessible markup, and smooth UX.",
+      "learning_order": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Tailwind CSS",
+        "Next.js",
+        "Redux",
+        "Jest"
+      ]
+    },
+    {
+      "id": "role-backend-developer",
+      "type": "role",
+      "title": "Backend Developer",
+      "aliases": [
+        "backend engineer",
+        "server developer",
+        "api engineer"
+      ],
+      "skills": [
+        "Python",
+        "Java",
+        "Go",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "REST API",
+        "Microservices",
+        "System Design",
+        "SQL",
+        "Linux",
+        "CI/CD"
+      ],
+      "description": "Architects server-side logic, high-throughput APIs, database schemas, asynchronous messaging, and scalable microservices.",
+      "learning_order": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "REST API",
+        "Docker",
+        "Redis",
+        "Microservices",
+        "System Design"
+      ]
+    },
+    {
+      "id": "role-devops-engineer",
+      "type": "role",
+      "title": "DevOps / Cloud Engineer",
+      "aliases": [
+        "site reliability engineer",
+        "sre",
+        "cloud engineer",
+        "infrastructure engineer"
+      ],
+      "skills": [
+        "Linux",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "CI/CD",
+        "GitHub Actions",
+        "Terraform",
+        "Prometheus",
+        "Grafana",
+        "Nginx",
+        "Shell Scripting",
+        "Python",
+        "Git"
+      ],
+      "description": "Automates deployment pipelines, provisions infrastructure as code, monitors system health, and maintains high reliability across cloud platforms.",
+      "learning_order": [
+        "Linux",
+        "Shell Scripting",
+        "Git",
+        "Docker",
+        "CI/CD",
+        "AWS",
+        "Terraform",
+        "Kubernetes",
+        "Prometheus",
+        "Grafana"
+      ]
+    },
+    {
+      "id": "role-data-engineer",
+      "type": "role",
+      "title": "Data Engineer",
+      "aliases": [
+        "big data engineer",
+        "data platform engineer",
+        "etl developer"
+      ],
+      "skills": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "Apache Spark",
+        "Apache Kafka",
+        "Apache Airflow",
+        "Data Pipelines",
+        "ETL",
+        "Snowflake",
+        "Docker",
+        "BigQuery"
+      ],
+      "description": "Constructs robust distributed data pipelines, manages event streaming, implements ETL jobs, and structures analytical data warehouses.",
+      "learning_order": [
+        "Python",
+        "SQL",
+        "PostgreSQL",
+        "Data Pipelines",
+        "ETL",
+        "Apache Spark",
+        "Apache Airflow",
+        "Apache Kafka",
+        "Snowflake"
+      ]
+    },
+    {
+      "id": "role-mobile-developer",
+      "type": "role",
+      "title": "Mobile App Developer",
+      "aliases": [
+        "android developer",
+        "ios developer",
+        "react native developer",
+        "flutter developer"
+      ],
+      "skills": [
+        "Kotlin",
+        "Swift",
+        "Flutter",
+        "React Native",
+        "Android Development",
+        "iOS Development",
+        "Git",
+        "REST API",
+        "Mobile UI Design"
+      ],
+      "description": "Develops native and cross-platform mobile apps for iOS and Android devices, focusing on mobile performance, offline caching, and responsive UI.",
+      "learning_order": [
+        "Kotlin",
+        "Android Development",
+        "Swift",
+        "iOS Development",
+        "Flutter",
+        "REST API",
+        "Git"
+      ]
+    },
+    {
+      "id": "skill-python",
+      "type": "skill",
+      "title": "Python",
+      "name": "Python",
+      "category": "Programming Languages",
+      "aliases": [
+        "python3",
+        "py",
+        "python 3",
+        "cpython"
+      ],
+      "skills": [
+        "Python"
+      ],
+      "related_skills": [
+        "Django",
+        "FastAPI",
+        "Flask",
+        "Pandas",
+        "NumPy",
+        "PyTorch"
+      ],
+      "prerequisites": [],
+      "description": "High-level, interpreted programming language widely used for web development, data science, AI, and automation."
+    },
+    {
+      "id": "skill-javascript",
+      "type": "skill",
+      "title": "JavaScript",
+      "name": "JavaScript",
+      "category": "Programming Languages",
+      "aliases": [
+        "js",
+        "es6",
+        "ecmascript",
+        "vanilla js",
+        "modern javascript"
+      ],
+      "skills": [
+        "JavaScript"
+      ],
+      "related_skills": [
+        "TypeScript",
+        "React",
+        "Node.js",
+        "HTML5",
+        "CSS3"
+      ],
+      "prerequisites": [],
+      "description": "Core scripting language of the web, enabling interactive frontend interfaces and server-side runtimes."
+    },
+    {
+      "id": "skill-typescript",
+      "type": "skill",
+      "title": "TypeScript",
+      "name": "TypeScript",
+      "category": "Programming Languages",
+      "aliases": [
+        "ts"
+      ],
+      "skills": [
+        "TypeScript"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Angular",
+        "NestJS"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Strongly typed superset of JavaScript that compiles to plain JavaScript, enhancing maintainability."
+    },
+    {
+      "id": "skill-java",
+      "type": "skill",
+      "title": "Java",
+      "name": "Java",
+      "category": "Programming Languages",
+      "aliases": [
+        "java 8",
+        "java 11",
+        "java 17",
+        "java 21",
+        "core java",
+        "j2se"
+      ],
+      "skills": [
+        "Java"
+      ],
+      "related_skills": [
+        "Spring Boot",
+        "Kotlin",
+        "Hibernate",
+        "Maven",
+        "Gradle"
+      ],
+      "prerequisites": [
+        "Object-Oriented Programming"
+      ],
+      "description": "Object-oriented, class-based language engineered for platform independence, enterprise backends, and Android."
+    },
+    {
+      "id": "skill-cpp",
+      "type": "skill",
+      "title": "C++",
+      "name": "C++",
+      "category": "Programming Languages",
+      "aliases": [
+        "cpp",
+        "c plus plus",
+        "c/c++"
+      ],
+      "skills": [
+        "C++"
+      ],
+      "related_skills": [
+        "C",
+        "Data Structures",
+        "Algorithms",
+        "System Design"
+      ],
+      "prerequisites": [
+        "C"
+      ],
+      "description": "High-performance systems programming language with generic and object-oriented features, used in game dev and low-latency systems."
+    },
+    {
+      "id": "skill-csharp",
+      "type": "skill",
+      "title": "C#",
+      "name": "C#",
+      "category": "Programming Languages",
+      "aliases": [
+        "csharp",
+        "c sharp",
+        ".net c#"
+      ],
+      "skills": [
+        "C#"
+      ],
+      "related_skills": [
+        ".NET Core",
+        "ASP.NET Core",
+        "Unity",
+        "Azure"
+      ],
+      "prerequisites": [
+        "Object-Oriented Programming"
+      ],
+      "description": "Modern object-oriented language developed by Microsoft for enterprise applications, cloud services, and games."
+    },
+    {
+      "id": "skill-go",
+      "type": "skill",
+      "title": "Go",
+      "name": "Go",
+      "category": "Programming Languages",
+      "aliases": [
+        "golang",
+        "go-lang"
+      ],
+      "skills": [
+        "Go"
+      ],
+      "related_skills": [
+        "Docker",
+        "Kubernetes",
+        "gRPC",
+        "Microservices"
+      ],
+      "prerequisites": [],
+      "description": "Compiled, statically typed open-source language designed by Google for scalable, concurrent network services."
+    },
+    {
+      "id": "skill-rust",
+      "type": "skill",
+      "title": "Rust",
+      "name": "Rust",
+      "category": "Programming Languages",
+      "aliases": [
+        "rustlang"
+      ],
+      "skills": [
+        "Rust"
+      ],
+      "related_skills": [
+        "WebAssembly",
+        "C++",
+        "System Programming",
+        "Concurrency"
+      ],
+      "prerequisites": [],
+      "description": "Systems programming language focused on memory safety, concurrency, and performance without a garbage collector."
+    },
+    {
+      "id": "skill-php",
+      "type": "skill",
+      "title": "PHP",
+      "name": "PHP",
+      "category": "Programming Languages",
+      "aliases": [
+        "php7",
+        "php8"
+      ],
+      "skills": [
+        "PHP"
+      ],
+      "related_skills": [
+        "Laravel",
+        "Symfony",
+        "WordPress",
+        "MySQL"
+      ],
+      "prerequisites": [],
+      "description": "Server-side scripting language designed primarily for web development and dynamic web applications."
+    },
+    {
+      "id": "skill-ruby",
+      "type": "skill",
+      "title": "Ruby",
+      "name": "Ruby",
+      "category": "Programming Languages",
+      "aliases": [
+        "ruby on rails language"
+      ],
+      "skills": [
+        "Ruby"
+      ],
+      "related_skills": [
+        "Ruby on Rails",
+        "PostgreSQL",
+        "RSpec"
+      ],
+      "prerequisites": [],
+      "description": "Dynamic, open-source programming language with a focus on simplicity, productivity, and elegant syntax."
+    },
+    {
+      "id": "skill-swift",
+      "type": "skill",
+      "title": "Swift",
+      "name": "Swift",
+      "category": "Programming Languages",
+      "aliases": [
+        "swiftlang",
+        "apple swift"
+      ],
+      "skills": [
+        "Swift"
+      ],
+      "related_skills": [
+        "iOS Development",
+        "SwiftUI",
+        "Xcode",
+        "Objective-C"
+      ],
+      "prerequisites": [],
+      "description": "Modern, fast, and safe programming language created by Apple for iOS, macOS, watchOS, and tvOS development."
+    },
+    {
+      "id": "skill-kotlin",
+      "type": "skill",
+      "title": "Kotlin",
+      "name": "Kotlin",
+      "category": "Programming Languages",
+      "aliases": [
+        "kotlin/jvm",
+        "android kotlin"
+      ],
+      "skills": [
+        "Kotlin"
+      ],
+      "related_skills": [
+        "Android Development",
+        "Java",
+        "Spring Boot",
+        "Jetpack Compose"
+      ],
+      "prerequisites": [
+        "Java"
+      ],
+      "description": "Modern concise language targeting JVM and Android, fully interoperable with Java and officially preferred by Google for Android."
+    },
+    {
+      "id": "skill-sql",
+      "type": "skill",
+      "title": "SQL",
+      "name": "SQL",
+      "category": "Programming Languages",
+      "aliases": [
+        "structured query language",
+        "ansi sql",
+        "relational database queries"
+      ],
+      "skills": [
+        "SQL"
+      ],
+      "related_skills": [
+        "PostgreSQL",
+        "MySQL",
+        "Database Indexing",
+        "Data Modeling"
+      ],
+      "prerequisites": [],
+      "description": "Standard declarative query language for defining, manipulating, and querying relational database management systems."
+    },
+    {
+      "id": "skill-html5",
+      "type": "skill",
+      "title": "HTML5",
+      "name": "HTML5",
+      "category": "Programming Languages",
+      "aliases": [
+        "html",
+        "html 5",
+        "markup"
+      ],
+      "skills": [
+        "HTML5"
+      ],
+      "related_skills": [
+        "CSS3",
+        "JavaScript",
+        "Web Accessibility",
+        "SEO"
+      ],
+      "prerequisites": [],
+      "description": "Standard markup language used to structure documents and content displayed on the World Wide Web."
+    },
+    {
+      "id": "skill-css3",
+      "type": "skill",
+      "title": "CSS3",
+      "name": "CSS3",
+      "category": "Programming Languages",
+      "aliases": [
+        "css",
+        "cascading style sheets",
+        "css 3",
+        "modern css"
+      ],
+      "skills": [
+        "CSS3"
+      ],
+      "related_skills": [
+        "HTML5",
+        "Tailwind CSS",
+        "Sass",
+        "Responsive Design",
+        "Flexbox"
+      ],
+      "prerequisites": [
+        "HTML5"
+      ],
+      "description": "Style sheet language used for specifying the visual layout, typography, animations, and presentation of web pages."
+    },
+    {
+      "id": "skill-shell-scripting",
+      "type": "skill",
+      "title": "Shell Scripting",
+      "name": "Shell Scripting",
+      "category": "Programming Languages",
+      "aliases": [
+        "bash",
+        "bash scripting",
+        "sh",
+        "zsh",
+        "linux shell"
+      ],
+      "skills": [
+        "Shell Scripting"
+      ],
+      "related_skills": [
+        "Linux",
+        "CLI",
+        "DevOps",
+        "Automation"
+      ],
+      "prerequisites": [
+        "Linux"
+      ],
+      "description": "Scripting language for Unix/Linux shells to automate server tasks, file manipulation, and deployment pipelines."
+    },
+    {
+      "id": "skill-r",
+      "type": "skill",
+      "title": "R",
+      "name": "R",
+      "category": "Programming Languages",
+      "aliases": [
+        "r-lang",
+        "rlang",
+        "r programming"
+      ],
+      "skills": [
+        "R"
+      ],
+      "related_skills": [
+        "Data Science",
+        "Statistics",
+        "Machine Learning",
+        "ggplot2"
+      ],
+      "prerequisites": [],
+      "description": "Statistical computing and graphics programming language widely used among data miners, statisticians, and researchers."
+    },
+    {
+      "id": "skill-dart",
+      "type": "skill",
+      "title": "Dart",
+      "name": "Dart",
+      "category": "Programming Languages",
+      "aliases": [
+        "dartlang"
+      ],
+      "skills": [
+        "Dart"
+      ],
+      "related_skills": [
+        "Flutter",
+        "Mobile Development",
+        "Cross-Platform Development"
+      ],
+      "prerequisites": [],
+      "description": "Client-optimized programming language developed by Google for fast apps on any platform, powering Flutter."
+    },
+    {
+      "id": "skill-scala",
+      "type": "skill",
+      "title": "Scala",
+      "name": "Scala",
+      "category": "Programming Languages",
+      "aliases": [
+        "scala-lang"
+      ],
+      "skills": [
+        "Scala"
+      ],
+      "related_skills": [
+        "Apache Spark",
+        "Java",
+        "Functional Programming",
+        "Akka"
+      ],
+      "prerequisites": [
+        "Java"
+      ],
+      "description": "High-level language combining object-oriented and functional programming paradigms, running on the JVM and central to Spark."
+    },
+    {
+      "id": "skill-c",
+      "type": "skill",
+      "title": "C",
+      "name": "C",
+      "category": "Programming Languages",
+      "aliases": [
+        "c-lang",
+        "ansi c",
+        "c language"
+      ],
+      "skills": [
+        "C"
+      ],
+      "related_skills": [
+        "C++",
+        "Linux",
+        "Embedded Systems",
+        "Operating Systems"
+      ],
+      "prerequisites": [],
+      "description": "Foundational low-level procedural programming language providing direct memory manipulation and hardware access."
+    },
+    {
+      "id": "skill-react",
+      "type": "skill",
+      "title": "React",
+      "name": "React",
+      "category": "Frontend Development",
+      "aliases": [
+        "reactjs",
+        "react.js",
+        "react js"
+      ],
+      "skills": [
+        "React"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "TypeScript",
+        "Next.js",
+        "Redux",
+        "Tailwind CSS",
+        "React Hooks"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "description": "Declarative, component-based JavaScript library developed by Meta for building dynamic user interfaces."
+    },
+    {
+      "id": "skill-next-js",
+      "type": "skill",
+      "title": "Next.js",
+      "name": "Next.js",
+      "category": "Frontend Development",
+      "aliases": [
+        "nextjs",
+        "next.js",
+        "next js",
+        "next"
+      ],
+      "skills": [
+        "Next.js"
+      ],
+      "related_skills": [
+        "React",
+        "TypeScript",
+        "Server-Side Rendering",
+        "Tailwind CSS",
+        "Vercel"
+      ],
+      "prerequisites": [
+        "React"
+      ],
+      "description": "Production React framework providing hybrid static and server rendering, smart routing, and full-stack API routes."
+    },
+    {
+      "id": "skill-vue-js",
+      "type": "skill",
+      "title": "Vue.js",
+      "name": "Vue.js",
+      "category": "Frontend Development",
+      "aliases": [
+        "vue",
+        "vuejs",
+        "vue 3",
+        "vue.js"
+      ],
+      "skills": [
+        "Vue.js"
+      ],
+      "related_skills": [
+        "Nuxt.js",
+        "JavaScript",
+        "TypeScript",
+        "Pinia",
+        "Vite"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "description": "Progressive JavaScript framework for building user interfaces with a template-driven syntax and reactive data binding."
+    },
+    {
+      "id": "skill-angular",
+      "type": "skill",
+      "title": "Angular",
+      "name": "Angular",
+      "category": "Frontend Development",
+      "aliases": [
+        "angularjs",
+        "angular 2+",
+        "angular framework",
+        "angular 17"
+      ],
+      "skills": [
+        "Angular"
+      ],
+      "related_skills": [
+        "TypeScript",
+        "RxJS",
+        "HTML5",
+        "CSS3",
+        "Dependency Injection"
+      ],
+      "prerequisites": [
+        "TypeScript"
+      ],
+      "description": "Comprehensive, component-based TypeScript web application framework maintained by Google for enterprise web apps."
+    },
+    {
+      "id": "skill-svelte",
+      "type": "skill",
+      "title": "Svelte",
+      "name": "Svelte",
+      "category": "Frontend Development",
+      "aliases": [
+        "sveltejs",
+        "svelte.js",
+        "sveltekit"
+      ],
+      "skills": [
+        "Svelte"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "Vite"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Radical compiler-based frontend framework that converts components into tiny, imperative vanilla code without a virtual DOM."
+    },
+    {
+      "id": "skill-tailwind-css",
+      "type": "skill",
+      "title": "Tailwind CSS",
+      "name": "Tailwind CSS",
+      "category": "Frontend Development",
+      "aliases": [
+        "tailwindcss",
+        "tailwind",
+        "tailwind-css"
+      ],
+      "skills": [
+        "Tailwind CSS"
+      ],
+      "related_skills": [
+        "CSS3",
+        "HTML5",
+        "React",
+        "Next.js",
+        "PostCSS"
+      ],
+      "prerequisites": [
+        "CSS3"
+      ],
+      "description": "Utility-first CSS framework packed with classes that can be composed directly in markup to build bespoke user interfaces."
+    },
+    {
+      "id": "skill-redux",
+      "type": "skill",
+      "title": "Redux",
+      "name": "Redux",
+      "category": "Frontend Development",
+      "aliases": [
+        "redux toolkit",
+        "rtk",
+        "redux-saga",
+        "react-redux"
+      ],
+      "skills": [
+        "Redux"
+      ],
+      "related_skills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "State Management"
+      ],
+      "prerequisites": [
+        "React"
+      ],
+      "description": "Predictable state container for JavaScript apps, widely used with React for centralizing global application state."
+    },
+    {
+      "id": "skill-zustand",
+      "type": "skill",
+      "title": "Zustand",
+      "name": "Zustand",
+      "category": "Frontend Development",
+      "aliases": [
+        "zustand state management"
+      ],
+      "skills": [
+        "Zustand"
+      ],
+      "related_skills": [
+        "React",
+        "TypeScript",
+        "State Management",
+        "Redux"
+      ],
+      "prerequisites": [
+        "React"
+      ],
+      "description": "Small, fast, and scalable bearbones state-management solution using simplified flux principles for React."
+    },
+    {
+      "id": "skill-vite",
+      "type": "skill",
+      "title": "Vite",
+      "name": "Vite",
+      "category": "Frontend Development",
+      "aliases": [
+        "vitejs",
+        "vite.js"
+      ],
+      "skills": [
+        "Vite"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Vue.js",
+        "Webpack"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Next-generation frontend tooling providing lightning-fast Hot Module Replacement and optimized Rollup builds."
+    },
+    {
+      "id": "skill-webpack",
+      "type": "skill",
+      "title": "Webpack",
+      "name": "Webpack",
+      "category": "Frontend Development",
+      "aliases": [
+        "webpack 5",
+        "module bundler"
+      ],
+      "skills": [
+        "Webpack"
+      ],
+      "related_skills": [
+        "Babel",
+        "JavaScript",
+        "Vite",
+        "Build Tools"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Static module bundler for modern JavaScript applications, compiling complex module dependency graphs into browser bundles."
+    },
+    {
+      "id": "skill-sass",
+      "type": "skill",
+      "title": "Sass",
+      "name": "Sass",
+      "category": "Frontend Development",
+      "aliases": [
+        "scss",
+        "syntactically awesome stylesheets"
+      ],
+      "skills": [
+        "Sass"
+      ],
+      "related_skills": [
+        "CSS3",
+        "Tailwind CSS",
+        "Bootstrap"
+      ],
+      "prerequisites": [
+        "CSS3"
+      ],
+      "description": "CSS preprocessor adding nested rules, variables, mixins, and functions to standard stylesheets."
+    },
+    {
+      "id": "skill-bootstrap",
+      "type": "skill",
+      "title": "Bootstrap",
+      "name": "Bootstrap",
+      "category": "Frontend Development",
+      "aliases": [
+        "bootstrap 5",
+        "twitter bootstrap"
+      ],
+      "skills": [
+        "Bootstrap"
+      ],
+      "related_skills": [
+        "CSS3",
+        "HTML5",
+        "Responsive Design"
+      ],
+      "prerequisites": [
+        "HTML5",
+        "CSS3"
+      ],
+      "description": "Popular open-source CSS and JavaScript framework for responsive, mobile-first front-end web development."
+    },
+    {
+      "id": "skill-react-native",
+      "type": "skill",
+      "title": "React Native",
+      "name": "React Native",
+      "category": "Frontend Development",
+      "aliases": [
+        "react-native",
+        "rn"
+      ],
+      "skills": [
+        "React Native"
+      ],
+      "related_skills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "Mobile Development",
+        "Expo"
+      ],
+      "prerequisites": [
+        "React"
+      ],
+      "description": "Framework for building native iOS and Android applications using React and JavaScript."
+    },
+    {
+      "id": "skill-responsive-design",
+      "type": "skill",
+      "title": "Responsive Design",
+      "name": "Responsive Design",
+      "category": "Frontend Development",
+      "aliases": [
+        "mobile first design",
+        "media queries",
+        "adaptive design"
+      ],
+      "skills": [
+        "Responsive Design"
+      ],
+      "related_skills": [
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Flexbox",
+        "CSS Grid"
+      ],
+      "prerequisites": [
+        "CSS3"
+      ],
+      "description": "Approach to web design making web pages render well across a variety of screen sizes and modern devices."
+    },
+    {
+      "id": "skill-websockets",
+      "type": "skill",
+      "title": "WebSockets",
+      "name": "WebSockets",
+      "category": "Frontend Development",
+      "aliases": [
+        "websocket",
+        "real-time communication",
+        "socket.io"
+      ],
+      "skills": [
+        "WebSockets"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "Node.js",
+        "Socket.io",
+        "Real-Time Systems"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "HTTP"
+      ],
+      "description": "Computer communications protocol providing full-duplex communication channels over a single persistent TCP connection."
+    },
+    {
+      "id": "skill-node-js",
+      "type": "skill",
+      "title": "Node.js",
+      "name": "Node.js",
+      "category": "Backend Development",
+      "aliases": [
+        "node",
+        "nodejs",
+        "node js",
+        "node.js"
+      ],
+      "skills": [
+        "Node.js"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "Express.js",
+        "TypeScript",
+        "NestJS",
+        "npm"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Asynchronous event-driven JavaScript runtime environment built on Chrome's V8 engine for building scalable network apps."
+    },
+    {
+      "id": "skill-express-js",
+      "type": "skill",
+      "title": "Express.js",
+      "name": "Express.js",
+      "category": "Backend Development",
+      "aliases": [
+        "express",
+        "expressjs",
+        "express.js"
+      ],
+      "skills": [
+        "Express.js"
+      ],
+      "related_skills": [
+        "Node.js",
+        "REST API",
+        "JavaScript",
+        "Middleware"
+      ],
+      "prerequisites": [
+        "Node.js"
+      ],
+      "description": "Minimalist and flexible Node.js web application framework providing robust features for web and mobile APIs."
+    },
+    {
+      "id": "skill-fastapi",
+      "type": "skill",
+      "title": "FastAPI",
+      "name": "FastAPI",
+      "category": "Backend Development",
+      "aliases": [
+        "fast api",
+        "fastapi framework"
+      ],
+      "skills": [
+        "FastAPI"
+      ],
+      "related_skills": [
+        "Python",
+        "Pydantic",
+        "Uvicorn",
+        "Starlette",
+        "REST API",
+        "OpenAPI"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Modern, high-performance web framework for building APIs with Python 3.8+ based on standard Python type hints."
+    },
+    {
+      "id": "skill-django",
+      "type": "skill",
+      "title": "Django",
+      "name": "Django",
+      "category": "Backend Development",
+      "aliases": [
+        "django framework",
+        "django orm",
+        "django rest framework",
+        "drf"
+      ],
+      "skills": [
+        "Django"
+      ],
+      "related_skills": [
+        "Python",
+        "PostgreSQL",
+        "REST API",
+        "ORM"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "High-level Python web framework that encourages rapid development and clean, pragmatic design with batteries included."
+    },
+    {
+      "id": "skill-flask",
+      "type": "skill",
+      "title": "Flask",
+      "name": "Flask",
+      "category": "Backend Development",
+      "aliases": [
+        "flask framework",
+        "flask-restful"
+      ],
+      "skills": [
+        "Flask"
+      ],
+      "related_skills": [
+        "Python",
+        "Jinja2",
+        "Werkzeug",
+        "REST API",
+        "SQLAlchemy"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Lightweight WSGI micro web framework written in Python designed to make getting started quick and easy."
+    },
+    {
+      "id": "skill-spring-boot",
+      "type": "skill",
+      "title": "Spring Boot",
+      "name": "Spring Boot",
+      "category": "Backend Development",
+      "aliases": [
+        "spring",
+        "spring framework",
+        "spring-boot",
+        "springboot"
+      ],
+      "skills": [
+        "Spring Boot"
+      ],
+      "related_skills": [
+        "Java",
+        "Microservices",
+        "Hibernate",
+        "Maven",
+        "REST API"
+      ],
+      "prerequisites": [
+        "Java"
+      ],
+      "description": "Production-ready, opinionated framework on top of Java Spring that simplifies building stand-alone enterprise microservices."
+    },
+    {
+      "id": "skill-asp-net-core",
+      "type": "skill",
+      "title": "ASP.NET Core",
+      "name": "ASP.NET Core",
+      "category": "Backend Development",
+      "aliases": [
+        "asp.net",
+        "dotnet core",
+        ".net core web api",
+        "aspnet"
+      ],
+      "skills": [
+        "ASP.NET Core"
+      ],
+      "related_skills": [
+        "C#",
+        ".NET Core",
+        "Entity Framework",
+        "Azure",
+        "REST API"
+      ],
+      "prerequisites": [
+        "C#"
+      ],
+      "description": "Cross-platform, high-performance, open-source framework by Microsoft for building modern, cloud-enabled web applications."
+    },
+    {
+      "id": "skill-nestjs",
+      "type": "skill",
+      "title": "NestJS",
+      "name": "NestJS",
+      "category": "Backend Development",
+      "aliases": [
+        "nest.js",
+        "nestjs framework"
+      ],
+      "skills": [
+        "NestJS"
+      ],
+      "related_skills": [
+        "TypeScript",
+        "Node.js",
+        "Express.js",
+        "Microservices",
+        "TypeORM"
+      ],
+      "prerequisites": [
+        "TypeScript",
+        "Node.js"
+      ],
+      "description": "Progressive Node.js framework for building efficient, reliable, and scalable server-side applications with TypeScript."
+    },
+    {
+      "id": "skill-rest-api",
+      "type": "skill",
+      "title": "REST API",
+      "name": "REST API",
+      "category": "Backend Development",
+      "aliases": [
+        "rest",
+        "restful",
+        "restful api",
+        "rest api development"
+      ],
+      "skills": [
+        "REST API"
+      ],
+      "related_skills": [
+        "HTTP",
+        "JSON",
+        "OpenAPI",
+        "API Design",
+        "Postman"
+      ],
+      "prerequisites": [
+        "HTTP"
+      ],
+      "description": "Architectural style for network applications using stateless HTTP methods (GET, POST, PUT, DELETE) to access resources."
+    },
+    {
+      "id": "skill-graphql",
+      "type": "skill",
+      "title": "GraphQL",
+      "name": "GraphQL",
+      "category": "Backend Development",
+      "aliases": [
+        "gql",
+        "apollo graphql"
+      ],
+      "skills": [
+        "GraphQL"
+      ],
+      "related_skills": [
+        "REST API",
+        "Apollo Server",
+        "Node.js",
+        "TypeScript",
+        "React"
+      ],
+      "prerequisites": [
+        "REST API"
+      ],
+      "description": "Query language for APIs and runtime for fulfilling queries with existing data, giving clients power to request exact fields."
+    },
+    {
+      "id": "skill-grpc",
+      "type": "skill",
+      "title": "gRPC",
+      "name": "gRPC",
+      "category": "Backend Development",
+      "aliases": [
+        "grpc framework",
+        "protocol buffers",
+        "protobuf"
+      ],
+      "skills": [
+        "gRPC"
+      ],
+      "related_skills": [
+        "Protocol Buffers",
+        "Microservices",
+        "Go",
+        "HTTP/2",
+        "C++"
+      ],
+      "prerequisites": [
+        "Microservices"
+      ],
+      "description": "High-performance, open-source universal RPC framework developed by Google running on HTTP/2 with Protocol Buffers."
+    },
+    {
+      "id": "skill-microservices",
+      "type": "skill",
+      "title": "Microservices",
+      "name": "Microservices",
+      "category": "Backend Development",
+      "aliases": [
+        "microservice architecture",
+        "distributed services"
+      ],
+      "skills": [
+        "Microservices"
+      ],
+      "related_skills": [
+        "Docker",
+        "Kubernetes",
+        "gRPC",
+        "API Gateway",
+        "Kafka",
+        "REST API"
+      ],
+      "prerequisites": [
+        "System Design",
+        "REST API"
+      ],
+      "description": "Architectural style structuring an application as a collection of loosely coupled, independently deployable services."
+    },
+    {
+      "id": "skill-api-gateway",
+      "type": "skill",
+      "title": "API Gateway",
+      "name": "API Gateway",
+      "category": "Backend Development",
+      "aliases": [
+        "reverse proxy gateway",
+        "kong",
+        "aws api gateway"
+      ],
+      "skills": [
+        "API Gateway"
+      ],
+      "related_skills": [
+        "Microservices",
+        "REST API",
+        "Reverse Proxy",
+        "Rate Limiting"
+      ],
+      "prerequisites": [
+        "Microservices"
+      ],
+      "description": "Management tool sitting between a client and a collection of backend microservices, handling routing and security."
+    },
+    {
+      "id": "skill-celery",
+      "type": "skill",
+      "title": "Celery",
+      "name": "Celery",
+      "category": "Backend Development",
+      "aliases": [
+        "celery task queue",
+        "python celery"
+      ],
+      "skills": [
+        "Celery"
+      ],
+      "related_skills": [
+        "Python",
+        "Redis",
+        "RabbitMQ",
+        "Asynchronous Processing"
+      ],
+      "prerequisites": [
+        "Python",
+        "Redis"
+      ],
+      "description": "Distributed task queue software focused on real-time processing and asynchronous task execution in Python."
+    },
+    {
+      "id": "skill-pydantic",
+      "type": "skill",
+      "title": "Pydantic",
+      "name": "Pydantic",
+      "category": "Backend Development",
+      "aliases": [
+        "pydantic v2",
+        "python pydantic"
+      ],
+      "skills": [
+        "Pydantic"
+      ],
+      "related_skills": [
+        "Python",
+        "FastAPI",
+        "Data Validation",
+        "Type Hints"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Data validation and settings management library using Python type annotations with fast Rust-powered validation."
+    },
+    {
+      "id": "skill-postgresql",
+      "type": "skill",
+      "title": "PostgreSQL",
+      "name": "PostgreSQL",
+      "category": "Databases",
+      "aliases": [
+        "postgres",
+        "pgsql",
+        "postgresql db"
+      ],
+      "skills": [
+        "PostgreSQL"
+      ],
+      "related_skills": [
+        "SQL",
+        "Database Indexing",
+        "Prisma",
+        "Supabase",
+        "Relational Databases"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Powerful, open-source object-relational database system known for reliability, feature robustness, and ACID compliance."
+    },
+    {
+      "id": "skill-mysql",
+      "type": "skill",
+      "title": "MySQL",
+      "name": "MySQL",
+      "category": "Databases",
+      "aliases": [
+        "my-sql",
+        "mariadb"
+      ],
+      "skills": [
+        "MySQL"
+      ],
+      "related_skills": [
+        "SQL",
+        "Relational Databases",
+        "PHP",
+        "Database Indexing"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Widely used open-source relational database management system powering major web applications and CMS platforms."
+    },
+    {
+      "id": "skill-mongodb",
+      "type": "skill",
+      "title": "MongoDB",
+      "name": "MongoDB",
+      "category": "Databases",
+      "aliases": [
+        "mongo",
+        "mongodb atlas",
+        "nosql mongo"
+      ],
+      "skills": [
+        "MongoDB"
+      ],
+      "related_skills": [
+        "NoSQL",
+        "Mongoose",
+        "JSON",
+        "Document Databases",
+        "Node.js"
+      ],
+      "prerequisites": [
+        "JSON"
+      ],
+      "description": "Leading document-oriented NoSQL database that stores data in flexible, JSON-like BSON documents."
+    },
+    {
+      "id": "skill-redis",
+      "type": "skill",
+      "title": "Redis",
+      "name": "Redis",
+      "category": "Databases",
+      "aliases": [
+        "redis cache",
+        "redis key-value"
+      ],
+      "skills": [
+        "Redis"
+      ],
+      "related_skills": [
+        "Caching",
+        "In-Memory Databases",
+        "Celery",
+        "Pub/Sub"
+      ],
+      "prerequisites": [],
+      "description": "In-memory data structure store used as a distributed cache, message broker, and quick key-value database."
+    },
+    {
+      "id": "skill-sqlite",
+      "type": "skill",
+      "title": "SQLite",
+      "name": "SQLite",
+      "category": "Databases",
+      "aliases": [
+        "sqlite3"
+      ],
+      "skills": [
+        "SQLite"
+      ],
+      "related_skills": [
+        "SQL",
+        "Embedded Databases",
+        "Python",
+        "Mobile Development"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "C-language library implementing a small, fast, self-contained, high-reliability, full-featured SQL database engine."
+    },
+    {
+      "id": "skill-elasticsearch",
+      "type": "skill",
+      "title": "Elasticsearch",
+      "name": "Elasticsearch",
+      "category": "Databases",
+      "aliases": [
+        "elastic search",
+        "elastic",
+        "elk stack"
+      ],
+      "skills": [
+        "Elasticsearch"
+      ],
+      "related_skills": [
+        "Logstash",
+        "Kibana",
+        "Full-Text Search",
+        "Lucene"
+      ],
+      "prerequisites": [
+        "JSON"
+      ],
+      "description": "Distributed, RESTful search and analytics engine capable of addressing complex full-text search use cases."
+    },
+    {
+      "id": "skill-dynamodb",
+      "type": "skill",
+      "title": "DynamoDB",
+      "name": "DynamoDB",
+      "category": "Databases",
+      "aliases": [
+        "amazon dynamodb",
+        "aws dynamodb"
+      ],
+      "skills": [
+        "DynamoDB"
+      ],
+      "related_skills": [
+        "AWS",
+        "NoSQL",
+        "Key-Value Stores",
+        "Serverless"
+      ],
+      "prerequisites": [
+        "NoSQL"
+      ],
+      "description": "Fully managed, serverless, key-value NoSQL database designed by AWS for single-digit millisecond performance."
+    },
+    {
+      "id": "skill-cassandra",
+      "type": "skill",
+      "title": "Cassandra",
+      "name": "Cassandra",
+      "category": "Databases",
+      "aliases": [
+        "apache cassandra",
+        "cql"
+      ],
+      "skills": [
+        "Cassandra"
+      ],
+      "related_skills": [
+        "NoSQL",
+        "Distributed Systems",
+        "Wide-Column Store",
+        "Big Data"
+      ],
+      "prerequisites": [
+        "Distributed Systems"
+      ],
+      "description": "Open-source distributed NoSQL wide-column store designed to handle large amounts of data across many commodity servers."
+    },
+    {
+      "id": "skill-supabase",
+      "type": "skill",
+      "title": "Supabase",
+      "name": "Supabase",
+      "category": "Databases",
+      "aliases": [
+        "supabase backend",
+        "firebase alternative"
+      ],
+      "skills": [
+        "Supabase"
+      ],
+      "related_skills": [
+        "PostgreSQL",
+        "Row Level Security",
+        "Authentication",
+        "Next.js"
+      ],
+      "prerequisites": [
+        "PostgreSQL"
+      ],
+      "description": "Open-source Firebase alternative providing a Postgres database, real-time subscriptions, auth, and auto-generated APIs."
+    },
+    {
+      "id": "skill-firebase",
+      "type": "skill",
+      "title": "Firebase",
+      "name": "Firebase",
+      "category": "Databases",
+      "aliases": [
+        "google firebase",
+        "firebase firestore",
+        "realtime database"
+      ],
+      "skills": [
+        "Firebase"
+      ],
+      "related_skills": [
+        "Firestore",
+        "Authentication",
+        "Cloud Functions",
+        "Mobile Development"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Platform developed by Google for creating mobile and web applications, featuring Firestore and serverless hosting."
+    },
+    {
+      "id": "skill-prisma",
+      "type": "skill",
+      "title": "Prisma",
+      "name": "Prisma",
+      "category": "Databases",
+      "aliases": [
+        "prisma orm",
+        "prisma client"
+      ],
+      "skills": [
+        "Prisma"
+      ],
+      "related_skills": [
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "MySQL",
+        "ORM"
+      ],
+      "prerequisites": [
+        "TypeScript",
+        "SQL"
+      ],
+      "description": "Next-generation ORM for Node.js and TypeScript, offering declarative models, automated migrations, and type-safe queries."
+    },
+    {
+      "id": "skill-sqlalchemy",
+      "type": "skill",
+      "title": "SQLAlchemy",
+      "name": "SQLAlchemy",
+      "category": "Databases",
+      "aliases": [
+        "sqlalchemy orm"
+      ],
+      "skills": [
+        "SQLAlchemy"
+      ],
+      "related_skills": [
+        "Python",
+        "PostgreSQL",
+        "FastAPI",
+        "ORM"
+      ],
+      "prerequisites": [
+        "Python",
+        "SQL"
+      ],
+      "description": "Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL."
+    },
+    {
+      "id": "skill-database-indexing",
+      "type": "skill",
+      "title": "Database Indexing",
+      "name": "Database Indexing",
+      "category": "Databases",
+      "aliases": [
+        "b-tree index",
+        "query optimization",
+        "db indexes"
+      ],
+      "skills": [
+        "Database Indexing"
+      ],
+      "related_skills": [
+        "SQL",
+        "PostgreSQL",
+        "Query Optimization",
+        "Database Administration"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Data structures and techniques applied to database columns to drastically improve query speed and search operations."
+    },
+    {
+      "id": "skill-snowflake",
+      "type": "skill",
+      "title": "Snowflake",
+      "name": "Snowflake",
+      "category": "Databases",
+      "aliases": [
+        "snowflake data warehouse",
+        "snowflake cloud"
+      ],
+      "skills": [
+        "Snowflake"
+      ],
+      "related_skills": [
+        "Data Warehousing",
+        "SQL",
+        "ETL",
+        "Cloud Data Platform"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Cloud-based data warehousing platform providing instant elasticity, secure data sharing, and per-second pricing."
+    },
+    {
+      "id": "skill-bigquery",
+      "type": "skill",
+      "title": "BigQuery",
+      "name": "BigQuery",
+      "category": "Databases",
+      "aliases": [
+        "google bigquery",
+        "gcp bigquery"
+      ],
+      "skills": [
+        "BigQuery"
+      ],
+      "related_skills": [
+        "Google Cloud Platform",
+        "SQL",
+        "Data Analytics",
+        "Data Warehousing"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Fully managed, serverless enterprise data warehouse by Google for analytics over petabytes of data using SQL."
+    },
+    {
+      "id": "skill-docker",
+      "type": "skill",
+      "title": "Docker",
+      "name": "Docker",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "docker container",
+        "docker-compose",
+        "containerization"
+      ],
+      "skills": [
+        "Docker"
+      ],
+      "related_skills": [
+        "Kubernetes",
+        "Linux",
+        "CI/CD",
+        "Microservices"
+      ],
+      "prerequisites": [
+        "Linux"
+      ],
+      "description": "Platform that uses OS-level virtualization to deliver software in standardized packages called containers."
+    },
+    {
+      "id": "skill-kubernetes",
+      "type": "skill",
+      "title": "Kubernetes",
+      "name": "Kubernetes",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "k8s",
+        "k8s cluster",
+        "kube"
+      ],
+      "skills": [
+        "Kubernetes"
+      ],
+      "related_skills": [
+        "Docker",
+        "Helm",
+        "Cloud Computing",
+        "DevOps",
+        "Microservices"
+      ],
+      "prerequisites": [
+        "Docker"
+      ],
+      "description": "Open-source container orchestration system for automating application deployment, scaling, and management."
+    },
+    {
+      "id": "skill-aws",
+      "type": "skill",
+      "title": "AWS",
+      "name": "AWS",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "amazon web services",
+        "amazon cloud"
+      ],
+      "skills": [
+        "AWS"
+      ],
+      "related_skills": [
+        "Amazon EC2",
+        "Amazon S3",
+        "AWS Lambda",
+        "Cloud Computing",
+        "IAM"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Comprehensive, evolving cloud computing platform provided by Amazon offering IaaS, PaaS, and serverless solutions."
+    },
+    {
+      "id": "skill-amazon-ec2",
+      "type": "skill",
+      "title": "Amazon EC2",
+      "name": "Amazon EC2",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "ec2",
+        "aws ec2",
+        "elastic compute cloud"
+      ],
+      "skills": [
+        "Amazon EC2"
+      ],
+      "related_skills": [
+        "AWS",
+        "Linux",
+        "Virtual Machines",
+        "Cloud Computing"
+      ],
+      "prerequisites": [
+        "AWS",
+        "Linux"
+      ],
+      "description": "Web service providing resizable compute capacity in the cloud, designed to make web-scale cloud computing easier."
+    },
+    {
+      "id": "skill-amazon-s3",
+      "type": "skill",
+      "title": "Amazon S3",
+      "name": "Amazon S3",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "s3",
+        "aws s3",
+        "simple storage service"
+      ],
+      "skills": [
+        "Amazon S3"
+      ],
+      "related_skills": [
+        "AWS",
+        "Cloud Storage",
+        "Object Storage",
+        "CDN"
+      ],
+      "prerequisites": [
+        "AWS"
+      ],
+      "description": "Scalable object storage service from AWS offering industry-leading scalability, data availability, and security."
+    },
+    {
+      "id": "skill-aws-lambda",
+      "type": "skill",
+      "title": "AWS Lambda",
+      "name": "AWS Lambda",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "lambda",
+        "aws serverless",
+        "serverless functions"
+      ],
+      "skills": [
+        "AWS Lambda"
+      ],
+      "related_skills": [
+        "AWS",
+        "Serverless",
+        "Python",
+        "Node.js",
+        "API Gateway"
+      ],
+      "prerequisites": [
+        "AWS"
+      ],
+      "description": "Serverless event-driven compute service that lets you run code for virtually any type of application without provisioning servers."
+    },
+    {
+      "id": "skill-google-cloud-platform",
+      "type": "skill",
+      "title": "Google Cloud Platform",
+      "name": "Google Cloud Platform",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "gcp",
+        "google cloud"
+      ],
+      "skills": [
+        "Google Cloud Platform"
+      ],
+      "related_skills": [
+        "BigQuery",
+        "Kubernetes",
+        "Cloud Run",
+        "Cloud Storage"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Suite of cloud computing services offered by Google that runs on the same infrastructure that Google uses internally."
+    },
+    {
+      "id": "skill-microsoft-azure",
+      "type": "skill",
+      "title": "Microsoft Azure",
+      "name": "Microsoft Azure",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "azure",
+        "ms azure",
+        "azure cloud"
+      ],
+      "skills": [
+        "Microsoft Azure"
+      ],
+      "related_skills": [
+        "Active Directory",
+        "C#",
+        "Cloud Computing",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Cloud computing platform by Microsoft for application management via Microsoft-managed data centers."
+    },
+    {
+      "id": "skill-ci-cd",
+      "type": "skill",
+      "title": "CI/CD",
+      "name": "CI/CD",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "continuous integration",
+        "continuous deployment",
+        "cicd pipelines"
+      ],
+      "skills": [
+        "CI/CD"
+      ],
+      "related_skills": [
+        "GitHub Actions",
+        "GitLab CI",
+        "Jenkins",
+        "Docker",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Git"
+      ],
+      "description": "Method to frequently deliver apps to customers by introducing automation into the stages of app development."
+    },
+    {
+      "id": "skill-github-actions",
+      "type": "skill",
+      "title": "GitHub Actions",
+      "name": "GitHub Actions",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "gh actions",
+        "github ci"
+      ],
+      "skills": [
+        "GitHub Actions"
+      ],
+      "related_skills": [
+        "Git",
+        "GitHub",
+        "CI/CD",
+        "YAML",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Git",
+        "CI/CD"
+      ],
+      "description": "Continuous integration and continuous delivery platform that allows you to automate your build, test, and deployment pipeline."
+    },
+    {
+      "id": "skill-gitlab-ci",
+      "type": "skill",
+      "title": "GitLab CI",
+      "name": "GitLab CI",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "gitlab ci/cd",
+        "gitlab pipeline"
+      ],
+      "skills": [
+        "GitLab CI"
+      ],
+      "related_skills": [
+        "GitLab",
+        "CI/CD",
+        "Docker",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Git",
+        "CI/CD"
+      ],
+      "description": "Built-in continuous integration and deployment engine of GitLab for testing and releasing software."
+    },
+    {
+      "id": "skill-jenkins",
+      "type": "skill",
+      "title": "Jenkins",
+      "name": "Jenkins",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "jenkins ci"
+      ],
+      "skills": [
+        "Jenkins"
+      ],
+      "related_skills": [
+        "CI/CD",
+        "Java",
+        "Groovy",
+        "DevOps",
+        "Docker"
+      ],
+      "prerequisites": [
+        "CI/CD"
+      ],
+      "description": "Open-source automation server enabling developers to reliably build, test, and deploy their software."
+    },
+    {
+      "id": "skill-terraform",
+      "type": "skill",
+      "title": "Terraform",
+      "name": "Terraform",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "hashicorp terraform",
+        "iac terraform"
+      ],
+      "skills": [
+        "Terraform"
+      ],
+      "related_skills": [
+        "Infrastructure as Code",
+        "AWS",
+        "Azure",
+        "GCP",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Cloud Computing"
+      ],
+      "description": "Open-source infrastructure as code software tool that provides a consistent CLI workflow to manage cloud services."
+    },
+    {
+      "id": "skill-ansible",
+      "type": "skill",
+      "title": "Ansible",
+      "name": "Ansible",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "red hat ansible"
+      ],
+      "skills": [
+        "Ansible"
+      ],
+      "related_skills": [
+        "Infrastructure as Code",
+        "Linux",
+        "DevOps",
+        "Automation",
+        "YAML"
+      ],
+      "prerequisites": [
+        "Linux"
+      ],
+      "description": "Open-source IT automation engine that automates cloud provisioning, configuration management, and application deployment."
+    },
+    {
+      "id": "skill-linux",
+      "type": "skill",
+      "title": "Linux",
+      "name": "Linux",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "linux administration",
+        "ubuntu",
+        "debian",
+        "rhel",
+        "centos"
+      ],
+      "skills": [
+        "Linux"
+      ],
+      "related_skills": [
+        "Shell Scripting",
+        "Docker",
+        "System Administration",
+        "Networking Basics"
+      ],
+      "prerequisites": [],
+      "description": "Family of open-source Unix-like operating systems based on the Linux kernel, dominant across servers and containers."
+    },
+    {
+      "id": "skill-nginx",
+      "type": "skill",
+      "title": "Nginx",
+      "name": "Nginx",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "engine-x",
+        "nginx web server",
+        "nginx reverse proxy"
+      ],
+      "skills": [
+        "Nginx"
+      ],
+      "related_skills": [
+        "Reverse Proxy",
+        "Load Balancing",
+        "SSL/TLS",
+        "HTTP"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Web server that can also be used as a reverse proxy, load balancer, mail proxy, and HTTP cache."
+    },
+    {
+      "id": "skill-prometheus",
+      "type": "skill",
+      "title": "Prometheus",
+      "name": "Prometheus",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "prometheus monitoring"
+      ],
+      "skills": [
+        "Prometheus"
+      ],
+      "related_skills": [
+        "Grafana",
+        "Monitoring",
+        "Alertmanager",
+        "DevOps",
+        "Kubernetes"
+      ],
+      "prerequisites": [
+        "Monitoring"
+      ],
+      "description": "Open-source systems monitoring and alerting toolkit originally built at SoundCloud with a dimensional time-series data model."
+    },
+    {
+      "id": "skill-grafana",
+      "type": "skill",
+      "title": "Grafana",
+      "name": "Grafana",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "grafana dashboards"
+      ],
+      "skills": [
+        "Grafana"
+      ],
+      "related_skills": [
+        "Prometheus",
+        "Monitoring",
+        "Time Series",
+        "DevOps"
+      ],
+      "prerequisites": [
+        "Monitoring"
+      ],
+      "description": "Multi-platform open-source analytics and interactive visualization web application for time-series infrastructure metrics."
+    },
+    {
+      "id": "skill-helm",
+      "type": "skill",
+      "title": "Helm",
+      "name": "Helm",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "helm charts",
+        "kubernetes helm"
+      ],
+      "skills": [
+        "Helm"
+      ],
+      "related_skills": [
+        "Kubernetes",
+        "DevOps",
+        "YAML"
+      ],
+      "prerequisites": [
+        "Kubernetes"
+      ],
+      "description": "Package manager for Kubernetes that helps you define, install, and upgrade even the most complex Kubernetes applications."
+    },
+    {
+      "id": "skill-cloudflare",
+      "type": "skill",
+      "title": "Cloudflare",
+      "name": "Cloudflare",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "cloudflare workers",
+        "cloudflare cdn"
+      ],
+      "skills": [
+        "Cloudflare"
+      ],
+      "related_skills": [
+        "CDN",
+        "DNS",
+        "Web Security",
+        "Serverless"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Global network platform providing content delivery network (CDN) services, DDoS mitigation, and edge worker computing."
+    },
+    {
+      "id": "skill-machine-learning",
+      "type": "skill",
+      "title": "Machine Learning",
+      "name": "Machine Learning",
+      "category": "AI & Data Science",
+      "aliases": [
+        "ml",
+        "applied machine learning",
+        "statistical learning"
+      ],
+      "skills": [
+        "Machine Learning"
+      ],
+      "related_skills": [
+        "Python",
+        "Scikit-Learn",
+        "Deep Learning",
+        "Data Science",
+        "Feature Engineering"
+      ],
+      "prerequisites": [
+        "Python",
+        "Linear Algebra",
+        "Calculus",
+        "Statistics"
+      ],
+      "description": "Subfield of artificial intelligence focused on building systems that learn from data to improve performance on tasks."
+    },
+    {
+      "id": "skill-deep-learning",
+      "type": "skill",
+      "title": "Deep Learning",
+      "name": "Deep Learning",
+      "category": "AI & Data Science",
+      "aliases": [
+        "dl",
+        "neural networks",
+        "artificial neural networks"
+      ],
+      "skills": [
+        "Deep Learning"
+      ],
+      "related_skills": [
+        "PyTorch",
+        "TensorFlow",
+        "Computer Vision",
+        "NLP",
+        "Machine Learning"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Subset of machine learning based on artificial neural networks with multiple representation layers."
+    },
+    {
+      "id": "skill-natural-language-processing",
+      "type": "skill",
+      "title": "Natural Language Processing",
+      "name": "Natural Language Processing",
+      "category": "AI & Data Science",
+      "aliases": [
+        "nlp",
+        "text processing",
+        "computational linguistics"
+      ],
+      "skills": [
+        "Natural Language Processing"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "Transformers",
+        "spaCy",
+        "Tokenization",
+        "Embeddings"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Interdisciplinary subfield of computer science and AI concerned with the interactions between computers and human language."
+    },
+    {
+      "id": "skill-computer-vision",
+      "type": "skill",
+      "title": "Computer Vision",
+      "name": "Computer Vision",
+      "category": "AI & Data Science",
+      "aliases": [
+        "cv",
+        "image processing",
+        "vision ai"
+      ],
+      "skills": [
+        "Computer Vision"
+      ],
+      "related_skills": [
+        "OpenCV",
+        "Deep Learning",
+        "Convolutional Neural Networks",
+        "PyTorch"
+      ],
+      "prerequisites": [
+        "Deep Learning"
+      ],
+      "description": "Field of artificial intelligence enabling computers and systems to derive meaningful information from digital images and videos."
+    },
+    {
+      "id": "skill-pytorch",
+      "type": "skill",
+      "title": "PyTorch",
+      "name": "PyTorch",
+      "category": "AI & Data Science",
+      "aliases": [
+        "torch",
+        "pytorch framework"
+      ],
+      "skills": [
+        "PyTorch"
+      ],
+      "related_skills": [
+        "Python",
+        "Deep Learning",
+        "CUDA",
+        "TensorFlow",
+        "Hugging Face"
+      ],
+      "prerequisites": [
+        "Python",
+        "Deep Learning"
+      ],
+      "description": "Optimized tensor library for deep learning using GPUs and CPUs, favored by researchers and modern AI engineers."
+    },
+    {
+      "id": "skill-tensorflow",
+      "type": "skill",
+      "title": "TensorFlow",
+      "name": "TensorFlow",
+      "category": "AI & Data Science",
+      "aliases": [
+        "tf",
+        "tensorflow 2",
+        "keras"
+      ],
+      "skills": [
+        "TensorFlow"
+      ],
+      "related_skills": [
+        "Keras",
+        "Deep Learning",
+        "Python",
+        "PyTorch"
+      ],
+      "prerequisites": [
+        "Python",
+        "Deep Learning"
+      ],
+      "description": "End-to-end open-source machine learning platform developed by Google for research and production deployment."
+    },
+    {
+      "id": "skill-scikit-learn",
+      "type": "skill",
+      "title": "Scikit-Learn",
+      "name": "Scikit-Learn",
+      "category": "AI & Data Science",
+      "aliases": [
+        "sklearn",
+        "scikit learn"
+      ],
+      "skills": [
+        "Scikit-Learn"
+      ],
+      "related_skills": [
+        "Python",
+        "Machine Learning",
+        "NumPy",
+        "Pandas",
+        "Model Evaluation"
+      ],
+      "prerequisites": [
+        "Python",
+        "NumPy"
+      ],
+      "description": "Simple and efficient tools for predictive data analysis and classical machine learning algorithms in Python."
+    },
+    {
+      "id": "skill-pandas",
+      "type": "skill",
+      "title": "Pandas",
+      "name": "Pandas",
+      "category": "AI & Data Science",
+      "aliases": [
+        "python pandas",
+        "dataframes"
+      ],
+      "skills": [
+        "Pandas"
+      ],
+      "related_skills": [
+        "Python",
+        "NumPy",
+        "Data Analysis",
+        "Data Cleaning"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Fast, powerful, flexible, and easy-to-use open-source data analysis and manipulation library built on top of Python."
+    },
+    {
+      "id": "skill-numpy",
+      "type": "skill",
+      "title": "NumPy",
+      "name": "NumPy",
+      "category": "AI & Data Science",
+      "aliases": [
+        "numpy array",
+        "python numpy"
+      ],
+      "skills": [
+        "NumPy"
+      ],
+      "related_skills": [
+        "Python",
+        "Linear Algebra",
+        "SciPy",
+        "Pandas"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Fundamental package for scientific computing in Python, providing support for large multidimensional arrays and matrices."
+    },
+    {
+      "id": "skill-large-language-models",
+      "type": "skill",
+      "title": "Large Language Models",
+      "name": "Large Language Models",
+      "category": "AI & Data Science",
+      "aliases": [
+        "llm",
+        "llms",
+        "generative ai",
+        "genai",
+        "foundation models"
+      ],
+      "skills": [
+        "Large Language Models"
+      ],
+      "related_skills": [
+        "Prompt Engineering",
+        "RAG",
+        "Embeddings",
+        "Hugging Face",
+        "LangChain"
+      ],
+      "prerequisites": [
+        "Deep Learning",
+        "Natural Language Processing"
+      ],
+      "description": "Advanced neural network models trained on vast corpora of text capable of natural language understanding and generation."
+    },
+    {
+      "id": "skill-rag",
+      "type": "skill",
+      "title": "RAG",
+      "name": "RAG",
+      "category": "AI & Data Science",
+      "aliases": [
+        "retrieval augmented generation",
+        "retrieval-augmented generation",
+        "rag pipeline"
+      ],
+      "skills": [
+        "RAG"
+      ],
+      "related_skills": [
+        "Vector Embeddings",
+        "Vector Databases",
+        "Large Language Models",
+        "LangChain",
+        "Groq"
+      ],
+      "prerequisites": [
+        "Large Language Models",
+        "Vector Embeddings"
+      ],
+      "description": "Technique for enhancing LLM responses by retrieving relevant facts from an external knowledge base before generating text."
+    },
+    {
+      "id": "skill-vector-embeddings",
+      "type": "skill",
+      "title": "Vector Embeddings",
+      "name": "Vector Embeddings",
+      "category": "AI & Data Science",
+      "aliases": [
+        "embeddings",
+        "dense vectors",
+        "sentence embeddings"
+      ],
+      "skills": [
+        "Vector Embeddings"
+      ],
+      "related_skills": [
+        "Sentence Transformers",
+        "Cosine Similarity",
+        "Vector Databases",
+        "NLP"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Numerical representations of text, audio, or images where semantic similarity corresponds to geometric proximity in vector space."
+    },
+    {
+      "id": "skill-sentence-transformers",
+      "type": "skill",
+      "title": "Sentence Transformers",
+      "name": "Sentence Transformers",
+      "category": "AI & Data Science",
+      "aliases": [
+        "sentence-transformers",
+        "sbert",
+        "minilm"
+      ],
+      "skills": [
+        "Sentence Transformers"
+      ],
+      "related_skills": [
+        "Vector Embeddings",
+        "PyTorch",
+        "Hugging Face",
+        "RAG"
+      ],
+      "prerequisites": [
+        "PyTorch",
+        "Vector Embeddings"
+      ],
+      "description": "Python framework for state-of-the-art sentence, text, and image embeddings based on BERT architectures."
+    },
+    {
+      "id": "skill-langchain",
+      "type": "skill",
+      "title": "LangChain",
+      "name": "LangChain",
+      "category": "AI & Data Science",
+      "aliases": [
+        "langchain framework",
+        "langgraph"
+      ],
+      "skills": [
+        "LangChain"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "RAG",
+        "Prompt Engineering",
+        "LlamaIndex"
+      ],
+      "prerequisites": [
+        "Python",
+        "Large Language Models"
+      ],
+      "description": "Framework designed to simplify the creation of applications using large language models, agents, and chained pipelines."
+    },
+    {
+      "id": "skill-llamaindex",
+      "type": "skill",
+      "title": "LlamaIndex",
+      "name": "LlamaIndex",
+      "category": "AI & Data Science",
+      "aliases": [
+        "gpt index",
+        "llamaindex"
+      ],
+      "skills": [
+        "LlamaIndex"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "RAG",
+        "Vector Databases",
+        "LangChain"
+      ],
+      "prerequisites": [
+        "Python",
+        "Large Language Models"
+      ],
+      "description": "Data framework for LLM-based applications to ingest, structure, and access private or domain-specific data."
+    },
+    {
+      "id": "skill-prompt-engineering",
+      "type": "skill",
+      "title": "Prompt Engineering",
+      "name": "Prompt Engineering",
+      "category": "AI & Data Science",
+      "aliases": [
+        "prompt design",
+        "few-shot prompting",
+        "chain-of-thought"
+      ],
+      "skills": [
+        "Prompt Engineering"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "Generative AI",
+        "RAG"
+      ],
+      "prerequisites": [],
+      "description": "Discipline of structuring inputs for generative AI models to elicit optimal, structured, and accurate outputs."
+    },
+    {
+      "id": "skill-hugging-face",
+      "type": "skill",
+      "title": "Hugging Face",
+      "name": "Hugging Face",
+      "category": "AI & Data Science",
+      "aliases": [
+        "huggingface",
+        "transformers library",
+        "hf hub"
+      ],
+      "skills": [
+        "Hugging Face"
+      ],
+      "related_skills": [
+        "PyTorch",
+        "Transformers",
+        "NLP",
+        "Open-Source AI"
+      ],
+      "prerequisites": [
+        "Python",
+        "Machine Learning"
+      ],
+      "description": "Platform and open-source library ecosystem providing pre-trained models, datasets, and tools for machine learning practitioners."
+    },
+    {
+      "id": "skill-openai-api",
+      "type": "skill",
+      "title": "OpenAI API",
+      "name": "OpenAI API",
+      "category": "AI & Data Science",
+      "aliases": [
+        "gpt-4",
+        "chatgpt api",
+        "openai python"
+      ],
+      "skills": [
+        "OpenAI API"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "Prompt Engineering",
+        "RAG"
+      ],
+      "prerequisites": [
+        "REST API"
+      ],
+      "description": "Cloud API providing access to cutting-edge generative language and vision models developed by OpenAI."
+    },
+    {
+      "id": "skill-groq",
+      "type": "skill",
+      "title": "Groq",
+      "name": "Groq",
+      "category": "AI & Data Science",
+      "aliases": [
+        "groqcloud",
+        "groq lpu",
+        "groq api"
+      ],
+      "skills": [
+        "Groq"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "LPU",
+        "Inference Acceleration",
+        "FastAPI"
+      ],
+      "prerequisites": [
+        "REST API"
+      ],
+      "description": "Ultra-low latency inference engine running on custom LPU (Language Processing Unit) hardware for rapid LLM generation."
+    },
+    {
+      "id": "skill-mlops",
+      "type": "skill",
+      "title": "MLOps",
+      "name": "MLOps",
+      "category": "AI & Data Science",
+      "aliases": [
+        "machine learning operations",
+        "ml lifecycle"
+      ],
+      "skills": [
+        "MLOps"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Docker",
+        "CI/CD",
+        "MLflow",
+        "Model Deployment"
+      ],
+      "prerequisites": [
+        "Machine Learning",
+        "DevOps & Cloud"
+      ],
+      "description": "Practices that unify machine learning system development and machine learning system operations to automate deployment."
+    },
+    {
+      "id": "skill-mlflow",
+      "type": "skill",
+      "title": "MLflow",
+      "name": "MLflow",
+      "category": "AI & Data Science",
+      "aliases": [
+        "mlflow tracking"
+      ],
+      "skills": [
+        "MLflow"
+      ],
+      "related_skills": [
+        "MLOps",
+        "Machine Learning",
+        "Experiment Tracking",
+        "Model Registry"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Open-source platform for managing the end-to-end machine learning lifecycle, including experiment tracking and packaging."
+    },
+    {
+      "id": "skill-feature-engineering",
+      "type": "skill",
+      "title": "Feature Engineering",
+      "name": "Feature Engineering",
+      "category": "AI & Data Science",
+      "aliases": [
+        "feature extraction",
+        "feature selection"
+      ],
+      "skills": [
+        "Feature Engineering"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Pandas",
+        "Scikit-Learn",
+        "Data Preprocessing"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Process of using domain knowledge to extract features from raw data via data mining techniques to improve model accuracy."
+    },
+    {
+      "id": "skill-model-evaluation",
+      "type": "skill",
+      "title": "Model Evaluation",
+      "name": "Model Evaluation",
+      "category": "AI & Data Science",
+      "aliases": [
+        "cross-validation",
+        "metrics",
+        "roc-auc",
+        "f1-score"
+      ],
+      "skills": [
+        "Model Evaluation"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Scikit-Learn",
+        "Statistics"
+      ],
+      "prerequisites": [
+        "Machine Learning"
+      ],
+      "description": "Systematic process of assessing a machine learning model's performance on holdout data using statistical metrics."
+    },
+    {
+      "id": "skill-opencv",
+      "type": "skill",
+      "title": "OpenCV",
+      "name": "OpenCV",
+      "category": "AI & Data Science",
+      "aliases": [
+        "cv2",
+        "open source computer vision"
+      ],
+      "skills": [
+        "OpenCV"
+      ],
+      "related_skills": [
+        "Computer Vision",
+        "Python",
+        "C++",
+        "Image Processing"
+      ],
+      "prerequisites": [
+        "Python",
+        "NumPy"
+      ],
+      "description": "Open-source computer vision and machine learning software library with thousands of optimized algorithms."
+    },
+    {
+      "id": "skill-fine-tuning",
+      "type": "skill",
+      "title": "Fine-Tuning",
+      "name": "Fine-Tuning",
+      "category": "AI & Data Science",
+      "aliases": [
+        "model fine-tuning",
+        "lora",
+        "qlora",
+        "peft"
+      ],
+      "skills": [
+        "Fine-Tuning"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "PyTorch",
+        "Hugging Face",
+        "Deep Learning"
+      ],
+      "prerequisites": [
+        "Large Language Models",
+        "PyTorch"
+      ],
+      "description": "Process of taking a pre-trained model and adapting its weights on a specialized dataset to improve domain-specific performance."
+    },
+    {
+      "id": "skill-apache-spark",
+      "type": "skill",
+      "title": "Apache Spark",
+      "name": "Apache Spark",
+      "category": "Data Engineering",
+      "aliases": [
+        "spark",
+        "pyspark",
+        "spark sql"
+      ],
+      "skills": [
+        "Apache Spark"
+      ],
+      "related_skills": [
+        "Hadoop",
+        "Scala",
+        "Python",
+        "Data Pipelines",
+        "Big Data"
+      ],
+      "prerequisites": [
+        "Python",
+        "SQL"
+      ],
+      "description": "Multi-language unified analytics engine for large-scale data processing and machine learning."
+    },
+    {
+      "id": "skill-apache-kafka",
+      "type": "skill",
+      "title": "Apache Kafka",
+      "name": "Apache Kafka",
+      "category": "Data Engineering",
+      "aliases": [
+        "kafka",
+        "kafka streaming",
+        "event streaming"
+      ],
+      "skills": [
+        "Apache Kafka"
+      ],
+      "related_skills": [
+        "Distributed Systems",
+        "Message Queues",
+        "Microservices",
+        "Event-Driven Architecture"
+      ],
+      "prerequisites": [
+        "Distributed Systems"
+      ],
+      "description": "Distributed event store and stream-processing platform capable of handling trillions of events a day."
+    },
+    {
+      "id": "skill-apache-airflow",
+      "type": "skill",
+      "title": "Apache Airflow",
+      "name": "Apache Airflow",
+      "category": "Data Engineering",
+      "aliases": [
+        "airflow",
+        "workflow orchestration"
+      ],
+      "skills": [
+        "Apache Airflow"
+      ],
+      "related_skills": [
+        "Python",
+        "ETL",
+        "Data Pipelines",
+        "DAGs"
+      ],
+      "prerequisites": [
+        "Python"
+      ],
+      "description": "Platform created to programmatically author, schedule, and monitor complex data engineering workflows."
+    },
+    {
+      "id": "skill-etl",
+      "type": "skill",
+      "title": "ETL",
+      "name": "ETL",
+      "category": "Data Engineering",
+      "aliases": [
+        "extract transform load",
+        "data ingestion",
+        "elt"
+      ],
+      "skills": [
+        "ETL"
+      ],
+      "related_skills": [
+        "Data Pipelines",
+        "SQL",
+        "Apache Airflow",
+        "Data Warehousing"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "General procedure of copying data from one or more sources into a destination system which represents the data differently."
+    },
+    {
+      "id": "skill-data-pipelines",
+      "type": "skill",
+      "title": "Data Pipelines",
+      "name": "Data Pipelines",
+      "category": "Data Engineering",
+      "aliases": [
+        "data engineering pipelines",
+        "stream processing",
+        "batch processing"
+      ],
+      "skills": [
+        "Data Pipelines"
+      ],
+      "related_skills": [
+        "ETL",
+        "Apache Kafka",
+        "Apache Spark",
+        "Apache Airflow"
+      ],
+      "prerequisites": [
+        "SQL",
+        "Python"
+      ],
+      "description": "Automated pathways that extract, transform, and transfer data between software systems for analytics or operational use."
+    },
+    {
+      "id": "skill-dbt",
+      "type": "skill",
+      "title": "dbt",
+      "name": "dbt",
+      "category": "Data Engineering",
+      "aliases": [
+        "data build tool",
+        "dbt-core"
+      ],
+      "skills": [
+        "dbt"
+      ],
+      "related_skills": [
+        "SQL",
+        "Snowflake",
+        "BigQuery",
+        "Data Transformation"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Development framework that combines modular SQL with software engineering best practices to transform data in your warehouse."
+    },
+    {
+      "id": "skill-rabbitmq",
+      "type": "skill",
+      "title": "RabbitMQ",
+      "name": "RabbitMQ",
+      "category": "Data Engineering",
+      "aliases": [
+        "amqp broker",
+        "rabbitmq queue"
+      ],
+      "skills": [
+        "RabbitMQ"
+      ],
+      "related_skills": [
+        "Message Queues",
+        "Celery",
+        "Distributed Systems",
+        "Microservices"
+      ],
+      "prerequisites": [
+        "Microservices"
+      ],
+      "description": "Reliable and mature open-source message broker that supports multiple messaging protocols."
+    },
+    {
+      "id": "skill-data-warehousing",
+      "type": "skill",
+      "title": "Data Warehousing",
+      "name": "Data Warehousing",
+      "category": "Data Engineering",
+      "aliases": [
+        "edw",
+        "data warehouse architecture",
+        "star schema"
+      ],
+      "skills": [
+        "Data Warehousing"
+      ],
+      "related_skills": [
+        "Snowflake",
+        "BigQuery",
+        "SQL",
+        "ETL",
+        "Data Modeling"
+      ],
+      "prerequisites": [
+        "SQL"
+      ],
+      "description": "Central repositories of integrated data from one or more disparate sources designed for query and analysis."
+    },
+    {
+      "id": "skill-flutter",
+      "type": "skill",
+      "title": "Flutter",
+      "name": "Flutter",
+      "category": "Mobile Development",
+      "aliases": [
+        "flutter framework",
+        "flutter sdk"
+      ],
+      "skills": [
+        "Flutter"
+      ],
+      "related_skills": [
+        "Dart",
+        "Cross-Platform Development",
+        "Mobile UI Design",
+        "React Native"
+      ],
+      "prerequisites": [
+        "Dart"
+      ],
+      "description": "Open-source UI software development kit created by Google used to develop cross-platform applications from a single codebase."
+    },
+    {
+      "id": "skill-android-development",
+      "type": "skill",
+      "title": "Android Development",
+      "name": "Android Development",
+      "category": "Mobile Development",
+      "aliases": [
+        "android sdk",
+        "android studio",
+        "native android"
+      ],
+      "skills": [
+        "Android Development"
+      ],
+      "related_skills": [
+        "Kotlin",
+        "Java",
+        "Jetpack Compose",
+        "Mobile Development"
+      ],
+      "prerequisites": [
+        "Kotlin"
+      ],
+      "description": "Building mobile applications specifically tailored for Google's Android operating system."
+    },
+    {
+      "id": "skill-ios-development",
+      "type": "skill",
+      "title": "iOS Development",
+      "name": "iOS Development",
+      "category": "Mobile Development",
+      "aliases": [
+        "ios sdk",
+        "native ios",
+        "apple app development"
+      ],
+      "skills": [
+        "iOS Development"
+      ],
+      "related_skills": [
+        "Swift",
+        "SwiftUI",
+        "Xcode",
+        "Mobile Development"
+      ],
+      "prerequisites": [
+        "Swift"
+      ],
+      "description": "Engineering native mobile applications for Apple iPhone and iPad hardware using Swift and Xcode."
+    },
+    {
+      "id": "skill-jetpack-compose",
+      "type": "skill",
+      "title": "Jetpack Compose",
+      "name": "Jetpack Compose",
+      "category": "Mobile Development",
+      "aliases": [
+        "android compose",
+        "compose ui"
+      ],
+      "skills": [
+        "Jetpack Compose"
+      ],
+      "related_skills": [
+        "Kotlin",
+        "Android Development",
+        "Declarative UI"
+      ],
+      "prerequisites": [
+        "Kotlin",
+        "Android Development"
+      ],
+      "description": "Modern declarative UI toolkit designed by Google to simplify and accelerate UI development on Android."
+    },
+    {
+      "id": "skill-swiftui",
+      "type": "skill",
+      "title": "SwiftUI",
+      "name": "SwiftUI",
+      "category": "Mobile Development",
+      "aliases": [
+        "apple swiftui"
+      ],
+      "skills": [
+        "SwiftUI"
+      ],
+      "related_skills": [
+        "Swift",
+        "iOS Development",
+        "Declarative UI"
+      ],
+      "prerequisites": [
+        "Swift",
+        "iOS Development"
+      ],
+      "description": "Innovative, exceptionally simple way to build user interfaces across all Apple platforms with the power of Swift."
+    },
+    {
+      "id": "skill-oauth-2-0",
+      "type": "skill",
+      "title": "OAuth 2.0",
+      "name": "OAuth 2.0",
+      "category": "Cybersecurity",
+      "aliases": [
+        "oauth",
+        "oauth2",
+        "open authorization"
+      ],
+      "skills": [
+        "OAuth 2.0"
+      ],
+      "related_skills": [
+        "OpenID Connect",
+        "JWT",
+        "Authentication",
+        "API Security"
+      ],
+      "prerequisites": [
+        "HTTP"
+      ],
+      "description": "Industry-standard authorization protocol enabling applications to obtain limited access to user accounts on HTTP services."
+    },
+    {
+      "id": "skill-jwt",
+      "type": "skill",
+      "title": "JWT",
+      "name": "JWT",
+      "category": "Cybersecurity",
+      "aliases": [
+        "json web tokens",
+        "jwt token",
+        "jwt authentication"
+      ],
+      "skills": [
+        "JWT"
+      ],
+      "related_skills": [
+        "Authentication",
+        "OAuth 2.0",
+        "Web Security",
+        "REST API"
+      ],
+      "prerequisites": [
+        "JSON"
+      ],
+      "description": "Compact, URL-safe means of representing claims to be transferred between two parties securely using cryptography."
+    },
+    {
+      "id": "skill-web-security",
+      "type": "skill",
+      "title": "Web Security",
+      "name": "Web Security",
+      "category": "Cybersecurity",
+      "aliases": [
+        "appsec",
+        "application security",
+        "owasp"
+      ],
+      "skills": [
+        "Web Security"
+      ],
+      "related_skills": [
+        "OWASP Top 10",
+        "XSS",
+        "CSRF",
+        "SQL Injection",
+        "HTTPS"
+      ],
+      "prerequisites": [
+        "HTTP",
+        "Web Development"
+      ],
+      "description": "Protective measures and protocols designed to shield websites and web applications from malicious cyber attacks and data breaches."
+    },
+    {
+      "id": "skill-row-level-security",
+      "type": "skill",
+      "title": "Row Level Security",
+      "name": "Row Level Security",
+      "category": "Cybersecurity",
+      "aliases": [
+        "rls",
+        "postgres rls",
+        "row security"
+      ],
+      "skills": [
+        "Row Level Security"
+      ],
+      "related_skills": [
+        "PostgreSQL",
+        "Supabase",
+        "SQL",
+        "Authorization"
+      ],
+      "prerequisites": [
+        "PostgreSQL"
+      ],
+      "description": "Database security mechanism that controls user access to rows in a database table based on the executing user's credentials."
+    },
+    {
+      "id": "skill-ssl-tls",
+      "type": "skill",
+      "title": "SSL/TLS",
+      "name": "SSL/TLS",
+      "category": "Cybersecurity",
+      "aliases": [
+        "https",
+        "tls certificates",
+        "ssl certificates"
+      ],
+      "skills": [
+        "SSL/TLS"
+      ],
+      "related_skills": [
+        "Cryptography",
+        "Networking Basics",
+        "Nginx",
+        "Web Security"
+      ],
+      "prerequisites": [
+        "Networking Basics"
+      ],
+      "description": "Cryptographic protocols designed to provide communications security over a computer network."
+    },
+    {
+      "id": "skill-data-structures",
+      "type": "skill",
+      "title": "Data Structures",
+      "name": "Data Structures",
+      "category": "Computer Science Core",
+      "aliases": [
+        "dsa",
+        "arrays",
+        "trees",
+        "graphs",
+        "hash tables"
+      ],
+      "skills": [
+        "Data Structures"
+      ],
+      "related_skills": [
+        "Algorithms",
+        "Problem Solving",
+        "C++",
+        "Java",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Specialized formats for organizing, processing, retrieving, and storing data efficiently in memory."
+    },
+    {
+      "id": "skill-algorithms",
+      "type": "skill",
+      "title": "Algorithms",
+      "name": "Algorithms",
+      "category": "Computer Science Core",
+      "aliases": [
+        "algorithm design",
+        "sorting algorithms",
+        "graph algorithms",
+        "dynamic programming"
+      ],
+      "skills": [
+        "Algorithms"
+      ],
+      "related_skills": [
+        "Data Structures",
+        "Time Complexity",
+        "Big-O Notation"
+      ],
+      "prerequisites": [
+        "Data Structures"
+      ],
+      "description": "Step-by-step procedures or formulas for solving problems and performing computations with optimal time and space complexity."
+    },
+    {
+      "id": "skill-system-design",
+      "type": "skill",
+      "title": "System Design",
+      "name": "System Design",
+      "category": "Computer Science Core",
+      "aliases": [
+        "high level design",
+        "hld",
+        "distributed system architecture",
+        "scalability"
+      ],
+      "skills": [
+        "System Design"
+      ],
+      "related_skills": [
+        "Microservices",
+        "Load Balancing",
+        "Caching",
+        "Database Indexing",
+        "Message Queues"
+      ],
+      "prerequisites": [
+        "Computer Networks",
+        "Databases"
+      ],
+      "description": "Process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements at scale."
+    },
+    {
+      "id": "skill-object-oriented-programming",
+      "type": "skill",
+      "title": "Object-Oriented Programming",
+      "name": "Object-Oriented Programming",
+      "category": "Computer Science Core",
+      "aliases": [
+        "oop",
+        "oops",
+        "object oriented design"
+      ],
+      "skills": [
+        "Object-Oriented Programming"
+      ],
+      "related_skills": [
+        "Java",
+        "C++",
+        "Design Patterns",
+        "SOLID Principles"
+      ],
+      "prerequisites": [],
+      "description": "Programming paradigm based on the concept of objects containing data and code, following encapsulation, inheritance, and polymorphism."
+    },
+    {
+      "id": "skill-design-patterns",
+      "type": "skill",
+      "title": "Design Patterns",
+      "name": "Design Patterns",
+      "category": "Computer Science Core",
+      "aliases": [
+        "software design patterns",
+        "gang of four",
+        "gof"
+      ],
+      "skills": [
+        "Design Patterns"
+      ],
+      "related_skills": [
+        "Object-Oriented Programming",
+        "System Design",
+        "Refactoring"
+      ],
+      "prerequisites": [
+        "Object-Oriented Programming"
+      ],
+      "description": "General, reusable solutions to commonly occurring problems within a given context in software design."
+    },
+    {
+      "id": "skill-git",
+      "type": "skill",
+      "title": "Git",
+      "name": "Git",
+      "category": "Developer Tools",
+      "aliases": [
+        "git version control",
+        "version control",
+        "vcs"
+      ],
+      "skills": [
+        "Git"
+      ],
+      "related_skills": [
+        "GitHub",
+        "GitLab",
+        "CI/CD",
+        "Branching Strategies"
+      ],
+      "prerequisites": [],
+      "description": "Distributed version control system designed to track changes in source code during software development."
+    },
+    {
+      "id": "skill-github",
+      "type": "skill",
+      "title": "GitHub",
+      "name": "GitHub",
+      "category": "Developer Tools",
+      "aliases": [
+        "github pull requests",
+        "github repositories"
+      ],
+      "skills": [
+        "GitHub"
+      ],
+      "related_skills": [
+        "Git",
+        "GitHub Actions",
+        "Open Source",
+        "Code Review"
+      ],
+      "prerequisites": [
+        "Git"
+      ],
+      "description": "Cloud-based hosting service that lets developers store and manage their code using Git and collaborate on projects."
+    },
+    {
+      "id": "skill-unit-testing",
+      "type": "skill",
+      "title": "Unit Testing",
+      "name": "Unit Testing",
+      "category": "Testing & QA",
+      "aliases": [
+        "unit tests",
+        "automated testing",
+        "tdd"
+      ],
+      "skills": [
+        "Unit Testing"
+      ],
+      "related_skills": [
+        "Pytest",
+        "Jest",
+        "Test-Driven Development",
+        "Mocking"
+      ],
+      "prerequisites": [],
+      "description": "Software testing method by which individual units of source code are tested to determine whether they are fit for use."
+    },
+    {
+      "id": "skill-pytest",
+      "type": "skill",
+      "title": "Pytest",
+      "name": "Pytest",
+      "category": "Testing & QA",
+      "aliases": [
+        "pytest framework",
+        "python pytest"
+      ],
+      "skills": [
+        "Pytest"
+      ],
+      "related_skills": [
+        "Python",
+        "Unit Testing",
+        "Mocking",
+        "Test Automation"
+      ],
+      "prerequisites": [
+        "Python",
+        "Unit Testing"
+      ],
+      "description": "Mature, full-featured Python testing tool that helps you write better programs and scale from simple unit tests to complex functional suites."
+    },
+    {
+      "id": "skill-jest",
+      "type": "skill",
+      "title": "Jest",
+      "name": "Jest",
+      "category": "Testing & QA",
+      "aliases": [
+        "jest testing",
+        "jest framework"
+      ],
+      "skills": [
+        "Jest"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "React",
+        "TypeScript",
+        "Unit Testing"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "Unit Testing"
+      ],
+      "description": "Delightful JavaScript testing framework with a focus on simplicity, zero configuration, and snapshot testing."
+    },
+    {
+      "id": "skill-cypress",
+      "type": "skill",
+      "title": "Cypress",
+      "name": "Cypress",
+      "category": "Testing & QA",
+      "aliases": [
+        "cypress e2e",
+        "cypress.io"
+      ],
+      "skills": [
+        "Cypress"
+      ],
+      "related_skills": [
+        "JavaScript",
+        "End-to-End Testing",
+        "Web Development"
+      ],
+      "prerequisites": [
+        "JavaScript"
+      ],
+      "description": "Next-generation front-end testing tool built for the modern web, running directly inside browser sessions."
+    },
+    {
+      "id": "skill-agile-scrum",
+      "type": "skill",
+      "title": "Agile/Scrum",
+      "name": "Agile/Scrum",
+      "category": "Professional & Methodology",
+      "aliases": [
+        "agile methodology",
+        "scrum",
+        "sprint planning",
+        "kanban"
+      ],
+      "skills": [
+        "Agile/Scrum"
+      ],
+      "related_skills": [
+        "Jira",
+        "Collaboration",
+        "Product Management"
+      ],
+      "prerequisites": [],
+      "description": "Iterative project management and software development approach that helps teams deliver value to their customers faster."
+    },
+    {
+      "id": "skill-ruby-on-rails",
+      "type": "skill",
+      "title": "Ruby on Rails",
+      "name": "Ruby on Rails",
+      "category": "Backend Development",
+      "aliases": [
+        "rails",
+        "ror"
+      ],
+      "skills": [
+        "Ruby on Rails"
+      ],
+      "related_skills": [
+        "Ruby",
+        "PostgreSQL",
+        "MVC"
+      ],
+      "prerequisites": [],
+      "description": "Full-stack web application framework written in Ruby following convention over configuration."
+    },
+    {
+      "id": "skill-elixir",
+      "type": "skill",
+      "title": "Elixir",
+      "name": "Elixir",
+      "category": "Programming Languages",
+      "aliases": [
+        "elixirlang"
+      ],
+      "skills": [
+        "Elixir"
+      ],
+      "related_skills": [
+        "Erlang",
+        "Phoenix Framework",
+        "Concurrency"
+      ],
+      "prerequisites": [],
+      "description": "Dynamic, functional language designed for building scalable and maintainable applications on the Erlang VM."
+    },
+    {
+      "id": "skill-haskell",
+      "type": "skill",
+      "title": "Haskell",
+      "name": "Haskell",
+      "category": "Programming Languages",
+      "aliases": [
+        "haskell-lang"
+      ],
+      "skills": [
+        "Haskell"
+      ],
+      "related_skills": [
+        "Functional Programming",
+        "Type Theory"
+      ],
+      "prerequisites": [],
+      "description": "Purely functional programming language with strong static typing, type inference, and lazy evaluation."
+    },
+    {
+      "id": "skill-lua",
+      "type": "skill",
+      "title": "Lua",
+      "name": "Lua",
+      "category": "Programming Languages",
+      "aliases": [
+        "lua-lang"
+      ],
+      "skills": [
+        "Lua"
+      ],
+      "related_skills": [
+        "Embedded Scripting",
+        "Game Development",
+        "Redis"
+      ],
+      "prerequisites": [],
+      "description": "Lightweight, high-level, multi-paradigm programming language designed primarily for embedded use in applications."
+    },
+    {
+      "id": "skill-julia",
+      "type": "skill",
+      "title": "Julia",
+      "name": "Julia",
+      "category": "Programming Languages",
+      "aliases": [
+        "julialang"
+      ],
+      "skills": [
+        "Julia"
+      ],
+      "related_skills": [
+        "Scientific Computing",
+        "Data Science",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "High-level, high-performance programming language designed specifically for technical and scientific computing."
+    },
+    {
+      "id": "skill-solidity",
+      "type": "skill",
+      "title": "Solidity",
+      "name": "Solidity",
+      "category": "Programming Languages",
+      "aliases": [
+        "solidity smart contracts"
+      ],
+      "skills": [
+        "Solidity"
+      ],
+      "related_skills": [
+        "Ethereum",
+        "Blockchain",
+        "Smart Contracts"
+      ],
+      "prerequisites": [],
+      "description": "Object-oriented, high-level language for implementing smart contracts on blockchain platforms like Ethereum."
+    },
+    {
+      "id": "skill-powershell",
+      "type": "skill",
+      "title": "PowerShell",
+      "name": "PowerShell",
+      "category": "Programming Languages",
+      "aliases": [
+        "powershell scripting",
+        "posh"
+      ],
+      "skills": [
+        "PowerShell"
+      ],
+      "related_skills": [
+        "Windows",
+        "Automation",
+        "DevOps"
+      ],
+      "prerequisites": [],
+      "description": "Task automation and configuration management framework consisting of a command-line shell and scripting language."
+    },
+    {
+      "id": "skill-bash",
+      "type": "skill",
+      "title": "Bash",
+      "name": "Bash",
+      "category": "Programming Languages",
+      "aliases": [
+        "bash shell",
+        "gnu bash"
+      ],
+      "skills": [
+        "Bash"
+      ],
+      "related_skills": [
+        "Linux",
+        "Shell Scripting",
+        "DevOps"
+      ],
+      "prerequisites": [],
+      "description": "Unix shell and command language written as a free software replacement for the Bourne shell."
+    },
+    {
+      "id": "skill-pinia",
+      "type": "skill",
+      "title": "Pinia",
+      "name": "Pinia",
+      "category": "Frontend Development",
+      "aliases": [
+        "pinia state management"
+      ],
+      "skills": [
+        "Pinia"
+      ],
+      "related_skills": [
+        "Vue.js",
+        "State Management",
+        "TypeScript"
+      ],
+      "prerequisites": [],
+      "description": "Intuitive, type-safe, lightweight state management store for Vue 3 applications."
+    },
+    {
+      "id": "skill-nuxt-js",
+      "type": "skill",
+      "title": "Nuxt.js",
+      "name": "Nuxt.js",
+      "category": "Frontend Development",
+      "aliases": [
+        "nuxtjs",
+        "nuxt"
+      ],
+      "skills": [
+        "Nuxt.js"
+      ],
+      "related_skills": [
+        "Vue.js",
+        "Server-Side Rendering",
+        "TypeScript"
+      ],
+      "prerequisites": [],
+      "description": "Intuitive framework built on Vue providing server-side rendering, routing, and developer experience."
+    },
+    {
+      "id": "skill-rxjs",
+      "type": "skill",
+      "title": "RxJS",
+      "name": "RxJS",
+      "category": "Frontend Development",
+      "aliases": [
+        "reactive extensions"
+      ],
+      "skills": [
+        "RxJS"
+      ],
+      "related_skills": [
+        "Angular",
+        "TypeScript",
+        "Observables"
+      ],
+      "prerequisites": [],
+      "description": "Library for reactive programming using Observables, making it easier to compose asynchronous or callback-based code."
+    },
+    {
+      "id": "skill-three-js",
+      "type": "skill",
+      "title": "Three.js",
+      "name": "Three.js",
+      "category": "Frontend Development",
+      "aliases": [
+        "threejs",
+        "webgl 3d"
+      ],
+      "skills": [
+        "Three.js"
+      ],
+      "related_skills": [
+        "WebGL",
+        "JavaScript",
+        "3D Graphics"
+      ],
+      "prerequisites": [],
+      "description": "Cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser."
+    },
+    {
+      "id": "skill-webgl",
+      "type": "skill",
+      "title": "WebGL",
+      "name": "WebGL",
+      "category": "Frontend Development",
+      "aliases": [
+        "web graphics library"
+      ],
+      "skills": [
+        "WebGL"
+      ],
+      "related_skills": [
+        "Three.js",
+        "JavaScript",
+        "Computer Graphics"
+      ],
+      "prerequisites": [],
+      "description": "JavaScript API for rendering high-performance interactive 3D and 2D graphics within any compatible web browser."
+    },
+    {
+      "id": "skill-storybook",
+      "type": "skill",
+      "title": "Storybook",
+      "name": "Storybook",
+      "category": "Frontend Development",
+      "aliases": [
+        "storybookjs"
+      ],
+      "skills": [
+        "Storybook"
+      ],
+      "related_skills": [
+        "React",
+        "Component Driven Development",
+        "Design Systems"
+      ],
+      "prerequisites": [],
+      "description": "Open source tool for building UI components and pages in isolation, streamlining UI testing and documentation."
+    },
+    {
+      "id": "skill-figma",
+      "type": "skill",
+      "title": "Figma",
+      "name": "Figma",
+      "category": "Design & Prototyping",
+      "aliases": [
+        "figma design",
+        "ui/ux design"
+      ],
+      "skills": [
+        "Figma"
+      ],
+      "related_skills": [
+        "UI/UX",
+        "Design Systems",
+        "Prototyping"
+      ],
+      "prerequisites": [],
+      "description": "Web-based collaborative interface design tool used for vector graphics, UI/UX design, and wireframing."
+    },
+    {
+      "id": "skill-web-accessibility",
+      "type": "skill",
+      "title": "Web Accessibility",
+      "name": "Web Accessibility",
+      "category": "Frontend Development",
+      "aliases": [
+        "a11y",
+        "wcag",
+        "aria"
+      ],
+      "skills": [
+        "Web Accessibility"
+      ],
+      "related_skills": [
+        "HTML5",
+        "CSS3",
+        "Frontend Development"
+      ],
+      "prerequisites": [],
+      "description": "Inclusive practice of ensuring web applications are usable by people of all abilities and disabilities."
+    },
+    {
+      "id": "skill-playwright",
+      "type": "skill",
+      "title": "Playwright",
+      "name": "Playwright",
+      "category": "Testing & QA",
+      "aliases": [
+        "playwright testing"
+      ],
+      "skills": [
+        "Playwright"
+      ],
+      "related_skills": [
+        "End-to-End Testing",
+        "TypeScript",
+        "Test Automation"
+      ],
+      "prerequisites": [],
+      "description": "Modern end-to-end testing library for web apps, supporting chromium, firefox, and webkit with a single API."
+    },
+    {
+      "id": "skill-pwa",
+      "type": "skill",
+      "title": "PWA",
+      "name": "PWA",
+      "category": "Frontend Development",
+      "aliases": [
+        "progressive web apps",
+        "service workers"
+      ],
+      "skills": [
+        "PWA"
+      ],
+      "related_skills": [
+        "Web Development",
+        "Offline Support",
+        "Mobile"
+      ],
+      "prerequisites": [],
+      "description": "Web apps built using web platform technologies providing native app-like user experiences and offline capabilities."
+    },
+    {
+      "id": "skill-css-grid",
+      "type": "skill",
+      "title": "CSS Grid",
+      "name": "CSS Grid",
+      "category": "Frontend Development",
+      "aliases": [
+        "css grid layout"
+      ],
+      "skills": [
+        "CSS Grid"
+      ],
+      "related_skills": [
+        "CSS3",
+        "Responsive Design",
+        "Flexbox"
+      ],
+      "prerequisites": [],
+      "description": "Two-dimensional layout system for the web designed to handle both columns and rows."
+    },
+    {
+      "id": "skill-flexbox",
+      "type": "skill",
+      "title": "Flexbox",
+      "name": "Flexbox",
+      "category": "Frontend Development",
+      "aliases": [
+        "css flexbox",
+        "flexible box layout"
+      ],
+      "skills": [
+        "Flexbox"
+      ],
+      "related_skills": [
+        "CSS3",
+        "Responsive Design"
+      ],
+      "prerequisites": [],
+      "description": "One-dimensional CSS layout model offering space distribution between items in an interface."
+    },
+    {
+      "id": "skill-turborepo",
+      "type": "skill",
+      "title": "Turborepo",
+      "name": "Turborepo",
+      "category": "Frontend Development",
+      "aliases": [
+        "turbo repo",
+        "monorepo"
+      ],
+      "skills": [
+        "Turborepo"
+      ],
+      "related_skills": [
+        "Monorepo",
+        "Next.js",
+        "Build Tools"
+      ],
+      "prerequisites": [],
+      "description": "High-performance build system for JavaScript and TypeScript codebases designed for monorepos."
+    },
+    {
+      "id": "skill-django-rest-framework",
+      "type": "skill",
+      "title": "Django REST Framework",
+      "name": "Django REST Framework",
+      "category": "Backend Development",
+      "aliases": [
+        "drf"
+      ],
+      "skills": [
+        "Django REST Framework"
+      ],
+      "related_skills": [
+        "Django",
+        "Python",
+        "REST API"
+      ],
+      "prerequisites": [],
+      "description": "Powerful and flexible toolkit for building Web APIs on top of Django."
+    },
+    {
+      "id": "skill-typeorm",
+      "type": "skill",
+      "title": "TypeORM",
+      "name": "TypeORM",
+      "category": "Backend Development",
+      "aliases": [
+        "type orm"
+      ],
+      "skills": [
+        "TypeORM"
+      ],
+      "related_skills": [
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "ORM"
+      ],
+      "prerequisites": [],
+      "description": "ORM that can run in NodeJS and can be used with TypeScript and JavaScript (ES5, ES6, ES7, ES8)."
+    },
+    {
+      "id": "skill-mongoose",
+      "type": "skill",
+      "title": "Mongoose",
+      "name": "Mongoose",
+      "category": "Backend Development",
+      "aliases": [
+        "mongoose odm"
+      ],
+      "skills": [
+        "Mongoose"
+      ],
+      "related_skills": [
+        "MongoDB",
+        "Node.js",
+        "Express.js"
+      ],
+      "prerequisites": [],
+      "description": "Elegant MongoDB object modeling for Node.js, providing schema-based validation and business logic hooks."
+    },
+    {
+      "id": "skill-starlette",
+      "type": "skill",
+      "title": "Starlette",
+      "name": "Starlette",
+      "category": "Backend Development",
+      "aliases": [
+        "starlette framework"
+      ],
+      "skills": [
+        "Starlette"
+      ],
+      "related_skills": [
+        "FastAPI",
+        "ASGI",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Lightweight ASGI framework/toolkit ideal for building async web services in Python."
+    },
+    {
+      "id": "skill-uvicorn",
+      "type": "skill",
+      "title": "Uvicorn",
+      "name": "Uvicorn",
+      "category": "Backend Development",
+      "aliases": [
+        "uvicorn server"
+      ],
+      "skills": [
+        "Uvicorn"
+      ],
+      "related_skills": [
+        "ASGI",
+        "FastAPI",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Lightning-fast ASGI web server implementation for Python, utilizing uvloop and httptools."
+    },
+    {
+      "id": "skill-gunicorn",
+      "type": "skill",
+      "title": "Gunicorn",
+      "name": "Gunicorn",
+      "category": "Backend Development",
+      "aliases": [
+        "green unicorn"
+      ],
+      "skills": [
+        "Gunicorn"
+      ],
+      "related_skills": [
+        "WSGI",
+        "Django",
+        "Flask",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Python WSGI HTTP Server for UNIX designed as a pre-fork worker model port from Ruby's Unicorn project."
+    },
+    {
+      "id": "skill-swagger---openapi",
+      "type": "skill",
+      "title": "Swagger / OpenAPI",
+      "name": "Swagger / OpenAPI",
+      "category": "Backend Development",
+      "aliases": [
+        "openapi",
+        "swagger ui",
+        "api documentation"
+      ],
+      "skills": [
+        "Swagger / OpenAPI"
+      ],
+      "related_skills": [
+        "REST API",
+        "API Design",
+        "FastAPI"
+      ],
+      "prerequisites": [],
+      "description": "Standard specification format for defining, documenting, and consuming RESTful web services."
+    },
+    {
+      "id": "skill-socket-io",
+      "type": "skill",
+      "title": "Socket.io",
+      "name": "Socket.io",
+      "category": "Backend Development",
+      "aliases": [
+        "socketio"
+      ],
+      "skills": [
+        "Socket.io"
+      ],
+      "related_skills": [
+        "WebSockets",
+        "Node.js",
+        "Real-Time Systems"
+      ],
+      "prerequisites": [],
+      "description": "Event-driven library for real-time web applications, enabling bi-directional communication between client and server."
+    },
+    {
+      "id": "skill-graphql-apollo",
+      "type": "skill",
+      "title": "GraphQL Apollo",
+      "name": "GraphQL Apollo",
+      "category": "Backend Development",
+      "aliases": [
+        "apollo server",
+        "apollo client"
+      ],
+      "skills": [
+        "GraphQL Apollo"
+      ],
+      "related_skills": [
+        "GraphQL",
+        "Node.js",
+        "React"
+      ],
+      "prerequisites": [],
+      "description": "Comprehensive state management and API delivery platform that enables you to build GraphQL services quickly."
+    },
+    {
+      "id": "skill-fastify",
+      "type": "skill",
+      "title": "Fastify",
+      "name": "Fastify",
+      "category": "Backend Development",
+      "aliases": [
+        "fastify framework"
+      ],
+      "skills": [
+        "Fastify"
+      ],
+      "related_skills": [
+        "Node.js",
+        "REST API",
+        "Express.js"
+      ],
+      "prerequisites": [],
+      "description": "Extremely fast and low overhead web framework for Node.js focused on providing the best developer experience."
+    },
+    {
+      "id": "skill-gin",
+      "type": "skill",
+      "title": "Gin",
+      "name": "Gin",
+      "category": "Backend Development",
+      "aliases": [
+        "gin-gonic",
+        "gin web framework"
+      ],
+      "skills": [
+        "Gin"
+      ],
+      "related_skills": [
+        "Go",
+        "REST API",
+        "Microservices"
+      ],
+      "prerequisites": [],
+      "description": "High-performance HTTP web framework written in Go featuring a martini-like API with much better performance."
+    },
+    {
+      "id": "skill-clickhouse",
+      "type": "skill",
+      "title": "ClickHouse",
+      "name": "ClickHouse",
+      "category": "Databases",
+      "aliases": [
+        "clickhouse db"
+      ],
+      "skills": [
+        "ClickHouse"
+      ],
+      "related_skills": [
+        "OLAP",
+        "SQL",
+        "Columnar Database"
+      ],
+      "prerequisites": [],
+      "description": "Open-source column-oriented DBMS for real-time analytical reporting using SQL queries."
+    },
+    {
+      "id": "skill-mariadb",
+      "type": "skill",
+      "title": "MariaDB",
+      "name": "MariaDB",
+      "category": "Databases",
+      "aliases": [
+        "mariadb database"
+      ],
+      "skills": [
+        "MariaDB"
+      ],
+      "related_skills": [
+        "MySQL",
+        "SQL",
+        "Relational Databases"
+      ],
+      "prerequisites": [],
+      "description": "Commercially supported fork of the MySQL relational database management system."
+    },
+    {
+      "id": "skill-neo4j",
+      "type": "skill",
+      "title": "Neo4j",
+      "name": "Neo4j",
+      "category": "Databases",
+      "aliases": [
+        "neo4j graph db",
+        "cypher query language"
+      ],
+      "skills": [
+        "Neo4j"
+      ],
+      "related_skills": [
+        "Graph Databases",
+        "NoSQL",
+        "Data Modeling"
+      ],
+      "prerequisites": [],
+      "description": "Graph database management system developed by Neo4j, Inc., designed for connected data representation."
+    },
+    {
+      "id": "skill-firestore",
+      "type": "skill",
+      "title": "Firestore",
+      "name": "Firestore",
+      "category": "Databases",
+      "aliases": [
+        "cloud firestore",
+        "google firestore"
+      ],
+      "skills": [
+        "Firestore"
+      ],
+      "related_skills": [
+        "Firebase",
+        "NoSQL",
+        "Document Databases"
+      ],
+      "prerequisites": [],
+      "description": "Flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud."
+    },
+    {
+      "id": "skill-couchbase",
+      "type": "skill",
+      "title": "Couchbase",
+      "name": "Couchbase",
+      "category": "Databases",
+      "aliases": [
+        "couchbase server"
+      ],
+      "skills": [
+        "Couchbase"
+      ],
+      "related_skills": [
+        "NoSQL",
+        "Document Databases",
+        "Distributed Cache"
+      ],
+      "prerequisites": [],
+      "description": "Distributed NoSQL cloud database that delivers unmatched versatility, performance, and financial value."
+    },
+    {
+      "id": "skill-duckdb",
+      "type": "skill",
+      "title": "DuckDB",
+      "name": "DuckDB",
+      "category": "Databases",
+      "aliases": [
+        "duckdb in-process"
+      ],
+      "skills": [
+        "DuckDB"
+      ],
+      "related_skills": [
+        "SQL",
+        "Analytics",
+        "Python",
+        "Data Science"
+      ],
+      "prerequisites": [],
+      "description": "In-process SQL OLAP database management system designed for fast analytical queries on local datasets."
+    },
+    {
+      "id": "skill-chromadb",
+      "type": "skill",
+      "title": "ChromaDB",
+      "name": "ChromaDB",
+      "category": "Databases",
+      "aliases": [
+        "chroma vector database",
+        "chromadb"
+      ],
+      "skills": [
+        "ChromaDB"
+      ],
+      "related_skills": [
+        "Vector Databases",
+        "Embeddings",
+        "RAG"
+      ],
+      "prerequisites": [],
+      "description": "Open-source AI-native embedding database designed for developer productivity and local experimentation."
+    },
+    {
+      "id": "skill-pinecone",
+      "type": "skill",
+      "title": "Pinecone",
+      "name": "Pinecone",
+      "category": "Databases",
+      "aliases": [
+        "pinecone vector db"
+      ],
+      "skills": [
+        "Pinecone"
+      ],
+      "related_skills": [
+        "Vector Databases",
+        "Embeddings",
+        "RAG"
+      ],
+      "prerequisites": [],
+      "description": "Managed, cloud-native vector database designed for high-scale, ultra-fast similarity search applications."
+    },
+    {
+      "id": "skill-weaviate",
+      "type": "skill",
+      "title": "Weaviate",
+      "name": "Weaviate",
+      "category": "Databases",
+      "aliases": [
+        "weaviate vector search"
+      ],
+      "skills": [
+        "Weaviate"
+      ],
+      "related_skills": [
+        "Vector Databases",
+        "Embeddings",
+        "RAG"
+      ],
+      "prerequisites": [],
+      "description": "Open-source vector database that allows you to store data objects and vector embeddings from your favorite ML models."
+    },
+    {
+      "id": "skill-qdrant",
+      "type": "skill",
+      "title": "Qdrant",
+      "name": "Qdrant",
+      "category": "Databases",
+      "aliases": [
+        "qdrant vector engine"
+      ],
+      "skills": [
+        "Qdrant"
+      ],
+      "related_skills": [
+        "Vector Databases",
+        "Embeddings",
+        "RAG",
+        "Rust"
+      ],
+      "prerequisites": [],
+      "description": "Vector similarity search engine and vector database with extended filtering support written in Rust."
+    },
+    {
+      "id": "skill-pgvector",
+      "type": "skill",
+      "title": "pgvector",
+      "name": "pgvector",
+      "category": "Databases",
+      "aliases": [
+        "postgres pgvector"
+      ],
+      "skills": [
+        "pgvector"
+      ],
+      "related_skills": [
+        "PostgreSQL",
+        "Vector Embeddings",
+        "RAG"
+      ],
+      "prerequisites": [],
+      "description": "Open-source vector similarity search extension for PostgreSQL supporting exact and approximate nearest neighbor."
+    },
+    {
+      "id": "skill-terraform-modules",
+      "type": "skill",
+      "title": "Terraform Modules",
+      "name": "Terraform Modules",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "terraform reusable modules"
+      ],
+      "skills": [
+        "Terraform Modules"
+      ],
+      "related_skills": [
+        "Terraform",
+        "Infrastructure as Code"
+      ],
+      "prerequisites": [],
+      "description": "Packaged, reusable Terraform configurations that can be shared across teams and projects."
+    },
+    {
+      "id": "skill-argocd",
+      "type": "skill",
+      "title": "ArgoCD",
+      "name": "ArgoCD",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "argo cd",
+        "gitops"
+      ],
+      "skills": [
+        "ArgoCD"
+      ],
+      "related_skills": [
+        "Kubernetes",
+        "GitOps",
+        "CI/CD"
+      ],
+      "prerequisites": [],
+      "description": "Declarative, GitOps continuous delivery tool for Kubernetes, managing cluster state from Git repositories."
+    },
+    {
+      "id": "skill-istio",
+      "type": "skill",
+      "title": "Istio",
+      "name": "Istio",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "service mesh",
+        "istio mesh"
+      ],
+      "skills": [
+        "Istio"
+      ],
+      "related_skills": [
+        "Kubernetes",
+        "Microservices",
+        "Networking"
+      ],
+      "prerequisites": [],
+      "description": "Open-source service mesh providing uniform ways to secure, connect, and monitor microservices."
+    },
+    {
+      "id": "skill-linux-bash",
+      "type": "skill",
+      "title": "Linux Bash",
+      "name": "Linux Bash",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "bash terminal",
+        "linux cli"
+      ],
+      "skills": [
+        "Linux Bash"
+      ],
+      "related_skills": [
+        "Linux",
+        "Shell Scripting"
+      ],
+      "prerequisites": [],
+      "description": "Standard shell command-line interpreter used for system administration and tool chaining."
+    },
+    {
+      "id": "skill-aws-sqs",
+      "type": "skill",
+      "title": "AWS SQS",
+      "name": "AWS SQS",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "amazon sqs",
+        "simple queue service"
+      ],
+      "skills": [
+        "AWS SQS"
+      ],
+      "related_skills": [
+        "AWS",
+        "Message Queues",
+        "Microservices"
+      ],
+      "prerequisites": [],
+      "description": "Fully managed message queuing service from AWS that enables you to decouple and scale microservices."
+    },
+    {
+      "id": "skill-aws-sns",
+      "type": "skill",
+      "title": "AWS SNS",
+      "name": "AWS SNS",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "amazon sns",
+        "simple notification service"
+      ],
+      "skills": [
+        "AWS SNS"
+      ],
+      "related_skills": [
+        "AWS",
+        "Pub/Sub",
+        "Event-Driven Architecture"
+      ],
+      "prerequisites": [],
+      "description": "Fully managed pub/sub messaging service for both application-to-application (A2A) and application-to-person (A2P) communication."
+    },
+    {
+      "id": "skill-aws-iam",
+      "type": "skill",
+      "title": "AWS IAM",
+      "name": "AWS IAM",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "identity and access management",
+        "aws permissions"
+      ],
+      "skills": [
+        "AWS IAM"
+      ],
+      "related_skills": [
+        "AWS",
+        "Cloud Security",
+        "RBAC"
+      ],
+      "prerequisites": [],
+      "description": "Web service that helps you securely control access to AWS resources via users, groups, and roles."
+    },
+    {
+      "id": "skill-aws-cloudwatch",
+      "type": "skill",
+      "title": "AWS CloudWatch",
+      "name": "AWS CloudWatch",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "cloudwatch logs",
+        "cloudwatch metrics"
+      ],
+      "skills": [
+        "AWS CloudWatch"
+      ],
+      "related_skills": [
+        "AWS",
+        "Monitoring",
+        "Logging"
+      ],
+      "prerequisites": [],
+      "description": "Monitoring and observability service built for DevOps engineers, developers, and IT managers on AWS."
+    },
+    {
+      "id": "skill-google-cloud-run",
+      "type": "skill",
+      "title": "Google Cloud Run",
+      "name": "Google Cloud Run",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "cloud run",
+        "gcp cloud run"
+      ],
+      "skills": [
+        "Google Cloud Run"
+      ],
+      "related_skills": [
+        "Google Cloud Platform",
+        "Serverless",
+        "Docker"
+      ],
+      "prerequisites": [],
+      "description": "Fully managed compute platform that automatically scales your stateless containers up and down."
+    },
+    {
+      "id": "skill-azure-devops",
+      "type": "skill",
+      "title": "Azure DevOps",
+      "name": "Azure DevOps",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "azure pipelines",
+        "vsts"
+      ],
+      "skills": [
+        "Azure DevOps"
+      ],
+      "related_skills": [
+        "CI/CD",
+        "Microsoft Azure",
+        "DevOps"
+      ],
+      "prerequisites": [],
+      "description": "Suite of collaborative software development tools including Git repos, agile boards, and CI/CD pipelines."
+    },
+    {
+      "id": "skill-opentelemetry",
+      "type": "skill",
+      "title": "OpenTelemetry",
+      "name": "OpenTelemetry",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "otel",
+        "telemetry"
+      ],
+      "skills": [
+        "OpenTelemetry"
+      ],
+      "related_skills": [
+        "Prometheus",
+        "Distributed Tracing",
+        "Observability"
+      ],
+      "prerequisites": [],
+      "description": "Collection of tools, APIs, and SDKs used to instrument, generate, collect, and export telemetry data."
+    },
+    {
+      "id": "skill-keras",
+      "type": "skill",
+      "title": "Keras",
+      "name": "Keras",
+      "category": "AI & Data Science",
+      "aliases": [
+        "keras deep learning"
+      ],
+      "skills": [
+        "Keras"
+      ],
+      "related_skills": [
+        "TensorFlow",
+        "Deep Learning",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "High-level neural networks API, written in Python and capable of running on top of TensorFlow."
+    },
+    {
+      "id": "skill-scipy",
+      "type": "skill",
+      "title": "SciPy",
+      "name": "SciPy",
+      "category": "AI & Data Science",
+      "aliases": [
+        "python scipy"
+      ],
+      "skills": [
+        "SciPy"
+      ],
+      "related_skills": [
+        "Python",
+        "NumPy",
+        "Scientific Computing"
+      ],
+      "prerequisites": [],
+      "description": "Open-source Python library used for scientific computing and technical computing algorithms."
+    },
+    {
+      "id": "skill-matplotlib",
+      "type": "skill",
+      "title": "Matplotlib",
+      "name": "Matplotlib",
+      "category": "AI & Data Science",
+      "aliases": [
+        "python matplotlib",
+        "data visualization"
+      ],
+      "skills": [
+        "Matplotlib"
+      ],
+      "related_skills": [
+        "Python",
+        "Data Science",
+        "Seaborn"
+      ],
+      "prerequisites": [],
+      "description": "Comprehensive library for creating static, animated, and interactive visualizations in Python."
+    },
+    {
+      "id": "skill-seaborn",
+      "type": "skill",
+      "title": "Seaborn",
+      "name": "Seaborn",
+      "category": "AI & Data Science",
+      "aliases": [
+        "python seaborn"
+      ],
+      "skills": [
+        "Seaborn"
+      ],
+      "related_skills": [
+        "Python",
+        "Matplotlib",
+        "Data Visualization"
+      ],
+      "prerequisites": [],
+      "description": "Python data visualization library based on matplotlib providing high-level interface for statistical graphics."
+    },
+    {
+      "id": "skill-spacy",
+      "type": "skill",
+      "title": "spaCy",
+      "name": "spaCy",
+      "category": "AI & Data Science",
+      "aliases": [
+        "spacy nlp"
+      ],
+      "skills": [
+        "spaCy"
+      ],
+      "related_skills": [
+        "Natural Language Processing",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Free, open-source library for advanced Natural Language Processing in Python, designed for production usage."
+    },
+    {
+      "id": "skill-nltk",
+      "type": "skill",
+      "title": "NLTK",
+      "name": "NLTK",
+      "category": "AI & Data Science",
+      "aliases": [
+        "natural language toolkit"
+      ],
+      "skills": [
+        "NLTK"
+      ],
+      "related_skills": [
+        "Natural Language Processing",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Leading platform for building Python programs to work with human language data."
+    },
+    {
+      "id": "skill-xgboost",
+      "type": "skill",
+      "title": "XGBoost",
+      "name": "XGBoost",
+      "category": "AI & Data Science",
+      "aliases": [
+        "xgboost algorithm",
+        "gradient boosting"
+      ],
+      "skills": [
+        "XGBoost"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Scikit-Learn",
+        "Ensemble Learning"
+      ],
+      "prerequisites": [],
+      "description": "Optimized distributed gradient boosting library designed to be highly efficient, flexible, and portable."
+    },
+    {
+      "id": "skill-lightgbm",
+      "type": "skill",
+      "title": "LightGBM",
+      "name": "LightGBM",
+      "category": "AI & Data Science",
+      "aliases": [
+        "light gradient boosting"
+      ],
+      "skills": [
+        "LightGBM"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Gradient Boosting"
+      ],
+      "prerequisites": [],
+      "description": "Fast, distributed, high-performance gradient boosting framework based on decision tree algorithms."
+    },
+    {
+      "id": "skill-cuda",
+      "type": "skill",
+      "title": "CUDA",
+      "name": "CUDA",
+      "category": "AI & Data Science",
+      "aliases": [
+        "nvidia cuda",
+        "gpu programming"
+      ],
+      "skills": [
+        "CUDA"
+      ],
+      "related_skills": [
+        "C++",
+        "PyTorch",
+        "High-Performance Computing"
+      ],
+      "prerequisites": [],
+      "description": "Parallel computing platform and programming model developed by Nvidia for general computing on GPUs."
+    },
+    {
+      "id": "skill-tensorrt",
+      "type": "skill",
+      "title": "TensorRT",
+      "name": "TensorRT",
+      "category": "AI & Data Science",
+      "aliases": [
+        "nvidia tensorrt"
+      ],
+      "skills": [
+        "TensorRT"
+      ],
+      "related_skills": [
+        "CUDA",
+        "Deep Learning Inference",
+        "Optimization"
+      ],
+      "prerequisites": [],
+      "description": "NVIDIA SDK for high-performance deep learning inference that optimizes neural network models."
+    },
+    {
+      "id": "skill-onnx",
+      "type": "skill",
+      "title": "ONNX",
+      "name": "ONNX",
+      "category": "AI & Data Science",
+      "aliases": [
+        "open neural network exchange",
+        "onnxruntime"
+      ],
+      "skills": [
+        "ONNX"
+      ],
+      "related_skills": [
+        "Machine Learning",
+        "Deep Learning",
+        "Model Deployment"
+      ],
+      "prerequisites": [],
+      "description": "Open format built to represent machine learning models, allowing model exchange across frameworks."
+    },
+    {
+      "id": "skill-onnx-runtime",
+      "type": "skill",
+      "title": "ONNX Runtime",
+      "name": "ONNX Runtime",
+      "category": "AI & Data Science",
+      "aliases": [
+        "ort",
+        "onnxruntime engine"
+      ],
+      "skills": [
+        "ONNX Runtime"
+      ],
+      "related_skills": [
+        "ONNX",
+        "Inference Acceleration",
+        "Machine Learning"
+      ],
+      "prerequisites": [],
+      "description": "Cross-platform, high-performance scoring engine for Open Neural Network Exchange (ONNX) models."
+    },
+    {
+      "id": "skill-lora",
+      "type": "skill",
+      "title": "LoRA",
+      "name": "LoRA",
+      "category": "AI & Data Science",
+      "aliases": [
+        "low-rank adaptation",
+        "parameter efficient fine tuning"
+      ],
+      "skills": [
+        "LoRA"
+      ],
+      "related_skills": [
+        "Fine-Tuning",
+        "Large Language Models",
+        "PyTorch"
+      ],
+      "prerequisites": [],
+      "description": "Parameter-efficient fine-tuning technique that freezes pre-trained model weights and injects trainable rank decomposition matrices."
+    },
+    {
+      "id": "skill-quantization",
+      "type": "skill",
+      "title": "Quantization",
+      "name": "Quantization",
+      "category": "AI & Data Science",
+      "aliases": [
+        "int8 quantization",
+        "model quantization",
+        "gguf"
+      ],
+      "skills": [
+        "Quantization"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "Model Compression",
+        "Inference Acceleration"
+      ],
+      "prerequisites": [],
+      "description": "Techniques that reduce precision of model parameters (e.g. from 16-bit to 4-bit) to drastically accelerate inference."
+    },
+    {
+      "id": "skill-dspy",
+      "type": "skill",
+      "title": "DSPy",
+      "name": "DSPy",
+      "category": "AI & Data Science",
+      "aliases": [
+        "dspy framework"
+      ],
+      "skills": [
+        "DSPy"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "Prompt Engineering",
+        "Python"
+      ],
+      "prerequisites": [],
+      "description": "Framework for algorithmically optimizing LM prompts and weights, replacing fragile prompt heuristics."
+    },
+    {
+      "id": "skill-autonomous-agents",
+      "type": "skill",
+      "title": "Autonomous Agents",
+      "name": "Autonomous Agents",
+      "category": "AI & Data Science",
+      "aliases": [
+        "ai agents",
+        "multi-agent systems",
+        "agentic workflows"
+      ],
+      "skills": [
+        "Autonomous Agents"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "LangChain",
+        "Tool Calling"
+      ],
+      "prerequisites": [],
+      "description": "Systems where foundation models plan, invoke external tools, reflect, and complete multi-step tasks autonomously."
+    },
+    {
+      "id": "skill-evaluation-metrics-(llm)",
+      "type": "skill",
+      "title": "Evaluation Metrics (LLM)",
+      "name": "Evaluation Metrics (LLM)",
+      "category": "AI & Data Science",
+      "aliases": [
+        "ragas",
+        "llm evals",
+        "hallucination detection"
+      ],
+      "skills": [
+        "Evaluation Metrics (LLM)"
+      ],
+      "related_skills": [
+        "Large Language Models",
+        "RAG",
+        "Model Evaluation"
+      ],
+      "prerequisites": [],
+      "description": "Systematic benchmarking frameworks to evaluate faithfulness, relevancy, and accuracy of generative AI pipelines."
+    },
+    {
+      "id": "skill-penetration-testing",
+      "type": "skill",
+      "title": "Penetration Testing",
+      "name": "Penetration Testing",
+      "category": "Cybersecurity",
+      "aliases": [
+        "pen testing",
+        "ethical hacking"
+      ],
+      "skills": [
+        "Penetration Testing"
+      ],
+      "related_skills": [
+        "Cybersecurity",
+        "Network Security",
+        "Vulnerability Assessment"
+      ],
+      "prerequisites": [],
+      "description": "Simulated cyber attack against computer systems to check for exploitable vulnerabilities."
+    },
+    {
+      "id": "skill-owasp-top-10",
+      "type": "skill",
+      "title": "OWASP Top 10",
+      "name": "OWASP Top 10",
+      "category": "Cybersecurity",
+      "aliases": [
+        "owasp vulnerabilities"
+      ],
+      "skills": [
+        "OWASP Top 10"
+      ],
+      "related_skills": [
+        "Web Security",
+        "Cybersecurity",
+        "Application Security"
+      ],
+      "prerequisites": [],
+      "description": "Standard awareness document for developers and web application security representing critical security risks."
+    },
+    {
+      "id": "skill-cryptography",
+      "type": "skill",
+      "title": "Cryptography",
+      "name": "Cryptography",
+      "category": "Cybersecurity",
+      "aliases": [
+        "encryption",
+        "aes",
+        "rsa",
+        "public key cryptography"
+      ],
+      "skills": [
+        "Cryptography"
+      ],
+      "related_skills": [
+        "Cybersecurity",
+        "SSL/TLS",
+        "Information Security"
+      ],
+      "prerequisites": [],
+      "description": "Practice and study of techniques for secure communication in the presence of adversarial third parties."
+    },
+    {
+      "id": "skill-single-sign-on",
+      "type": "skill",
+      "title": "Single Sign-On",
+      "name": "Single Sign-On",
+      "category": "Cybersecurity",
+      "aliases": [
+        "sso",
+        "saml",
+        "okta"
+      ],
+      "skills": [
+        "Single Sign-On"
+      ],
+      "related_skills": [
+        "Identity and Access Management",
+        "OAuth 2.0",
+        "Security"
+      ],
+      "prerequisites": [],
+      "description": "Authentication scheme that allows a user to log in with a single ID to any of several related systems."
+    },
+    {
+      "id": "skill-cors",
+      "type": "skill",
+      "title": "CORS",
+      "name": "CORS",
+      "category": "Cybersecurity",
+      "aliases": [
+        "cross-origin resource sharing"
+      ],
+      "skills": [
+        "CORS"
+      ],
+      "related_skills": [
+        "HTTP",
+        "Web Security",
+        "REST API"
+      ],
+      "prerequisites": [],
+      "description": "Security mechanism that uses HTTP headers to tell browsers whether a web application can access cross-origin resources."
+    },
+    {
+      "id": "skill-continuous-delivery",
+      "type": "skill",
+      "title": "Continuous Delivery",
+      "name": "Continuous Delivery",
+      "category": "DevOps & Cloud",
+      "aliases": [
+        "continuous deployment"
+      ],
+      "skills": [
+        "Continuous Delivery"
+      ],
+      "related_skills": [
+        "CI/CD",
+        "DevOps",
+        "Automation"
+      ],
+      "prerequisites": [],
+      "description": "Software engineering approach in which teams produce software in short cycles, ensuring safe releases at any time."
+    },
+    {
+      "id": "skill-load-balancing",
+      "type": "skill",
+      "title": "Load Balancing",
+      "name": "Load Balancing",
+      "category": "Computer Science Core",
+      "aliases": [
+        "load balancer",
+        "reverse proxy load balancing"
+      ],
+      "skills": [
+        "Load Balancing"
+      ],
+      "related_skills": [
+        "System Design",
+        "Nginx",
+        "High Availability"
+      ],
+      "prerequisites": [],
+      "description": "Process of distributing network traffic across multiple servers to ensure reliability and optimal throughput."
+    },
+    {
+      "id": "skill-caching-strategies",
+      "type": "skill",
+      "title": "Caching Strategies",
+      "name": "Caching Strategies",
+      "category": "Computer Science Core",
+      "aliases": [
+        "cache invalidation",
+        "write-through cache",
+        "lru cache"
+      ],
+      "skills": [
+        "Caching Strategies"
+      ],
+      "related_skills": [
+        "Redis",
+        "System Design",
+        "Performance Optimization"
+      ],
+      "prerequisites": [],
+      "description": "Techniques to store copies of data in temporary storage locations for rapid subsequent retrieval."
+    },
+    {
+      "id": "skill-big-o-notation",
+      "type": "skill",
+      "title": "Big-O Notation",
+      "name": "Big-O Notation",
+      "category": "Computer Science Core",
+      "aliases": [
+        "asymptotic analysis",
+        "computational complexity"
+      ],
+      "skills": [
+        "Big-O Notation"
+      ],
+      "related_skills": [
+        "Algorithms",
+        "Data Structures"
+      ],
+      "prerequisites": [],
+      "description": "Mathematical notation that describes the limiting behavior of a function when the argument tends towards infinity."
+    },
+    {
+      "id": "skill-test-driven-development",
+      "type": "skill",
+      "title": "Test-Driven Development",
+      "name": "Test-Driven Development",
+      "category": "Testing & QA",
+      "aliases": [
+        "tdd"
+      ],
+      "skills": [
+        "Test-Driven Development"
+      ],
+      "related_skills": [
+        "Unit Testing",
+        "Software Engineering"
+      ],
+      "prerequisites": [],
+      "description": "Software development process relying on software requirements being converted to test cases before software is fully developed."
+    },
+    {
+      "id": "skill-end-to-end-testing",
+      "type": "skill",
+      "title": "End-to-End Testing",
+      "name": "End-to-End Testing",
+      "category": "Testing & QA",
+      "aliases": [
+        "e2e testing"
+      ],
+      "skills": [
+        "End-to-End Testing"
+      ],
+      "related_skills": [
+        "Cypress",
+        "Playwright",
+        "Quality Assurance"
+      ],
+      "prerequisites": [],
+      "description": "Technique that tests the entire software product from beginning to end to ensure the application flow behaves as expected."
+    },
+    {
+      "id": "skill-code-review",
+      "type": "skill",
+      "title": "Code Review",
+      "name": "Code Review",
+      "category": "Developer Tools",
+      "aliases": [
+        "pull request review",
+        "peer review"
+      ],
+      "skills": [
+        "Code Review"
+      ],
+      "related_skills": [
+        "Git",
+        "GitHub",
+        "Software Quality"
+      ],
+      "prerequisites": [],
+      "description": "Systematic examination of computer source code intended to find bugs and improve code quality."
+    },
+    {
+      "id": "skill-monorepo-architecture",
+      "type": "skill",
+      "title": "Monorepo Architecture",
+      "name": "Monorepo Architecture",
+      "category": "Developer Tools",
+      "aliases": [
+        "monorepos",
+        "nx",
+        "turborepo"
+      ],
+      "skills": [
+        "Monorepo Architecture"
+      ],
+      "related_skills": [
+        "Turborepo",
+        "Build Tools",
+        "Git"
+      ],
+      "prerequisites": [],
+      "description": "Software development strategy where code for many projects is stored in a single unified repository."
+    }
+  ]
+}

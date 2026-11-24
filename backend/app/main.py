@@ -13,9 +13,24 @@ from .services.profile_persistence import save_student_profile
 from .services.opportunity_normalizer import normalize_opportunity
 from .services.opportunity_sync import sync_opportunities
 from .agents.skill_profiling import analyze_resume
+from .agents.chat_agent import parse_conversational_preference
+from .agents.planner import generate_agent_plan
+from .agents.executor import AgentState, execute_plan
 from .services.opportunity_sync import sources_from_environment
 from .schemas.opportunity import OpportunitySyncRequest
+from .schemas.preference import ChatMessageRequest, ChatMessageResponse
+from .schemas.agent_plan import AgentRunRequest, AgentRunResponse
 from .services.opportunity_matching import recommend_opportunities
+from .services.candidate_state_persistence import (
+    get_student_preferences,
+    save_student_preferences,
+    get_saved_opportunity_matches,
+)
+from .services.skill_framework_rag import (
+    get_related_skills,
+    normalize_skill,
+    search_skill_framework,
+)
 
 app = FastAPI(title="CareerBridge AI")
 app.add_middleware(
@@ -98,6 +113,43 @@ def test_database_connection():
         "status": "connected",
         "message": "Successfully connected to the database.",
         "data": response.data,
+    }
+
+
+@app.get("/api/skill-framework/search")
+def search_skill_framework_endpoint(
+    query: str = Query(min_length=2),
+    limit: int = Query(default=5, ge=1, le=20),
+):
+    """Search the versioned SkillSetu skill-framework knowledge base."""
+    return search_skill_framework(query, limit)
+
+
+@app.get("/api/skill-framework/normalize")
+def normalize_skill_endpoint(
+    skill: str = Query(min_length=1),
+):
+    """Normalize raw or aliased skill into canonical framework name."""
+    canonical = normalize_skill(skill)
+    return {
+        "raw": skill,
+        "canonical": canonical,
+        "is_normalized": canonical.lower() != skill.lower().strip(),
+    }
+
+
+@app.get("/api/skill-framework/gaps")
+def get_skill_gaps_endpoint(
+    skill: str = Query(min_length=1),
+    limit: int = Query(default=4, ge=1, le=10),
+):
+    """Fetch related skills and prerequisites for bridging a missing skill gap."""
+    canonical = normalize_skill(skill)
+    related = get_related_skills(skill, limit=limit)
+    return {
+        "skill": skill,
+        "canonical": canonical,
+        "related_bridging_skills": related,
     }
 
 @app.post("/api/resume/analyze")
@@ -272,3 +324,222 @@ async def get_local_recommended_opportunities(
             status_code=500,
             detail=f"Local opportunity matching failed: {error}",
         ) from error
+
+
+@app.get("/api/opportunities/saved")
+async def get_saved_matches_endpoint(
+    limit: int = Query(default=20, ge=1, le=100),
+    auth=Depends(get_current_user),
+):
+    """Fast-reload saved opportunity matches (candidate state) on re-login."""
+    user, authenticated_client = auth
+    saved = get_saved_opportunity_matches(authenticated_client, str(user.id), limit=limit)
+    if saved:
+        return {
+            "success": True,
+            "count": len(saved),
+            "source": "candidate_state",
+            "recommendations": saved,
+        }
+
+    # Fallback to fresh recommendation if no saved matches yet
+    recommendations = recommend_opportunities(
+        authenticated_client, str(user.id), limit=limit
+    )
+    return {
+        "success": True,
+        "count": len(recommendations),
+        "source": "calculated_fresh",
+        "recommendations": [r.model_dump() for r in recommendations],
+    }
+
+
+@app.post("/api/chat", response_model=ChatMessageResponse)
+async def conversational_refinement(
+    request: ChatMessageRequest,
+    auth=Depends(get_current_user),
+):
+    """Conversational refinement: Groq extracts PreferenceUpdate, updates preferences, re-runs matching."""
+    user, authenticated_client = auth
+    student_id = str(user.id)
+
+    curr_prefs = get_student_preferences(authenticated_client, student_id)
+    pref_update = parse_conversational_preference(request.message, curr_prefs)
+
+    # Merge updates
+    merged = dict(curr_prefs)
+    if pref_update.preferred_location is not None:
+        merged["preferred_location"] = pref_update.preferred_location
+    if pref_update.remote_only is not None:
+        merged["remote_only"] = pref_update.remote_only
+    if pref_update.preferred_job_type is not None:
+        merged["preferred_job_type"] = pref_update.preferred_job_type
+    if pref_update.preferred_skills:
+        merged["preferred_skills"] = pref_update.preferred_skills
+    if pref_update.target_role is not None:
+        merged["target_role"] = pref_update.target_role
+    if pref_update.minimum_score is not None:
+        merged["minimum_score"] = pref_update.minimum_score
+
+    # Save to candidate preferences state
+    save_student_preferences(authenticated_client, student_id, merged)
+
+    # Re-run matching step with refined preferences
+    recommendations = recommend_opportunities(
+        authenticated_client,
+        student_id,
+        location=merged.get("preferred_location") or None,
+        job_type=merged.get("preferred_job_type") or None,
+        remote=bool(merged.get("remote_only", False)),
+        minimum_score=float(merged.get("minimum_score") or 0),
+        limit=20,
+    )
+
+    return ChatMessageResponse(
+        success=True,
+        user_message=request.message,
+        reply=pref_update.assistant_message,
+        filters_applied=pref_update.filters_applied,
+        preferences=merged,
+        count=len(recommendations),
+        recommendations=recommendations,
+    )
+
+
+@app.post("/api/chat-local", response_model=ChatMessageResponse)
+async def local_conversational_refinement(
+    request: ChatMessageRequest,
+):
+    """Local dev test chat endpoint using MATCHING_TEST_STUDENT_ID."""
+    student_id = os.getenv("MATCHING_TEST_STUDENT_ID", "dev-student-001").strip()
+    client = get_service_client()
+
+    curr_prefs = get_student_preferences(client, student_id)
+    pref_update = parse_conversational_preference(request.message, curr_prefs)
+
+    merged = dict(curr_prefs)
+    if pref_update.preferred_location is not None:
+        merged["preferred_location"] = pref_update.preferred_location
+    if pref_update.remote_only is not None:
+        merged["remote_only"] = pref_update.remote_only
+    if pref_update.preferred_job_type is not None:
+        merged["preferred_job_type"] = pref_update.preferred_job_type
+    if pref_update.preferred_skills:
+        merged["preferred_skills"] = pref_update.preferred_skills
+    if pref_update.target_role is not None:
+        merged["target_role"] = pref_update.target_role
+    if pref_update.minimum_score is not None:
+        merged["minimum_score"] = pref_update.minimum_score
+
+    save_student_preferences(client, student_id, merged)
+
+    recommendations = recommend_opportunities(
+        client,
+        student_id,
+        location=merged.get("preferred_location") or None,
+        job_type=merged.get("preferred_job_type") or None,
+        remote=bool(merged.get("remote_only", False)),
+        minimum_score=float(merged.get("minimum_score") or 0),
+        limit=20,
+    )
+
+    return ChatMessageResponse(
+        success=True,
+        user_message=request.message,
+        reply=pref_update.assistant_message,
+        filters_applied=pref_update.filters_applied,
+        preferences=merged,
+        count=len(recommendations),
+        recommendations=recommendations,
+    )
+
+
+@app.post("/api/agent/run", response_model=AgentRunResponse)
+async def run_planner_executor_agent(
+    request: AgentRunRequest,
+    auth=Depends(get_current_user),
+):
+    """Planner-Executor endpoint: Groq plans steps (profile, retrieve, match, roadmap), Executor runs them."""
+    user, authenticated_client = auth
+    student_id = str(user.id)
+
+    # 1. Initialize shared agent state
+    state = AgentState(
+        student_id=student_id,
+        resume_text=request.resume_text,
+        preferences=request.preferences,
+    )
+
+    # 2. Planner decomposes the goal into an ordered step plan
+    plan = generate_agent_plan(
+        goal=request.goal,
+        context={
+            "has_profile": False,
+            "has_resume_text": bool(request.resume_text),
+        },
+    )
+
+    # 3. Executor runs each step sequentially with shared state
+    final_state = execute_plan(plan, state, client=authenticated_client)
+
+    summary = (
+        f"Executed {len(final_state.execution_trace)} steps successfully. "
+        f"Found {len(final_state.matches)} matching opportunities and "
+        f"generated a {len(final_state.roadmap)}-milestone career roadmap."
+    )
+
+    return AgentRunResponse(
+        success=True,
+        goal=request.goal,
+        plan=plan,
+        execution_trace=final_state.execution_trace,
+        profile_summary=final_state.profile,
+        matches_count=len(final_state.matches),
+        top_matches=final_state.matches[:5],
+        roadmap=final_state.roadmap,
+        summary=summary,
+    )
+
+
+@app.post("/api/agent/run-local", response_model=AgentRunResponse)
+async def run_planner_executor_agent_local(
+    request: AgentRunRequest,
+):
+    """Local dev test endpoint for planner-executor agent."""
+    student_id = os.getenv("MATCHING_TEST_STUDENT_ID", "dev-student-001").strip()
+    client = get_service_client()
+
+    state = AgentState(
+        student_id=student_id,
+        resume_text=request.resume_text,
+        preferences=request.preferences,
+    )
+
+    plan = generate_agent_plan(
+        goal=request.goal,
+        context={
+            "has_profile": False,
+            "has_resume_text": bool(request.resume_text),
+        },
+    )
+
+    final_state = execute_plan(plan, state, client=client)
+
+    summary = (
+        f"Executed {len(final_state.execution_trace)} steps successfully. "
+        f"Found {len(final_state.matches)} matching opportunities and "
+        f"generated a {len(final_state.roadmap)}-milestone career roadmap."
+    )
+
+    return AgentRunResponse(
+        success=True,
+        goal=request.goal,
+        plan=plan,
+        execution_trace=final_state.execution_trace,
+        profile_summary=final_state.profile,
+        matches_count=len(final_state.matches),
+        top_matches=final_state.matches[:5],
+        roadmap=final_state.roadmap,
+        summary=summary,
+    )
+

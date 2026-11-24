@@ -6,12 +6,8 @@ from typing import Any
 from dotenv import load_dotenv
 from groq import Groq
 from ..schemas.student import StudentProfile
-
-load_dotenv(Path(__file__).resolve().parents[2] / ".env")
-
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
-)
+from ..services.llm_validator import call_llm_with_validation
+from ..services.skill_framework_rag import build_framework_context
 
 
 def _normalize_profile_result(result: dict[str, Any]) -> dict[str, Any]:
@@ -61,6 +57,7 @@ def _normalize_profile_result(result: dict[str, Any]) -> dict[str, Any]:
 
 def analyze_resume(resume_text: str) -> StudentProfile:
 
+    framework_context = build_framework_context(resume_text, limit=8)
     prompt = f"""
     You are an expert resume analysis assistant.
 
@@ -89,28 +86,22 @@ def analyze_resume(resume_text: str) -> StudentProfile:
     and evidence. Do not combine multiple skill names in one object.
     Every project must be an object with title, description, and github_url.
 
+    Use the retrieved skill-framework context only to canonicalize skill names
+    and identify evidence-supported role/skill relationships. Do not invent
+    skills that are not mentioned or supported by project/resume evidence.
+
+    Retrieved skill-framework context:
+    {framework_context}
+
     Resume:
     {resume_text}
     """
 
-    response = client.chat.completions.create(
-        model=os.getenv("GROQ_MODEL"),
-        messages=[
-            {
-                "role": "system",
-                "content": "Return only valid JSON matching the requested schema."
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        response_format={"type": "json_object"},
-        temperature=0.1
+    return call_llm_with_validation(
+        schema=StudentProfile,
+        prompt=prompt,
+        system_prompt="Return only valid JSON matching the requested schema.",
+        pre_validate_hook=_normalize_profile_result,
+        temperature=0.1,
+        max_retries=1,
     )
-
-    result = _normalize_profile_result(
-        json.loads(response.choices[0].message.content)
-    )
-
-    return StudentProfile.model_validate(result)

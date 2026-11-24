@@ -4,28 +4,10 @@ from typing import Any
 from supabase import Client
 
 from ..schemas.opportunity import RecommendedOpportunity
+from .candidate_state_persistence import save_opportunity_matches
+from .skill_framework_rag import get_related_skills, normalize_skill
 
-FORMULA_VERSION = "coverage-location-type-v1"
-
-SKILL_ALIASES = {
-    "js": "javascript",
-    "node": "nodejs",
-    "node js": "nodejs",
-    "node .js": "nodejs",
-    "node.js": "nodejs",
-    "reactjs": "react",
-    "react.js": "react",
-    "postgres": "postgresql",
-    "fast api": "fastapi",
-}
-
-
-def normalize_skill(value: str) -> str:
-    """Normalize common skill labels before comparing them."""
-    normalized = re.sub(r"[^a-z0-9+#]+", " ", (value or "").lower())
-    normalized = re.sub(r"\s+", " ", normalized).strip()
-    normalized = SKILL_ALIASES.get(normalized, normalized)
-    return normalized
+FORMULA_VERSION = "coverage-location-type-v2-rag"
 
 
 def calculate_skill_match(
@@ -136,6 +118,12 @@ def recommend_opportunities(
         if match_score < minimum_score:
             continue
 
+        gap_bridges = {}
+        for missing_s in missing[:3]:
+            bridges = get_related_skills(missing_s, limit=3)
+            if bridges:
+                gap_bridges[missing_s] = bridges
+
         if matched:
             reason = f"Matched {', '.join(matched)}."
             if missing:
@@ -156,6 +144,7 @@ def recommend_opportunities(
                 match_score=match_score,
                 matched_skills=matched,
                 missing_skills=missing,
+                related_gap_skills=gap_bridges,
                 reason=reason,
                 formula_version=FORMULA_VERSION,
             )
@@ -165,7 +154,15 @@ def recommend_opportunities(
         key=lambda item: item.match_score,
         reverse=True,
     )
-    return recommendations[:limit]
+    final_matches = recommendations[:limit]
+
+    # Candidate State: Persist matches so results are saved after each run
+    try:
+        save_opportunity_matches(client, student_id, final_matches)
+    except Exception:
+        pass
+
+    return final_matches
 
 
 def _nested_skill_name(row: dict[str, Any]) -> str:
