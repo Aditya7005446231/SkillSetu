@@ -45,12 +45,6 @@ export async function getSavedOpportunities(limit = 20) {
 
   return response.data
 }
-      Authorization: `Bearer ${session.access_token}`,
-    },
-  })
-
-  return response.data
-}
 
 export async function sendChatMessage(message) {
   const {

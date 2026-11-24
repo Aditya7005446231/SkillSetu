@@ -33,6 +33,8 @@ SkillSetu is an **Intelligent Career-Workflow Agent** that bridges the gap betwe
 | **Interactive Frontend Copilot** | Frontend | 🟢 Done | `frontend/src/pages/Assistant.jsx` with chat history & live job cards |
 | **Planner-Executor (`/api/agent/run`)** | Agent Orchestration | 🟢 Done | Groq `planner.py` + state machine `executor.py` (`profile`, `retrieve`, `match`, `roadmap`) |
 | **Institutional Mock API** | API | 🟢 Done | `GET /api/institution/skills` campus placement-cell skill demand analytics |
+| **Skill Insights UI** | Frontend | 🟢 Done | `frontend/src/pages/SkillGap.jsx` live T&P placement analytics dashboard |
+| **Live Server Verification** | Fullstack | 🟢 Done | FastAPI (8000) & Vite (5173) running live and responsive |
 | **Fairness Check Script** | Safety/Eval | 🟢 Done | `backend/test_fairness.py` counterfactual evaluation ($\Delta = 0.0$) $\rightarrow$ `docs/fairness_report.md` |
 | **Monitoring & Metrics** | Ops | 🟡 Next Up | Request ID middleware + `GET /metrics` latency counter |
 | **Production Deployment** | Ops | ⚪ Pending | Render backend + Vercel frontend configuration |
