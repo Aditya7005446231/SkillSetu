@@ -31,6 +31,7 @@ SkillSetu is an **Intelligent Career-Workflow Agent** that bridges the gap betwe
 | **LLM Output Validation & Retry** | Safety | 🟢 Done | `call_llm_with_validation()` with 1 corrective retry loop |
 | **Conversational Chatbot Endpoint** | Chat Agent | 🟢 Done | `POST /api/chat`, extracts `PreferenceUpdate`, re-runs matcher |
 | **Interactive Frontend Copilot** | Frontend | 🟢 Done | `frontend/src/pages/Assistant.jsx` with chat history & live job cards |
+| **Manual Profile & Multi-Resume Hub** | Core / UX | 🟢 Done | `backend/sql/multi_resume.sql`, `multi_resume_service.py`, `ResumeHub.jsx`, `ManualProfileModal.jsx` |
 | **Planner-Executor (`/api/agent/run`)** | Agent Orchestration | 🟢 Done | Groq `planner.py` + state machine `executor.py` (`profile`, `retrieve`, `match`, `roadmap`) |
 | **Institutional Mock API** | API | 🟢 Done | `GET /api/institution/skills` campus placement-cell skill demand analytics |
 | **Skill Insights UI** | Frontend | 🟢 Done | `frontend/src/pages/SkillGap.jsx` live T&P placement analytics dashboard |

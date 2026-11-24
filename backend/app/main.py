@@ -27,6 +27,12 @@ from .services.candidate_state_persistence import (
     save_student_preferences,
     get_saved_opportunity_matches,
 )
+from .services.multi_resume_service import (
+    list_student_resumes,
+    save_student_resume,
+    set_active_resume,
+    get_active_resume_profile,
+)
 from .services.skill_framework_rag import (
     get_related_skills,
     normalize_skill,
@@ -279,10 +285,23 @@ async def analyze_student_resume(
         user, authenticated_client = auth
         save_student_profile(authenticated_client, str(user.id), profile)
 
+        # Save to multi-resume store
+        resume_record = save_student_resume(
+            authenticated_client,
+            student_id=str(user.id),
+            label=file.filename.replace(".pdf", "").replace("_", " ").title() if file.filename else "Primary Resume",
+            filename=file.filename or "resume.pdf",
+            profile=profile,
+            target_role=profile.career_goal or "",
+            career_goal=profile.career_goal or "",
+            make_active=True,
+        )
+
         return {
             "success": True,
             "user_id": str(user.id),
-            "profile": profile.model_dump()
+            "resume_id": resume_record.get("id"),
+            "profile": profile.model_dump(),
         }
 
     except HTTPException:
@@ -296,6 +315,132 @@ async def analyze_student_resume(
 
     finally:
         await file.close()
+
+
+@app.get("/api/resumes")
+def get_student_resumes_endpoint(
+    auth=Depends(get_current_user),
+):
+    """List all saved resumes for the authenticated student."""
+    user, client = auth
+    return list_student_resumes(client, str(user.id))
+
+
+@app.post("/api/resumes/manual")
+def save_manual_profile_endpoint(
+    profile_data: dict,
+    auth=Depends(get_current_user),
+):
+    """Create or update a student profile manually without requiring a PDF upload."""
+    user, client = auth
+    student_id = str(user.id)
+
+    full_name = profile_data.get("full_name") or "Student"
+    university = profile_data.get("university") or ""
+    degree = profile_data.get("degree") or ""
+    grad_year = profile_data.get("graduation_year")
+    career_goal = profile_data.get("career_goal") or profile_data.get("target_role") or "Software Engineer"
+    raw_skills = profile_data.get("skills") or []
+    label = profile_data.get("label") or f"{career_goal} Profile"
+
+    # Convert skill strings or dicts to Skill objects
+    from .schemas.student import Skill, StudentProfile
+    skill_objs = []
+    for s in raw_skills:
+        name = s.get("name") if isinstance(s, dict) else str(s)
+        canonical = normalize_skill(name)
+        cat = s.get("category", "General") if isinstance(s, dict) else "General"
+        prof = s.get("proficiency", "Intermediate") if isinstance(s, dict) else "Intermediate"
+        skill_objs.append(Skill(
+            name=canonical,
+            category=cat,
+            proficiency=prof,
+            confidence=0.9,
+            evidence="Self-reported by candidate during profile onboarding",
+        ))
+
+    profile = StudentProfile(
+        full_name=full_name,
+        university=university,
+        degree=degree,
+        graduation_year=int(grad_year) if grad_year else None,
+        career_goal=career_goal,
+        skills=skill_objs,
+        projects=[],
+    )
+
+    # Save to primary profile & student_skills
+    save_student_profile(client, student_id, profile)
+
+    # Save to multi-resume store
+    record = save_student_resume(
+        client,
+        student_id=student_id,
+        label=label,
+        filename="manual_profile.pdf",
+        profile=profile,
+        target_role=career_goal,
+        career_goal=career_goal,
+        make_active=True,
+    )
+
+    return {
+        "success": True,
+        "message": "Manual profile saved successfully",
+        "resume": record,
+        "profile": profile.model_dump(),
+    }
+
+
+@app.post("/api/resumes/{resume_id}/activate")
+def activate_student_resume_endpoint(
+    resume_id: str,
+    auth=Depends(get_current_user),
+):
+    """Switch active resume to a different profile version."""
+    user, client = auth
+    activated = set_active_resume(client, str(user.id), resume_id)
+    if not activated:
+        raise HTTPException(status_code=404, detail="Resume not found")
+
+    # Update student_skills in DB to reflect the new active resume's skills
+    profile_dict = activated.get("parsed_profile") or {}
+    skills_list = profile_dict.get("skills") or []
+    for skill in skills_list:
+        try:
+            s_name = skill.get("name")
+            if not s_name:
+                continue
+            canonical = normalize_skill(s_name)
+            skill_row = (
+                client.table("skills")
+                .upsert(
+                    {"name": canonical, "category": skill.get("category", "General")},
+                    on_conflict="name",
+                )
+                .select("id")
+                .execute()
+            )
+            if skill_row.data:
+                s_id = skill_row.data[0]["id"]
+                client.table("student_skills").upsert(
+                    {
+                        "student_id": str(user.id),
+                        "skill_id": s_id,
+                        "proficiency": skill.get("proficiency", "Intermediate"),
+                        "confidence": float(skill.get("confidence", 0.9)),
+                        "evidence": skill.get("evidence", f"From resume: {activated.get('label')}"),
+                    },
+                    on_conflict="student_id,skill_id",
+                ).execute()
+        except Exception:
+            pass
+
+    return {
+        "success": True,
+        "message": f"Switched active resume to '{activated.get('label')}'",
+        "active_resume": activated,
+    }
 
 
 @app.post("/api/opportunities/sync")
