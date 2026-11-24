@@ -20,6 +20,13 @@ export async function getRecommendedOpportunities(filters = {}) {
   return response.data
 }
 
+export async function getInstitutionalSkills(category = '') {
+  const params = {}
+  if (category) params.category = category
+  const response = await api.get('/api/institution/skills', { params })
+  return response.data
+}
+
 export async function getSavedOpportunities(limit = 20) {
   const {
     data: { session },
@@ -32,6 +39,12 @@ export async function getSavedOpportunities(limit = 20) {
   const response = await api.get('/api/opportunities/saved', {
     params: { limit },
     headers: {
+      Authorization: `Bearer ${session.access_token}`,
+    },
+  })
+
+  return response.data
+}
       Authorization: `Bearer ${session.access_token}`,
     },
   })

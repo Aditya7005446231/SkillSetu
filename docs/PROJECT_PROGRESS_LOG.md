@@ -32,8 +32,8 @@ SkillSetu is an **Intelligent Career-Workflow Agent** that bridges the gap betwe
 | **Conversational Chatbot Endpoint** | Chat Agent | 🟢 Done | `POST /api/chat`, extracts `PreferenceUpdate`, re-runs matcher |
 | **Interactive Frontend Copilot** | Frontend | 🟢 Done | `frontend/src/pages/Assistant.jsx` with chat history & live job cards |
 | **Planner-Executor (`/api/agent/run`)** | Agent Orchestration | 🟢 Done | Groq `planner.py` + state machine `executor.py` (`profile`, `retrieve`, `match`, `roadmap`) |
-| **Institutional Mock API** | API | 🟡 Next Up | Mock `/api/institution/skills` placement-cell endpoint |
-| **Fairness Check Script** | Safety/Eval | 🟡 Next Up | Counterfactual resume evaluation $\rightarrow$ `fairness_report.md` |
+| **Institutional Mock API** | API | 🟢 Done | `GET /api/institution/skills` campus placement-cell skill demand analytics |
+| **Fairness Check Script** | Safety/Eval | 🟢 Done | `backend/test_fairness.py` counterfactual evaluation ($\Delta = 0.0$) $\rightarrow$ `docs/fairness_report.md` |
 | **Monitoring & Metrics** | Ops | 🟡 Next Up | Request ID middleware + `GET /metrics` latency counter |
 | **Production Deployment** | Ops | ⚪ Pending | Render backend + Vercel frontend configuration |
 
@@ -104,6 +104,17 @@ SkillSetu is an **Intelligent Career-Workflow Agent** that bridges the gap betwe
 
 ---
 
+### Phase 6: Institutional Placement Cell API & Algorithmic Fairness Audit
+- **Problem:** Need campus placement analytics for universities, and need proof that the matching algorithm does not discriminate based on protected demographic attributes (college tier, gender proxy, name).
+- **Actions Taken:**
+  1. Built [backend/app/schemas/institution.py](file:///d:/SkillSetu/backend/app/schemas/institution.py) defining `InstitutionalSkillDemand` and `InstitutionalDemandResponse`.
+  2. Implemented `GET /api/institution/skills` in [backend/app/main.py](file:///d:/SkillSetu/backend/app/main.py) returning realistic mock campus hiring demand, YoY growth rates, role breakdowns, and curriculum gap recommendations.
+  3. Created [backend/test_fairness.py](file:///d:/SkillSetu/backend/test_fairness.py) implementing a **Counterfactual Equivalence Audit**: evaluated three candidates with identical skills/projects (Rahul Sharma / IIT Bombay vs. Priya Patel / Tier-3 Rural College vs. Mohammed Zeeshan / Central Univ).
+  4. Mathematically verified score delta $\Delta = 0.0$ across diverse job benchmarks.
+  5. Auto-generated compliance audit report at [docs/fairness_report.md](file:///d:/SkillSetu/docs/fairness_report.md).
+
+---
+
 ## 🗄️ Database Schema Reference
 
 ### `student_preferences`
@@ -151,7 +162,12 @@ python backend/test_conversational_refinement.py
 python backend/test_planner_executor.py
 ```
 
-### 4. Verify Frontend Compilation:
+### 4. Test Algorithmic Fairness Audit:
+```powershell
+python backend/test_fairness.py
+```
+
+### 5. Verify Frontend Compilation:
 ```powershell
 npm --prefix frontend run build
 ```

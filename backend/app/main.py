@@ -20,6 +20,7 @@ from .services.opportunity_sync import sources_from_environment
 from .schemas.opportunity import OpportunitySyncRequest
 from .schemas.preference import ChatMessageRequest, ChatMessageResponse
 from .schemas.agent_plan import AgentRunRequest, AgentRunResponse
+from .schemas.institution import InstitutionalDemandResponse, InstitutionalSkillDemand
 from .services.opportunity_matching import recommend_opportunities
 from .services.candidate_state_persistence import (
     get_student_preferences,
@@ -151,6 +152,106 @@ def get_skill_gaps_endpoint(
         "canonical": canonical,
         "related_bridging_skills": related,
     }
+
+
+@app.get("/api/institution/skills", response_model=InstitutionalDemandResponse)
+def get_institutional_skill_demand(
+    category: str | None = Query(default=None, description="Optional category filter (e.g. 'Frontend', 'AI')"),
+):
+    """Mock Training & Placement Cell institutional skill demand analytics API."""
+    skills_data = [
+        InstitutionalSkillDemand(
+            skill="Data Structures & Algorithms",
+            category="Computer Science Core",
+            demand_percentage=92.0,
+            openings_count=160,
+            yoy_growth="+5%",
+            recommended_for_roles=["Software Engineer", "Full-Stack Developer", "Backend Developer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="Python",
+            category="Programming Languages",
+            demand_percentage=84.2,
+            openings_count=142,
+            yoy_growth="+28%",
+            recommended_for_roles=["AI/ML Engineer", "Backend Developer", "Data Engineer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="React",
+            category="Frontend Development",
+            demand_percentage=78.5,
+            openings_count=128,
+            yoy_growth="+18%",
+            recommended_for_roles=["Frontend Developer", "Full-Stack Developer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="PostgreSQL / SQL",
+            category="Databases",
+            demand_percentage=76.0,
+            openings_count=124,
+            yoy_growth="+12%",
+            recommended_for_roles=["Full-Stack Developer", "Backend Developer", "Data Engineer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="Docker & Containers",
+            category="DevOps & Cloud",
+            demand_percentage=65.4,
+            openings_count=98,
+            yoy_growth="+42%",
+            recommended_for_roles=["DevOps / Cloud Engineer", "Backend Developer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="FastAPI / REST APIs",
+            category="Backend Development",
+            demand_percentage=62.0,
+            openings_count=92,
+            yoy_growth="+35%",
+            recommended_for_roles=["Backend Developer", "AI/ML Engineer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="TypeScript",
+            category="Programming Languages",
+            demand_percentage=58.3,
+            openings_count=86,
+            yoy_growth="+30%",
+            recommended_for_roles=["Frontend Developer", "Full-Stack Developer"],
+        ),
+        InstitutionalSkillDemand(
+            skill="Large Language Models & RAG",
+            category="AI & Data Science",
+            demand_percentage=45.0,
+            openings_count=65,
+            yoy_growth="+95%",
+            recommended_for_roles=["AI/ML Engineer", "Generative AI Developer"],
+        ),
+    ]
+
+    if isinstance(category, str) and category.strip():
+        cat_lower = category.lower().strip()
+        filtered = [s for s in skills_data if cat_lower in s.category.lower() or cat_lower in s.skill.lower()]
+        skills_data = filtered or skills_data
+
+    return InstitutionalDemandResponse(
+        is_mock=True,
+        notice="Mock endpoint simulating campus Training & Placement Cell (T&P) hiring demand.",
+        institution_name="National Institute of Technology / Campus Placement Cell",
+        placement_season="2026-2027 Placement Season",
+        active_recruiting_partners=48,
+        total_active_openings=320,
+        top_demanded_skills=skills_data,
+        role_demand_breakdown={
+            "Full-Stack Developer": 34.0,
+            "Software Engineer (Core)": 28.0,
+            "AI/ML Engineer": 18.0,
+            "Data Engineer": 12.0,
+            "Cloud / DevOps": 8.0,
+        },
+        curriculum_gap_recommendations=[
+            "Introduce containerization (Docker) earlier in Semester 5 systems curriculum.",
+            "Incorporate TypeScript and modern React state patterns into Web Technologies lab.",
+            "Conduct hands-on RAG and LLM deployment workshops for final-year placement readiness.",
+        ],
+    )
 
 @app.post("/api/resume/analyze")
 async def analyze_student_resume(

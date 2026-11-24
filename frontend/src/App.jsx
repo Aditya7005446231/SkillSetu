@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import Opportunities from './pages/Opportunities'
 import Assistant from './pages/Assistant'
+import SkillGap from './pages/SkillGap'
 import { signOut, supabase } from './services/supabase'
 import './App.css'
 
@@ -40,7 +41,7 @@ function App() {
           <button className={activePage === 'profile' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('profile')}><UserRound size={18} /> My profile</button>
           <button className={activePage === 'opportunities' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('opportunities')}><BriefcaseBusiness size={18} /> Opportunities</button>
           <button className={activePage === 'assistant' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('assistant')}><Bot size={18} /> Career Copilot</button>
-          <button className="nav-item muted-nav" disabled><BarChart3 size={18} /> Skill insights <span>Soon</span></button>
+          <button className={activePage === 'insights' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('insights')}><BarChart3 size={18} /> Skill insights</button>
         </nav>
         <div className="sidebar-bottom">
           <div className="sidebar-prompt"><Sparkles size={16} /><strong>Build your edge</strong><p>Upload your resume to unlock personalized insights.</p></div>
@@ -49,7 +50,7 @@ function App() {
       </aside>
       <main className="app-main">
         <header className="app-header">
-          <div><p className="header-overline">SKILLSETU / {activePage === 'dashboard' ? 'OVERVIEW' : activePage === 'opportunities' ? 'OPPORTUNITIES' : activePage === 'assistant' ? 'CAREER COPILOT' : 'MY PROFILE'}</p><h1>{activePage === 'dashboard' ? `Hey ${displayName}, let's grow.` : activePage === 'opportunities' ? 'Opportunities' : activePage === 'assistant' ? 'Career Copilot' : 'Your profile'}</h1></div>
+          <div><p className="header-overline">SKILLSETU / {activePage === 'dashboard' ? 'OVERVIEW' : activePage === 'opportunities' ? 'OPPORTUNITIES' : activePage === 'assistant' ? 'CAREER COPILOT' : activePage === 'insights' ? 'SKILL INSIGHTS' : 'MY PROFILE'}</p><h1>{activePage === 'dashboard' ? `Hey ${displayName}, let's grow.` : activePage === 'opportunities' ? 'Opportunities' : activePage === 'assistant' ? 'Career Copilot' : activePage === 'insights' ? 'Placement Cell Demand & Skill Insights' : 'Your profile'}</h1></div>
           <div className="header-user"><span className="mini-avatar">{displayName.slice(0, 2).toUpperCase()}</span><span>{displayName}</span></div>
         </header>
         {activePage === 'dashboard'
@@ -58,7 +59,9 @@ function App() {
             ? <Opportunities />
             : activePage === 'assistant'
               ? <Assistant />
-              : <Profile profile={profile} onProfileAnalyzed={setProfile} />}
+              : activePage === 'insights'
+                ? <SkillGap />
+                : <Profile profile={profile} onProfileAnalyzed={setProfile} />}
       </main>
     </div>
   )
