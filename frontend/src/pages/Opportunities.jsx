@@ -20,7 +20,7 @@ function Opportunities() {
         if (location) filters.location = location
         if (jobType) filters.job_type = jobType
         const data = await getRecommendedOpportunities(filters)
-        setJobs(data.recommendations || [])
+        setJobs(data || [])
       } catch (loadError) {
         setError(loadError.response?.data?.detail || loadError.message)
       } finally {
@@ -61,7 +61,8 @@ function Opportunities() {
     </div>
     {loading && <div className="opportunity-note">Loading personalized opportunities...</div>}
     {error && <div className="opportunity-note"><strong>Unable to load opportunities</strong><span>{error}</span></div>}
-    {!loading && !error && <div className="opportunity-note"><strong>{visibleJobs.length} roles match your profile</strong><span>Sorted by relevance</span></div>}
+    {!loading && !error && visibleJobs.length > 0 && <div className="opportunity-note"><strong>{visibleJobs.length} roles match your profile</strong><span>Sorted by relevance</span></div>}
+    {!loading && !error && visibleJobs.length === 0 && <div className="opportunity-note"><strong>No relevant opportunities found</strong><span>Try adjusting your search or filters, or check that your resume skills and job requirements are available.</span></div>}
     <div className="jobs-grid opportunities-grid">
       {visibleJobs.map(job => <JobCard key={job.job_id} job={job} />)}
     </div>

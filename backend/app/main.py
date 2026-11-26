@@ -9,7 +9,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .database import get_authenticated_client, get_service_client, supabase
 from .services.resume_parser import extract_resume_text
-from .services.profile_persistence import save_student_profile
+from .services.profile_persistence import (
+    replace_student_skills,
+    save_student_profile,
+)
 from .services.opportunity_normalizer import normalize_opportunity
 from .services.opportunity_sync import sync_opportunities
 from .agents.skill_profiling import analyze_resume
@@ -21,11 +24,18 @@ from .schemas.opportunity import OpportunitySyncRequest
 from .schemas.preference import ChatMessageRequest, ChatMessageResponse
 from .schemas.agent_plan import AgentRunRequest, AgentRunResponse
 from .schemas.institution import InstitutionalDemandResponse, InstitutionalSkillDemand
+from .schemas.learning_progress import LearningProgressUpdate
+from .schemas.student import Skill
 from .services.opportunity_matching import recommend_opportunities
 from .services.candidate_state_persistence import (
     get_student_preferences,
     save_student_preferences,
     get_saved_opportunity_matches,
+)
+from .services.learning_roadmap import build_learning_roadmaps
+from .services.learning_progress import (
+    get_student_learning_progress,
+    save_student_learning_progress,
 )
 from .services.multi_resume_service import (
     list_student_resumes,
@@ -34,12 +44,13 @@ from .services.multi_resume_service import (
     get_active_resume_profile,
 )
 from .services.skill_framework_rag import (
+    get_framework_engine,
     get_related_skills,
     normalize_skill,
     search_skill_framework,
 )
 
-app = FastAPI(title="CareerBridge AI")
+app = FastAPI(title="SkillSetu AI")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -110,17 +121,13 @@ def get_current_user(
 
 @app.get("/")
 def home():
-    return {"message": "CareerBridge AI running"}
+    return {"message": "SkillSetu AI running"}
 
-@app.get("/db-test")
-def test_database_connection():
-    response = supabase.table("skills").select("*").limit(5).execute()
 
-    return {
-        "status": "connected",
-        "message": "Successfully connected to the database.",
-        "data": response.data,
-    }
+@app.get("/health")
+def health_check():
+    """Health check endpoint for container and deployment readiness."""
+    return {"status": "ok", "service": "SkillSetu API"}
 
 
 @app.get("/api/skill-framework/search")
@@ -270,13 +277,32 @@ async def analyze_student_resume(
             detail="Only PDF resumes are supported"
         )
 
-    try:
-        file_bytes = await file.read()
+    # Enforce 5 MiB (5 * 1024 * 1024 bytes) limit in chunks while reading
+    max_bytes = 5 * 1024 * 1024
+    chunk_size = 64 * 1024
+    byte_chunks = []
+    total_bytes = 0
 
-        if len(file_bytes) > 5 * 1024 * 1024:
+    try:
+        while True:
+            chunk = await file.read(chunk_size)
+            if not chunk:
+                break
+            total_bytes += len(chunk)
+            if total_bytes > max_bytes:
+                raise HTTPException(
+                    status_code=413,
+                    detail="Resume must be smaller than 5 MB"
+                )
+            byte_chunks.append(chunk)
+
+        file_bytes = b"".join(byte_chunks)
+
+        # Validate PDF magic bytes (%PDF-)
+        if not file_bytes.startswith(b"%PDF-"):
             raise HTTPException(
-                status_code=413,
-                detail="Resume must be smaller than 5 MB"
+                status_code=400,
+                detail="Invalid PDF file format. The file does not have valid PDF magic bytes."
             )
 
         resume_text = extract_resume_text(file_bytes)
@@ -308,9 +334,10 @@ async def analyze_student_resume(
         raise
 
     except Exception as e:
+        logger.exception("Resume analysis failed unexpectedly: %s", e)
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="An unexpected error occurred while analyzing the resume. Please try again later."
         )
 
     finally:
@@ -403,38 +430,25 @@ def activate_student_resume_endpoint(
     if not activated:
         raise HTTPException(status_code=404, detail="Resume not found")
 
-    # Update student_skills in DB to reflect the new active resume's skills
     profile_dict = activated.get("parsed_profile") or {}
     skills_list = profile_dict.get("skills") or []
+    active_skills = []
     for skill in skills_list:
-        try:
-            s_name = skill.get("name")
-            if not s_name:
-                continue
-            canonical = normalize_skill(s_name)
-            skill_row = (
-                client.table("skills")
-                .upsert(
-                    {"name": canonical, "category": skill.get("category", "General")},
-                    on_conflict="name",
-                )
-                .select("id")
-                .execute()
+        if not isinstance(skill, dict) or not skill.get("name"):
+            continue
+        active_skills.append(
+            Skill(
+                name=normalize_skill(str(skill["name"])),
+                category=str(skill.get("category") or "General"),
+                proficiency=str(skill.get("proficiency") or "Intermediate"),
+                confidence=float(skill.get("confidence", 0.9)),
+                evidence=str(
+                    skill.get("evidence")
+                    or f"From resume: {activated.get('label')}"
+                ),
             )
-            if skill_row.data:
-                s_id = skill_row.data[0]["id"]
-                client.table("student_skills").upsert(
-                    {
-                        "student_id": str(user.id),
-                        "skill_id": s_id,
-                        "proficiency": skill.get("proficiency", "Intermediate"),
-                        "confidence": float(skill.get("confidence", 0.9)),
-                        "evidence": skill.get("evidence", f"From resume: {activated.get('label')}"),
-                    },
-                    on_conflict="student_id,skill_id",
-                ).execute()
-        except Exception:
-            pass
+        )
+    replace_student_skills(client, str(user.id), active_skills)
 
     return {
         "success": True,
@@ -461,11 +475,19 @@ async def sync_opportunity_sources(
         ) from error
 
 
+def _assert_dev_routes_enabled():
+    """Ensure dev routes are explicitly enabled via ENABLE_DEV_ROUTES=true."""
+    if os.getenv("ENABLE_DEV_ROUTES", "false").lower() != "true":
+        raise HTTPException(
+            status_code=404,
+            detail="Development route not enabled. Set ENABLE_DEV_ROUTES=true to access.",
+        )
+
+
 @app.post("/api/opportunities/sync-local")
 async def sync_opportunity_sources_locally(request: Request):
     """Run configured source sync locally without a browser access token."""
-    if os.getenv("OPPORTUNITY_SYNC_DEV_MODE", "false").lower() != "true":
-        raise HTTPException(status_code=404, detail="Local sync is disabled.")
+    _assert_dev_routes_enabled()
 
     client_host = request.client.host if request.client else None
     if client_host not in {"127.0.0.1", "::1", "localhost"}:
@@ -532,8 +554,7 @@ async def get_local_recommended_opportunities(
     limit: int = Query(default=20, ge=1, le=100),
 ):
     """Test matching locally with a configured student profile."""
-    if os.getenv("OPPORTUNITY_SYNC_DEV_MODE", "false").lower() != "true":
-        raise HTTPException(status_code=404, detail="Local matching is disabled.")
+    _assert_dev_routes_enabled()
 
     client_host = request.client.host if request.client else None
     if client_host not in {"127.0.0.1", "::1", "localhost"}:
@@ -600,6 +621,61 @@ async def get_saved_matches_endpoint(
     }
 
 
+@app.get("/api/learning-roadmap")
+def get_learning_roadmap_endpoint(
+    auth=Depends(get_current_user),
+):
+    """Return deterministic target-job and shared-core learning roadmaps."""
+    user, authenticated_client = auth
+    student_id = str(user.id)
+    preferences = get_student_preferences(authenticated_client, student_id)
+    recommendations = recommend_opportunities(
+        authenticated_client,
+        student_id,
+        location=preferences.get("preferred_location") or None,
+        job_type=preferences.get("preferred_job_type") or None,
+        remote=bool(preferences.get("remote_only", False)),
+        minimum_score=float(preferences.get("minimum_score") or 0),
+        limit=5,
+    )
+    skill_rows = (
+        authenticated_client.table("student_skills")
+        .select("skills(name)")
+        .eq("student_id", student_id)
+        .execute()
+    )
+    student_skills = []
+    for row in skill_rows.data or []:
+        nested = row.get("skills")
+        if isinstance(nested, dict) and nested.get("name"):
+            student_skills.append(str(nested["name"]))
+        elif isinstance(nested, list) and nested and nested[0].get("name"):
+            student_skills.append(str(nested[0]["name"]))
+
+    roadmaps = build_learning_roadmaps(
+        recommendations,
+        student_skills,
+        get_framework_engine().documents,
+    )
+    progress = get_student_learning_progress(authenticated_client, student_id)
+    return {"success": True, "progress": progress, **roadmaps}
+
+
+@app.put("/api/learning-progress")
+def update_learning_progress_endpoint(
+    request: LearningProgressUpdate,
+    auth=Depends(get_current_user),
+):
+    """Save evidence-backed progress for the authenticated student's skill."""
+    user, authenticated_client = auth
+    progress = save_student_learning_progress(
+        authenticated_client,
+        str(user.id),
+        request,
+    )
+    return {"success": True, "progress": progress}
+
+
 @app.post("/api/chat", response_model=ChatMessageResponse)
 async def conversational_refinement(
     request: ChatMessageRequest,
@@ -657,6 +733,8 @@ async def local_conversational_refinement(
     request: ChatMessageRequest,
 ):
     """Local dev test chat endpoint using MATCHING_TEST_STUDENT_ID."""
+    _assert_dev_routes_enabled()
+
     student_id = os.getenv("MATCHING_TEST_STUDENT_ID", "dev-student-001").strip()
     client = get_service_client()
 
@@ -727,11 +805,14 @@ async def run_planner_executor_agent(
 
     # 3. Executor runs each step sequentially with shared state
     final_state = execute_plan(plan, state, client=authenticated_client)
+    roadmap_step_count = sum(
+        len(section.get("steps", [])) for section in final_state.roadmap
+    )
 
     summary = (
         f"Executed {len(final_state.execution_trace)} steps successfully. "
         f"Found {len(final_state.matches)} matching opportunities and "
-        f"generated a {len(final_state.roadmap)}-milestone career roadmap."
+        f"generated {roadmap_step_count} evidence-based roadmap steps."
     )
 
     return AgentRunResponse(
@@ -752,6 +833,8 @@ async def run_planner_executor_agent_local(
     request: AgentRunRequest,
 ):
     """Local dev test endpoint for planner-executor agent."""
+    _assert_dev_routes_enabled()
+
     student_id = os.getenv("MATCHING_TEST_STUDENT_ID", "dev-student-001").strip()
     client = get_service_client()
 
@@ -770,11 +853,14 @@ async def run_planner_executor_agent_local(
     )
 
     final_state = execute_plan(plan, state, client=client)
+    roadmap_step_count = sum(
+        len(section.get("steps", [])) for section in final_state.roadmap
+    )
 
     summary = (
         f"Executed {len(final_state.execution_trace)} steps successfully. "
         f"Found {len(final_state.matches)} matching opportunities and "
-        f"generated a {len(final_state.roadmap)}-milestone career roadmap."
+        f"generated {roadmap_step_count} evidence-based roadmap steps."
     )
 
     return AgentRunResponse(

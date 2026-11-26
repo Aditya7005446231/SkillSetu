@@ -8,11 +8,9 @@ from supabase import Client
 
 from ..schemas.agent_plan import AgentPlan, PlanStep
 from ..services.opportunity_matching import recommend_opportunities
-from ..services.candidate_state_persistence import (
-    get_student_preferences,
-    save_opportunity_matches,
-)
-from ..services.skill_framework_rag import get_framework_engine, get_related_skills
+from ..services.candidate_state_persistence import get_student_preferences
+from ..services.learning_roadmap import build_learning_roadmaps
+from ..services.skill_framework_rag import get_framework_engine
 
 logger = logging.getLogger(__name__)
 
@@ -86,17 +84,6 @@ def step_profile(state: AgentState, step: PlanStep, client: Client | None) -> No
         except Exception as e:
             logger.warning("Failed loading profile from DB: %s", e)
 
-    # Fallback default skills if newly initialized
-    if not state.student_skills:
-        state.student_skills = ["Python", "FastAPI", "React", "SQL"]
-        if not state.profile:
-            state.profile = {
-                "full_name": "Student Candidate",
-                "career_goal": "Software Engineer",
-                "skills": state.student_skills,
-            }
-
-
 def step_retrieve(state: AgentState, step: PlanStep, client: Client | None) -> None:
     """Step 2: Retrieve active job pool from database."""
     if client:
@@ -111,9 +98,8 @@ def step_retrieve(state: AgentState, step: PlanStep, client: Client | None) -> N
             state.retrieved_jobs_count = len(res.data or [])
         except Exception as e:
             logger.warning("Failed querying active jobs count: %s", e)
-            state.retrieved_jobs_count = 12
     else:
-        state.retrieved_jobs_count = 10
+        state.retrieved_jobs_count = 0
 
 
 def step_match(state: AgentState, step: PlanStep, client: Client | None) -> None:
@@ -142,77 +128,23 @@ def step_match(state: AgentState, step: PlanStep, client: Client | None) -> None
         except Exception as e:
             logger.warning("Matching step encountered error: %s", e)
 
-    # If no DB matches were found, generate synthetic grounded match based on state skills
-    if not state.matches:
-        state.matches = [
-            {
-                "job_id": "job-mock-1",
-                "title": "Software Engineer Intern",
-                "company": "NextGen Systems",
-                "location": "Remote",
-                "job_type": "internship",
-                "apply_url": "https://example.com/apply/1",
-                "match_score": 85.0,
-                "matched_skills": state.student_skills[:3],
-                "missing_skills": ["Docker", "Kubernetes"],
-                "related_gap_skills": {
-                    "Docker": ["Linux", "Kubernetes", "CI/CD"],
-                    "Kubernetes": ["Docker", "Helm", "Cloud Computing"],
-                },
-                "reason": f"Matched {', '.join(state.student_skills[:3])}. Missing Docker, Kubernetes.",
-                "formula_version": "coverage-location-type-v2-rag",
-            }
-        ]
-
 
 def step_roadmap(state: AgentState, step: PlanStep, client: Client | None) -> None:
-    """Step 4: Formulate a customized career roadmap based on missing skill gaps and RAG order."""
+    """Build deterministic target-job and shared-core roadmaps from verified matches."""
     engine = get_framework_engine()
-
-    # Collect missing skill gaps from top matches
-    missing_gaps: set[str] = set()
-    for m in state.matches[:5]:
-        for s in m.get("missing_skills", []):
-            missing_gaps.add(s)
-
-    missing_list = list(missing_gaps)[:5] or ["Docker", "System Design", "Cloud Computing"]
-
-    # Retrieve related bridging skills for each gap
-    bridging_info = {}
-    for gap in missing_list:
-        bridging_info[gap] = get_related_skills(gap, limit=3)
-
+    result = build_learning_roadmaps(
+        state.matches,
+        state.student_skills,
+        engine.documents,
+    )
     state.roadmap = [
-        {
-            "milestone": 1,
-            "title": "Core Foundations & Profiling",
-            "status": "completed",
-            "skills": state.student_skills[:4],
-            "description": "Solidify your existing toolkit and verify practical competencies.",
-        },
-        {
-            "milestone": 2,
-            "title": "Bridge Key Skill Gaps",
-            "status": "in_progress",
-            "skills": missing_list[:3],
-            "bridging_prerequisites": bridging_info,
-            "description": f"Master the top requested requirements: {', '.join(missing_list[:3])}.",
-        },
-        {
-            "milestone": 3,
-            "title": "Build Verifiable Proof of Work",
-            "status": "upcoming",
-            "skills": [f"Portfolio project demonstrating {s}" for s in missing_list[:2]],
-            "description": "Construct full-stack or end-to-end repository artifacts highlighting newly gained skills.",
-        },
-        {
-            "milestone": 4,
-            "title": "Placement & Interview Readiness",
-            "status": "locked",
-            "skills": ["System Design", "Mock Technical Interviews", "Live Coding"],
-            "description": "Apply with high match scores and articulate your project architecture in interviews.",
-        },
+        {"type": "target_job", **roadmap}
+        for roadmap in result["target_roadmaps"]
     ]
+    if result["shared_core"]["skills"]:
+        state.roadmap.append(
+            {"type": "shared_core", **result["shared_core"]}
+        )
 
 
 STEP_DISPATCH: dict[str, Callable[[AgentState, PlanStep, Client | None], None]] = {

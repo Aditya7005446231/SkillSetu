@@ -1,18 +1,40 @@
 import { useEffect, useState } from 'react'
-import { BarChart3, Bot, BriefcaseBusiness, LayoutDashboard, LogOut, Sparkles, UserRound } from 'lucide-react'
-import Login from './components/Login'
-import Dashboard from './pages/Dashboard'
-import Profile from './pages/Profile'
-import Opportunities from './pages/Opportunities'
-import Assistant from './pages/Assistant'
-import SkillGap from './pages/SkillGap'
+import {
+  BarChart2,
+  BookOpen,
+  Bot,
+  Briefcase,
+  CheckCircle,
+  ChevronRight,
+  FileText,
+  Layers,
+  LayoutDashboard,
+  LogOut,
+  MapPin,
+  Search,
+  Send,
+  Sparkles,
+  TrendingUp,
+  User,
+} from 'lucide-react'
+
 import { signOut, supabase } from './services/supabase'
-import './App.css'
+import './styles/careerbridge.css'
+
+// Modular CareerBridge Screens
+import { AuthPage, OnboardingFlow } from './components/AuthAndOnboarding'
+import { MainDashboard, JobOpportunitiesPage, JobDetailsView } from './components/MainAndOpportunities'
+import { MyApplicationsPage, SkillAnalysisPage, LearningRoadmapPage } from './components/ApplicationsAndAnalysis'
+import { ProfileSettingsPage, CareerAssistantChatPage, EmptyAndSuccessStates } from './components/ProfileAssistantAndStates'
+import { ThemeSwitcher } from './components/ThemeSwitcher'
+import SkillGap from './pages/SkillGap'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [isOnboarding, setIsOnboarding] = useState(false)
   const [activePage, setActivePage] = useState('dashboard')
-  const [profile, setProfile] = useState(null)
+  const [selectedJob, setSelectedJob] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data, error }) => {
@@ -27,42 +49,222 @@ function App() {
     return () => subscription.unsubscribe()
   }, [])
 
-  if (!user) return <Login />
+  // If user is not authenticated and not in onboarding, show modern Login / Registration screen
+  if (!user && !isOnboarding) {
+    return (
+      <AuthPage
+        onLoginSuccess={(u) => setUser(u)}
+        onStartOnboarding={(newUser) => {
+          setUser(newUser)
+          setIsOnboarding(true)
+        }}
+      />
+    )
+  }
 
-  const displayName = user.user_metadata?.full_name || user.email?.split('@')[0] || 'there'
+  // If user triggered onboarding flow
+  if (isOnboarding) {
+    return (
+      <OnboardingFlow
+        user={user}
+        onComplete={() => {
+          setIsOnboarding(false)
+          setActivePage('dashboard')
+        }}
+      />
+    )
+  }
+
+  const studentName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Aditya Raj Rai'
 
   return (
-    <div className="app">
-      <aside className="app-sidebar">
-        <div className="logo"><span className="logo-mark"><Sparkles size={16} /></span> SkillSetu</div>
-        <div className="sidebar-kicker">Your career space</div>
-        <nav className="main-nav">
-          <button className={activePage === 'dashboard' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('dashboard')}><LayoutDashboard size={18} /> Overview</button>
-          <button className={activePage === 'profile' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('profile')}><UserRound size={18} /> My profile</button>
-          <button className={activePage === 'opportunities' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('opportunities')}><BriefcaseBusiness size={18} /> Opportunities</button>
-          <button className={activePage === 'assistant' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('assistant')}><Bot size={18} /> Career Copilot</button>
-          <button className={activePage === 'insights' ? 'nav-item active' : 'nav-item'} onClick={() => setActivePage('insights')}><BarChart3 size={18} /> Skill insights</button>
-        </nav>
-        <div className="sidebar-bottom">
-          <div className="sidebar-prompt"><Sparkles size={16} /><strong>Build your edge</strong><p>Upload your resume to unlock personalized insights.</p></div>
-          <button className="sign-out" onClick={signOut}><LogOut size={16} /> Sign out</button>
+    <div className="cb-app-shell">
+      {/* Deep Navy Left Sidebar */}
+      <aside className="cb-sidebar">
+        <div className="cb-sidebar-brand">
+          <div className="cb-brand-icon">
+            <Briefcase size={18} />
+          </div>
+          <span className="cb-brand-title">SkillSetu</span>
+        </div>
+
+        {/* Navigation Group 1: General */}
+        <div className="cb-nav-group">
+          <button
+            className={`cb-nav-link ${activePage === 'dashboard' ? 'active' : ''}`}
+            onClick={() => { setActivePage('dashboard'); setSelectedJob(null); }}
+          >
+            <LayoutDashboard size={17} />
+            <span>Overview</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'opportunities' || activePage === 'job-details' ? 'active' : ''}`}
+            onClick={() => { setActivePage('opportunities'); setSelectedJob(null); }}
+          >
+            <Search size={17} />
+            <span>Explore Opportunities</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'applications' ? 'active' : ''}`}
+            onClick={() => { setActivePage('applications'); setSelectedJob(null); }}
+          >
+            <Send size={17} />
+            <span>My Applications</span>
+            <span className="cb-nav-badge">Demo</span>
+          </button>
+        </div>
+
+        {/* Navigation Group 2: Career Development */}
+        <div className="cb-nav-group">
+          <div className="cb-nav-label">Career Development</div>
+
+          <button
+            className={`cb-nav-link ${activePage === 'profile' ? 'active' : ''}`}
+            onClick={() => { setActivePage('profile'); setSelectedJob(null); }}
+          >
+            <User size={17} />
+            <span>My Profile</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'skill-analysis' ? 'active' : ''}`}
+            onClick={() => { setActivePage('skill-analysis'); setSelectedJob(null); }}
+          >
+            <BarChart2 size={17} />
+            <span>Skill Analysis</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'learning-roadmap' ? 'active' : ''}`}
+            onClick={() => { setActivePage('learning-roadmap'); setSelectedJob(null); }}
+          >
+            <BookOpen size={17} />
+            <span>Learning Roadmap</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'assistant' ? 'active' : ''}`}
+            onClick={() => { setActivePage('assistant'); setSelectedJob(null); }}
+          >
+            <Bot size={17} />
+            <span>Career Assistant</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'insights' ? 'active' : ''}`}
+            onClick={() => { setActivePage('insights'); setSelectedJob(null); }}
+          >
+            <Sparkles size={17} />
+            <span>Campus T&P Demand</span>
+          </button>
+
+          <button
+            className={`cb-nav-link ${activePage === 'states-preview' ? 'active' : ''}`}
+            onClick={() => { setActivePage('states-preview'); setSelectedJob(null); }}
+          >
+            <Layers size={17} />
+            <span>States Preview</span>
+          </button>
+        </div>
+
+        {/* Bottom User Card */}
+        <div className="cb-sidebar-footer">
+          <div className="cb-user-chip">
+            <div className="cb-user-avatar">
+              {studentName.slice(0, 2).toUpperCase()}
+            </div>
+            <div className="cb-user-info">
+              <div className="cb-user-name">{studentName}</div>
+              <div className="cb-user-role">Student</div>
+            </div>
+            <button className="cb-signout-btn" onClick={signOut} title="Sign Out">
+              <LogOut size={16} />
+            </button>
+          </div>
         </div>
       </aside>
-      <main className="app-main">
-        <header className="app-header">
-          <div><p className="header-overline">SKILLSETU / {activePage === 'dashboard' ? 'OVERVIEW' : activePage === 'opportunities' ? 'OPPORTUNITIES' : activePage === 'assistant' ? 'CAREER COPILOT' : activePage === 'insights' ? 'SKILL INSIGHTS' : 'MY PROFILE'}</p><h1>{activePage === 'dashboard' ? `Hey ${displayName}, let's grow.` : activePage === 'opportunities' ? 'Opportunities' : activePage === 'assistant' ? 'Career Copilot' : activePage === 'insights' ? 'Placement Cell Demand & Skill Insights' : 'Your profile'}</h1></div>
-          <div className="header-user"><span className="mini-avatar">{displayName.slice(0, 2).toUpperCase()}</span><span>{displayName}</span></div>
+
+      {/* Main Workspace Area */}
+      <div className="cb-main-area">
+        {/* Top Header Bar */}
+        <header className="cb-topbar">
+          <div className="cb-search-bar">
+            <Search size={16} />
+            <input
+              type="text"
+              placeholder="Search jobs, skills, roles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          <div className="cb-topbar-actions">
+            <ThemeSwitcher />
+            <span className="cb-badge-pill cb-badge-teal">
+              <Sparkles size={13} /> AI Placement Ready
+            </span>
+          </div>
         </header>
-        {activePage === 'dashboard'
-          ? <Dashboard profile={profile} onUpload={() => setActivePage('profile')} />
-          : activePage === 'opportunities'
-            ? <Opportunities />
-            : activePage === 'assistant'
-              ? <Assistant />
-              : activePage === 'insights'
-                ? <SkillGap />
-                : <Profile profile={profile} onProfileAnalyzed={setProfile} />}
-      </main>
+
+        {/* Routed Screen Content */}
+        {activePage === 'dashboard' && (
+          <MainDashboard
+            studentName={studentName}
+            onNavigate={(page, job) => {
+              if (job) setSelectedJob(job)
+              setActivePage(page)
+            }}
+          />
+        )}
+
+        {activePage === 'opportunities' && (
+          <JobOpportunitiesPage
+            onSelectJob={(job) => {
+              setSelectedJob(job)
+              setActivePage('job-details')
+            }}
+          />
+        )}
+
+        {activePage === 'job-details' && (
+          <JobDetailsView
+            job={selectedJob || {
+              title: 'Software Engineer Intern',
+              company: 'Microsoft',
+              location: 'Bengaluru',
+              matchScore: 92,
+            }}
+            onBack={() => setActivePage('opportunities')}
+            onApply={() => setActivePage('states-preview')}
+          />
+        )}
+
+        {activePage === 'applications' && (
+          <MyApplicationsPage
+            onExploreMore={() => setActivePage('opportunities')}
+          />
+        )}
+
+        {activePage === 'skill-analysis' && <SkillAnalysisPage />}
+
+        {activePage === 'learning-roadmap' && <LearningRoadmapPage />}
+
+        {activePage === 'profile' && (
+          <ProfileSettingsPage studentName={studentName} />
+        )}
+
+        {activePage === 'assistant' && <CareerAssistantChatPage />}
+
+        {activePage === 'insights' && <SkillGap />}
+
+        {activePage === 'states-preview' && (
+          <EmptyAndSuccessStates
+            onExplore={() => setActivePage('opportunities')}
+          />
+        )}
+      </div>
     </div>
   )
 }

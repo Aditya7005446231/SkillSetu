@@ -1,5 +1,5 @@
-import re
 from typing import Any
+from urllib.parse import urlsplit
 
 from supabase import Client
 
@@ -7,7 +7,7 @@ from ..schemas.opportunity import RecommendedOpportunity
 from .candidate_state_persistence import save_opportunity_matches
 from .skill_framework_rag import get_related_skills, normalize_skill
 
-FORMULA_VERSION = "coverage-location-type-v2-rag"
+FORMULA_VERSION = "coverage-location-type-v3"
 
 
 def calculate_skill_match(
@@ -60,6 +60,9 @@ def recommend_opportunities(
         for row in (student_rows.data or [])
         if (normalized := normalize_skill(_nested_skill_name(row)))
     }
+    if not student_skills:
+        save_opportunity_matches(client, student_id, [])
+        return []
 
     job_rows = (
         client.table("jobs")
@@ -73,6 +76,7 @@ def recommend_opportunities(
     )
     jobs = job_rows.data or []
     if not jobs:
+        save_opportunity_matches(client, student_id, [])
         return []
 
     job_skill_rows = (
@@ -92,11 +96,15 @@ def recommend_opportunities(
             requirements[job_id].add(normalize_skill(skill_name))
 
     recommendations = []
+    recency: dict[str, str] = {}
     for job in jobs:
         job_location = str(job.get("location") or "")
         job_job_type = str(job.get("job_type") or "other")
         job_location_lower = job_location.lower()
+        apply_url = str(job.get("apply_url") or "").strip()
 
+        if not _is_valid_apply_url(apply_url):
+            continue
         if remote and "remote" not in job_location_lower:
             continue
         if location and location.lower().strip() not in job_location_lower:
@@ -105,14 +113,27 @@ def recommend_opportunities(
             continue
 
         required_skills = requirements.get(str(job["id"]), set())
+        if not required_skills:
+            continue
         matched, missing, coverage = calculate_skill_match(
             student_skills,
             required_skills,
         )
+        if not matched:
+            continue
+
         loc_score = location_score(job_location, location)
         type_score = job_type_score(job_job_type, job_type)
+        weighted_scores = [(0.80, coverage)]
+        if location:
+            weighted_scores.append((0.10, loc_score))
+        if job_type:
+            weighted_scores.append((0.10, type_score))
+        active_weight = sum(weight for weight, _ in weighted_scores)
         match_score = round(
-            (0.80 * coverage + 0.10 * loc_score + 0.10 * type_score) * 100,
+            sum(weight * score for weight, score in weighted_scores)
+            / active_weight
+            * 100,
             1,
         )
         if match_score < minimum_score:
@@ -140,7 +161,7 @@ def recommend_opportunities(
                 company=str(job.get("company") or ""),
                 location=job_location,
                 job_type=job_job_type,
-                apply_url=str(job.get("apply_url") or ""),
+                apply_url=apply_url,
                 match_score=match_score,
                 matched_skills=matched,
                 missing_skills=missing,
@@ -149,9 +170,15 @@ def recommend_opportunities(
                 formula_version=FORMULA_VERSION,
             )
         )
+        recency[str(job["id"])] = str(job.get("last_seen_at") or "")
 
     recommendations.sort(
-        key=lambda item: item.match_score,
+        key=lambda item: (
+            item.match_score,
+            job_type_score(item.job_type, job_type),
+            location_score(item.location, location),
+            recency.get(item.job_id, ""),
+        ),
         reverse=True,
     )
     final_matches = recommendations[:limit]
@@ -172,3 +199,12 @@ def _nested_skill_name(row: dict[str, Any]) -> str:
     if isinstance(skill, list) and skill:
         return str(skill[0].get("name") or "")
     return ""
+
+
+def _is_valid_apply_url(value: str) -> bool:
+    try:
+        parsed = urlsplit(value)
+        hostname = parsed.hostname
+    except ValueError:
+        return False
+    return parsed.scheme in {"http", "https"} and bool(hostname)

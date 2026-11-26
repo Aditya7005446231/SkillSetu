@@ -22,6 +22,7 @@ export async function analyzeResume(file) {
     headers: {
       Authorization: `Bearer ${session.access_token}`,
     },
+    timeout: 120000,
   })
 
   return response.data

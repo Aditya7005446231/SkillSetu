@@ -97,6 +97,13 @@ score =
 ```
 
 The score must be returned as a number from `0` to `100`.
+When a student has not specified a location or job-type preference, omit that
+dimension and proportionally normalize the remaining weights. Do not award
+preference points simply because a preference was not provided.
+
+Only recommend jobs with at least one matched skill, extracted job
+requirements, and a valid HTTP(S) application URL. If the student has no
+recognized skills, return no recommendations and show a clear empty state.
 
 Example:
 
@@ -293,6 +300,27 @@ The frontend should show both:
 
 The original application URL must remain visible and function as the final
 action.
+
+## Learning roadmaps
+
+Roadmaps are derived from recommendation data and the active student profile;
+they are not generated from a generic role template.
+
+- A target-job roadmap contains that job's missing required skills.
+- Framework prerequisites absent from the active profile are added before the
+  skills that depend on them, using the framework's explicit prerequisite
+  relationships.
+- A shared-core roadmap includes only skills missing from at least two of the
+  top five recommended jobs. Gaps are prioritized by frequency, then match
+  scores, with skill name as a deterministic tie-breaker.
+- Each step includes a role-aligned practice task and a small definition of
+  done. Students can save progress and submit a project URL or written evidence.
+- Progress is a student-submitted claim, not an automatic skill verification;
+  submitting it does not change recommendation scores or the active profile.
+- Apply `backend/sql/learning_progress.sql` to enable progress persistence.
+- If there are no eligible recommendations, do not invent a roadmap.
+- "Missing" means no evidence was found in the active profile; it is not proof
+  that the student cannot perform the skill.
 
 ## Validation rules
 

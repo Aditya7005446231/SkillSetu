@@ -108,12 +108,38 @@ def save_opportunity_matches(
 
     _DEV_MATCHES_CACHE[student_id] = serialized_rows
 
-    if client and serialized_rows:
+    if client:
         try:
-            for row in serialized_rows:
-                client.table("opportunity_matches").upsert(
-                    row, on_conflict="student_id,job_id"
-                ).execute()
+            if serialized_rows:
+                for row in serialized_rows:
+                    client.table("opportunity_matches").upsert(
+                        row, on_conflict="student_id,job_id"
+                    ).execute()
+                existing_matches = (
+                    client.table("opportunity_matches")
+                    .select("job_id")
+                    .eq("student_id", student_id)
+                    .execute()
+                )
+                active_job_ids = {
+                    str(row["job_id"]) for row in serialized_rows
+                }
+                for row in existing_matches.data or []:
+                    if str(row.get("job_id")) not in active_job_ids:
+                        (
+                            client.table("opportunity_matches")
+                            .delete()
+                            .eq("student_id", student_id)
+                            .eq("job_id", row["job_id"])
+                            .execute()
+                        )
+            else:
+                (
+                    client.table("opportunity_matches")
+                    .delete()
+                    .eq("student_id", student_id)
+                    .execute()
+                )
         except Exception as e:
             logger.warning("Could not persist opportunity_matches to Supabase: %s", e)
 

@@ -1,0 +1,198 @@
+/*
+From Uiverse.io by dalbrechtmartin - https://uiverse.io/dalbrechtmartin/brave-donkey-91
+MIT License, Copyright (c) dalbrechtmartin (Danaé A.M.)
+*/
+
+.grim-toggle {
+  --surface: #fbf6ea;
+  --sunken: #e6dcc6;
+  --ink: #1d1822;
+  --muted: #5a4f5f;
+  --outline: #7a6b80;
+  --primary: #6b3fb5;
+  --gilding: #d4a03a;
+  --night: #3d2a5c;
+  --shadow: #1d1822;
+  --focus: #8a5a00;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 2em;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+}
+.grim-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+.grim-toggle__track {
+  position: relative;
+  box-sizing: border-box;
+  width: 3.4em;
+  height: 1.85em;
+  flex: none;
+  background: var(--sunken);
+  border: 2px solid var(--outline);
+  box-shadow: 0.15em 0.15em 0 0 var(--shadow);
+  transition:
+    background-color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 240ms;
+}
+.grim-toggle__track::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid var(--gilding);
+  pointer-events: none;
+}
+.grim-toggle__stars {
+  position: absolute;
+  top: 50%;
+  left: 0.35em;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: var(--gilding);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 240ms;
+}
+.grim-toggle__thumb {
+  position: absolute;
+  top: 0.15em;
+  left: 0.15em;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 1.25em;
+  height: 1.25em;
+  background: var(--gilding);
+  border: 2px solid var(--ink);
+  transition:
+    transform 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 240ms;
+}
+.grim-toggle__icon {
+  grid-area: 1 / 1;
+  width: 0.85em;
+  height: 0.85em;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 120ms;
+}
+.grim-toggle__moon {
+  opacity: 0;
+}
+.grim-toggle__state {
+  min-width: 2.2ch;
+  font-size: 0.9em;
+  color: var(--muted);
+}
+.grim-toggle__state::before {
+  content: "Light";
+}
+.grim-toggle:hover .grim-toggle__track {
+  border-color: var(--primary);
+}
+.grim-toggle__input:checked + .grim-toggle__track {
+  background: var(--night);
+  border-color: var(--primary);
+}
+.grim-toggle__input:checked + .grim-toggle__track .grim-toggle__stars {
+  opacity: 1;
+}
+.grim-toggle__input:checked + .grim-toggle__track .grim-toggle__thumb {
+  transform: translateX(1.55em);
+  background: var(--surface);
+  border-color: var(--gilding);
+}
+.grim-toggle__input:checked + .grim-toggle__track .grim-toggle__sun {
+  opacity: 0;
+}
+.grim-toggle__input:checked + .grim-toggle__track .grim-toggle__moon {
+  opacity: 1;
+  stroke: var(--night);
+}
+.grim-toggle__input:checked ~ .grim-toggle__state::before {
+  content: "Dark";
+}
+.grim-toggle__input:checked ~ .grim-toggle__state {
+  color: var(--ink);
+}
+.grim-toggle__input:focus-visible + .grim-toggle__track {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .grim-toggle {
+    --surface: #e8dcc0;
+    --sunken: #100e14;
+    --ink: #ece4d8;
+    --muted: #b3a9b8;
+    --outline: #7d6f8c;
+    --primary: #b99af5;
+    --gilding: #e3b04b;
+    --night: #4b3570;
+    --shadow: #050407;
+    --focus: #e3b04b;
+  }
+  .grim-toggle__thumb {
+    border-color: #17141c;
+  }
+  .grim-toggle__icon {
+    stroke: #17141c;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grim-toggle__track,
+  .grim-toggle__thumb,
+  .grim-toggle__stars,
+  .grim-toggle__icon {
+    transition: none;
+  }
+}
+
+/* Dark mode theme variables for SkillSetu */
+body.dark-mode {
+  --cb-bg: #090e17;
+  --cb-surface: #111827;
+  --cb-border: #1f2937;
+  --cb-border-subtle: #1e293b;
+  --cb-text-main: #f8fafc;
+  --cb-text-muted: #94a3b8;
+  --cb-text-light: #64748b;
+  background-color: #090e17;
+  color: #f8fafc;
+}
+
+body.dark-mode .cb-topbar,
+body.dark-mode .cb-card,
+body.dark-mode .cb-stat-card {
+  background: #111827;
+  border-color: #1f2937;
+  color: #f8fafc;
+}
+
+body.dark-mode .cb-search-bar {
+  background: #090e17;
+  border-color: #1f2937;
+}
+
+body.dark-mode .cb-search-bar input {
+  color: #f8fafc;
+}

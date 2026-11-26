@@ -1,39 +1,41 @@
-# AI Algorithmic Fairness & Demographic Neutrality Audit Report
+# Synthetic Fairness & Demographic Invariance Test Report
 
-**Audit Execution Date:** `2026-11-24 17:34:35 UTC`  
-**System:** SkillSetu Career Intelligence Agent  
-**Audit Methodology:** Counterfactual Equivalence Testing  
-**Status:** 🟢 **VERIFIED EQUITABLE (Δ = 0.00)**
-
----
-
-## 1. Executive Summary
-
-Algorithmic bias in talent acquisition commonly penalizes candidates based on protected demographic attributes 
-such as gender proxies (names) or socioeconomic background (university prestige/tier).
-
-SkillSetu was evaluated using a rigorous **Counterfactual Fairness Test Suite**: three candidate resumes with 
-**identical technical skills and projects**, but distinct demographic indicators (Male vs. Female, Tier-1 Premier IIT vs. 
-Tier-3 Rural State College, Majority vs. Minority names), were evaluated across multiple industry job requirements.
-
-**Audit Conclusion:** Across all benchmark opportunities, the match scores, identified skill gaps, and ranking orders 
-were **100% identical (Δ = 0.0)**. The SkillSetu matching engine evaluates candidates strictly on verified skills and project evidence.
+**Test Execution Date:** `2026-11-24 17:34:35 UTC`  
+**System Evaluated:** SkillSetu Deterministic Matching Formula  
+**Test Harness:** `backend/test_fairness.py`  
+**Result:** 🟢 **Δ = 0.00 across synthetic test cohort**
 
 ---
 
-## 2. Test Cohort Profiles
+## 1. Scope and Limitations (What This Test Does and Does Not Show)
 
-| Candidate ID | Name | Gender Proxy | Educational Institution | Institution Tier | Technical Skills |
+### What This Test Shows:
+- The deterministic scoring function in `backend/test_fairness.py` computes identical scores for synthetic candidate records that share identical technical skills, regardless of the text values in candidate name or university fields.
+- The matching formula directly consumes skill strings, location, and job type without weighting institution name or applicant identity.
+
+### What This Test Does NOT Show:
+- **No Production Pipeline Guarantee:** This test runs against synthetic fixture data directly invoking a standalone formula script; it does not exercise live PDF text extraction, LLM resume profiling, or the full production API path.
+- **No Upstream LLM Bias Evaluation:** If an upstream LLM extracts different skills from different real-world resumes due to phrasing, demographic associations, or formatting differences, that variance is not tested here.
+- **No Real-World Demographic Audit:** This test does not evaluate real applicant populations, outcome distributions, or statistical disparate impact over real hiring cycles.
+- **No Legal or Regulatory Compliance:** This test does not constitute a formal audit for, nor certification under, US EEOC Uniform Guidelines, the EU Artificial Intelligence Act, or any other statutory employment law framework.
+
+---
+
+## 2. Synthetic Test Cohort
+
+The test cohort consists of three synthetic candidate records constructed with **identical skill lists** and varying non-evaluated metadata fields:
+
+| Candidate ID | Synthetic Name | Gender Proxy | Educational Institution | Institution Tier | Technical Skills |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `cand-001` | **Rahul Sharma** | Male | Indian Institute of Technology (IIT) Bombay | Tier-1 (Premier) | `Python, FastAPI, React, TypeScript...` |
-| `cand-002` | **Priya Patel** | Female | Government Engineering College, Bilaspur | Tier-3 (State/Regional) | `Python, FastAPI, React, TypeScript...` |
+| `cand-001` | **Rahul Sharma** | Male | Indian Institute of Technology (IIT) Bombay | Tier-1 | `Python, FastAPI, React, TypeScript...` |
+| `cand-002` | **Priya Patel** | Female | Government Engineering College, Bilaspur | Tier-3 | `Python, FastAPI, React, TypeScript...` |
 | `cand-003` | **Mohammed Zeeshan** | Minority / Male | Aligarh Muslim University | Central University | `Python, FastAPI, React, TypeScript...` |
 
 ---
 
-## 3. Counterfactual Benchmark Results
+## 3. Test Results on Synthetic Job Requirements
 
-| Opportunity Title | Company | Rahul Sharma (IIT Bombay) | Priya Patel (Tier-3 Rural) | Mohammed Zeeshan (Central Univ) | Score Delta (Δ) | Audit Result |
+| Opportunity Title | Company | Rahul Sharma (IIT Bombay) | Priya Patel (Tier-3 Rural) | Mohammed Zeeshan (Central Univ) | Score Delta (Δ) | Result |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Full-Stack Developer Intern** | CloudScale Systems | **100.0%** | **100.0%** | **100.0%** | `0.0` | 🟢 PASS |
 | **Junior Software Engineer** | Nexus Technologies | **84.0%** | **84.0%** | **84.0%** | `0.0` | 🟢 PASS |
@@ -42,18 +44,7 @@ were **100% identical (Δ = 0.0)**. The SkillSetu matching engine evaluates cand
 
 ---
 
-## 4. Key Verification Findings
+## 4. Observations
 
-1. **Zero Disparate Impact:** No candidate received preferential ranking or scoring based on university tier or gender indicators.
-2. **Deterministic Explainability:** All match scores are strictly derived from verified skill coverage (80%), location preference (10%), and employment type (10%).
-3. **Equal Gap Bridging:** Missing skill recommendations (e.g. `Docker` $\rightarrow$ `['Linux', 'Kubernetes', 'CI/CD']`) were uniform across all candidates.
-4. **Anti-Hallucination Guardrails:** The in-memory RAG skill framework prevented the LLM from inventing credentials or assuming unstated competencies based on institutional prestige.
-
----
-
-## 5. Compliance & Certification
-
-- **US EEOC (Equal Employment Opportunity Commission) Uniform Guidelines:** Compliant (No adverse impact).
-- **EU Artificial Intelligence Act (High-Risk AI Systems for HR & Employment):** Compliant with Transparency, Accuracy, and Human Oversight mandates.
-
-*(Report generated automatically by `backend/test_fairness.py`)*
+1. In this unit test, score variation between identical skill lists was zero ($\Delta = 0.0$), confirming that non-skill demographic fields do not enter the mathematical scoring formula.
+2. Gap bridging logic returned identical prerequisite lists for all candidates when given identical missing skills.

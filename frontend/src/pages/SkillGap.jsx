@@ -27,7 +27,7 @@ function SkillGap() {
         <div>
           <span className="eyebrow" style={{ color: '#38bdf8' }}>
             <Building2 size={13} style={{ display: 'inline', marginRight: '4px' }} />
-            {instData?.institution_name || 'Campus Training & Placement Cell'}
+            [Simulated Demo] {instData?.institution_name || 'Campus Training & Placement Cell'}
           </span>
           <h2 style={{ color: '#fff', marginTop: '0.4rem' }}>Campus Placement Demand Analytics (2026-27)</h2>
           <p style={{ color: '#94a3b8' }}>

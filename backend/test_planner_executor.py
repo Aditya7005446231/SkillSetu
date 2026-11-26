@@ -59,9 +59,11 @@ def run_tests():
     # 4. Verify Final State Deliverables
     print("\n[TEST 4] Verifying Final State Deliverables...")
     state_dict = final_state.to_dict()
-    assert state_dict["has_profile"] is True, "Profile must be populated"
-    assert state_dict["matches_count"] > 0, "Matches must be populated"
-    assert len(state_dict["roadmap"]) == 4, f"Roadmap must have 4 milestones, got {len(state_dict['roadmap'])}"
+    assert state_dict["has_profile"] is False, "No profile should be fabricated without input"
+    assert state_dict["student_skills_count"] == 0, "Skills should not be fabricated without input"
+    assert state_dict["retrieved_jobs_count"] == 0, "Jobs should not be fabricated without a database"
+    assert state_dict["matches_count"] == 0, "Recommendations require real job data"
+    assert state_dict["roadmap"] == [], "A roadmap requires verified job gaps"
     
     print(f" PASS: Deliverables generated:")
     print(f"       - Profile Skills: {final_state.student_skills}")
